@@ -31,11 +31,11 @@
 
     <div class="layer" id="fullScreenToggleLayer">
       <div class="homeButtonLabel">
-        <div id="homeButton" onclick="hide('masterBoardSlide');show('titleSlide');"></div>
+        <div id="homeButton" onclick="hide('masterBoardSlide');show('titleSlide');" aria-label="Go to home/title screen"></div>
       </div>
       <div class="fullScreenToggleBig" id="fullScreenToggle">
-        <div id="fullScreenButton" onclick="toggleFullScreen();"></div>
-        <div id="fullScreenButtonDown" onclick="toggleFullScreen();"></div>
+        <div id="fullScreenButton" onclick="toggleFullScreen();" aria-label="Enter fullscreen mode"></div>
+        <div id="fullScreenButtonDown" onclick="toggleFullScreen();" aria-label="Exit fullscreen mode"></div>
       </div>
       <img id="voiceToggle" onclick="toggleVoice()" alt="Toggle voice on/off" />
     </div>
@@ -52,7 +52,7 @@
               <stop offset="100%" style="stop-color:rgba(183,174,127,0.8);"></stop>
             </linearGradient>
           </defs>
-          <g id="hex" onclick="randomDraw();">
+          <g id="hex" onclick="randomDraw();" aria-label="Draw a random bingo ball">
           <polygon points="-52.5,45 52.5,45 77.5,0 52.5,-45 -52.5,-45 -77.5,0" stroke="rgb(94,87,52)" stroke-width="2">
           </polygon>
             <text x="-41" y="-6" fill="#000" font-size="27">DRAW</text>
@@ -82,13 +82,13 @@
               Master Board
             </div>
             <div id="titleSelection">
-              <div id="howToUse" onclick ="hide('titleSlide');show('howToUseSlide', 'grid');">How to Use</div>
-              <div id="goToMasterBoard" onclick="hide('titleSlide');show('masterBoardSlide', 'grid');requestAnimationFrame(() => hideBingoLettersBasedOnWinningPattern());">Master Board</div>
+              <div id="howToUse" onclick ="hide('titleSlide');show('howToUseSlide', 'grid');" aria-label="Open help and usage instructions">How to Use</div>
+              <div id="goToMasterBoard" onclick="hide('titleSlide');show('masterBoardSlide', 'grid');requestAnimationFrame(() => hideBingoLettersBasedOnWinningPattern());" aria-label="Go to the main bingo board">Master Board</div>
             </div>
           </div>
         </div>
         <div id="copyright">
-          <div id="copyrightLabel" onclick="hide('titleSlide');show('aboutCreditsSlide', 'grid');">Version 3.0.1 ~ ©2011-2018 Games by Tim ~ About/Credits</div>
+          <div id="copyrightLabel" onclick="hide('titleSlide');show('aboutCreditsSlide', 'grid');" aria-label="View about and credits information">Version 3.0.1 ~ ©2011-2018 Games by Tim ~ About/Credits</div>
         </div>
       </div>
 
@@ -96,10 +96,10 @@
         <h2>How to Use</h2>
         <div class="helpNav">
           <div id="helpNavLine"></div>
-          <div class="helpNavText boldHelp" onclick="navHelp('Basics');" id="howToUseBasicsHeader">Basics</div>
-          <div class="helpNavText" onclick="navHelp('Basics 2');" id="howToUseBasics2Header">Basics 2</div>
-          <div class="helpNavText" onclick="navHelp('Tips & Tricks');" id="howToUseTipsTricksHeader">Tips & Tricks</div>
-          <div class="helpNavText" onclick="navHelp('Thank You');" id="howToUseThanksHeader">Thank You</div>
+          <div class="helpNavText boldHelp" onclick="navHelp('Basics');" id="howToUseBasicsHeader" aria-label="Show basics help section">Basics</div>
+          <div class="helpNavText" onclick="navHelp('Basics 2');" id="howToUseBasics2Header" aria-label="Show basics 2 help section">Basics 2</div>
+          <div class="helpNavText" onclick="navHelp('Tips & Tricks');" id="howToUseTipsTricksHeader" aria-label="Show tips and tricks help section">Tips & Tricks</div>
+          <div class="helpNavText" onclick="navHelp('Thank You');" id="howToUseThanksHeader" aria-label="Show thank you help section">Thank You</div>
         </div>
         <div class="helpLine"></div>
         <div class="helpContent">
@@ -179,8 +179,8 @@
         <h2>About/Credits</h2>
         <div class="creditsNav">
           <div id="creditsNavLine"></div>
-          <div class="creditsNavText boldHelp" onclick="creditsHelp('About');" id="creditsAboutHeader">About</div>
-          <div class="creditsNavText" onclick="creditsHelp('Credits');" id="creditsCreditsHeader">Credits</div>
+          <div class="creditsNavText boldHelp" onclick="creditsHelp('About');" id="creditsAboutHeader" aria-label="Show about section">About</div>
+          <div class="creditsNavText" onclick="creditsHelp('Credits');" id="creditsCreditsHeader" aria-label="Show credits section">Credits</div>
         </div>
         <div class="helpLine"></div>
         <div class="helpContent">
@@ -261,11 +261,11 @@
         <div id="blocker"></div>
         <div class="controlsCol">
           <div style="margin:-6px 0 0 28px;">
-            <span class="smallButton" id="reset" onclick="resetBoard();">Reset</span>
-            <span class="smallButton" id="themes" onclick="hide('masterBoardSlide');show('settingsSlide', 'grid');">Themes</span>
+            <span class="smallButton" id="reset" onclick="resetBoard();" aria-label="Reset the bingo board and start a new game">Reset</span>
+            <span class="smallButton" id="themes" onclick="hide('masterBoardSlide');show('settingsSlide', 'grid');" aria-label="Open themes and settings">Themes</span>
           </div>
           <div class="winningPatternDiv">
-            <div class="bingoCard" onclick="hide('masterBoardSlide');show('winningPatternSlide', 'grid');updateSelectedPattern();">
+            <div class="bingoCard" onclick="hide('masterBoardSlide');show('winningPatternSlide', 'grid');updateSelectedPattern();" aria-label="Open winning pattern selector">
               <div class="bingoCardHeader">B</div>
               <div class="bingoCardHeader">I</div>
               <div class="bingoCardHeader">N</div>
@@ -298,131 +298,131 @@
               <div class="bingoCardBody" id="25card"></div>
             </div>
           </div>
-          <div class="bigBingoBallClass" id="bigBingoBall" onclick="toggleBallsDrawnRemaining('toggle');">
+          <div class="bigBingoBallClass" id="bigBingoBall" onclick="toggleBallsDrawnRemaining('toggle');" aria-label="Toggle between showing drawn balls count or remaining balls count">
             <div id="bigBingoLetter">&nbsp;</div>
             <div id="bigBingoNumber">&nbsp;</div>
           </div>
           <div id="ballsDrawnRemaining">
-            <span id="ballsDrawn" onclick="hideBallsDrawnRemaining(); event.stopPropagation();" style="cursor:pointer;">
+            <span id="ballsDrawn" onclick="hideBallsDrawnRemaining(); event.stopPropagation();" style="cursor:pointer;" aria-label="Show balls drawn count">
               <span id="ballsDrawnNum" style="font-size:38px;font-weight:700;"></span>
-               &nbsp;drawn
+              &nbsp;drawn
             </span>
-            <span id="ballsRemaining" onclick="hideBallsDrawnRemaining(); event.stopPropagation();" style="cursor:pointer;">
+            <span id="ballsRemaining" onclick="hideBallsDrawnRemaining(); event.stopPropagation();" style="cursor:pointer;" aria-label="Show balls remaining count">
               <span id="ballsRemainingNum" style="font-size:38px;font-weight:700;"></span>
-               &nbsp;remaining
-           </span>
+              &nbsp;remaining
+            </span>
           </div>
-          <div class="boardToggle" id="hideBoard" onclick="toggleBlocker()">Hide Board</div>
-          <div class="boardToggle" id="showBoard" onclick="toggleBlocker()">Show Board</div>
+          <div class="boardToggle" id="hideBoard" onclick="toggleBlocker()" aria-label="Hide the bingo board for a more challenging game">Hide Board</div>
+          <div class="boardToggle" id="showBoard" onclick="toggleBlocker()" aria-label="Show the bingo board">Show Board</div>
         </div>
         <div class="bingoCol bCol">
-          <div class="bingoLetter" onclick="hideBingo('B', 'toggle');">
+          <div class="bingoLetter" onclick="hideBingo('B', 'toggle');" aria-label="Toggle B column visibility">
             <div id="bingoB">B</div>
           </div>
           <div class="bingoBalls" id="bingoBallsB">
-            <div class="bingoBall" id="1bingo">1</div>
-            <div class="bingoBall" id="2bingo">2</div>
-            <div class="bingoBall" id="3bingo">3</div>
-            <div class="bingoBall" id="4bingo">4</div>
-            <div class="bingoBall" id="5bingo">5</div>
-            <div class="bingoBall" id="6bingo">6</div>
-            <div class="bingoBall" id="7bingo">7</div>
-            <div class="bingoBall" id="8bingo">8</div>
-            <div class="bingoBall" id="9bingo">9</div>
-            <div class="bingoBall" id="10bingo">10</div>
-            <div class="bingoBall" id="11bingo">11</div>
-            <div class="bingoBall" id="12bingo">12</div>
-            <div class="bingoBall" id="13bingo">13</div>
-            <div class="bingoBall" id="14bingo">14</div>
-            <div class="bingoBall" id="15bingo">15</div>
+            <div class="bingoBall" id="1bingo" aria-label="B 1 ball - click to draw manually">1</div>
+            <div class="bingoBall" id="2bingo" aria-label="B 2 ball - click to draw manually">2</div>
+            <div class="bingoBall" id="3bingo" aria-label="B 3 ball - click to draw manually">3</div>
+            <div class="bingoBall" id="4bingo" aria-label="B 4 ball - click to draw manually">4</div>
+            <div class="bingoBall" id="5bingo" aria-label="B 5 ball - click to draw manually">5</div>
+            <div class="bingoBall" id="6bingo" aria-label="B 6 ball - click to draw manually">6</div>
+            <div class="bingoBall" id="7bingo" aria-label="B 7 ball - click to draw manually">7</div>
+            <div class="bingoBall" id="8bingo" aria-label="B 8 ball - click to draw manually">8</div>
+            <div class="bingoBall" id="9bingo" aria-label="B 9 ball - click to draw manually">9</div>
+            <div class="bingoBall" id="10bingo" aria-label="B 10 ball - click to draw manually">10</div>
+            <div class="bingoBall" id="11bingo" aria-label="B 11 ball - click to draw manually">11</div>
+            <div class="bingoBall" id="12bingo" aria-label="B 12 ball - click to draw manually">12</div>
+            <div class="bingoBall" id="13bingo" aria-label="B 13 ball - click to draw manually">13</div>
+            <div class="bingoBall" id="14bingo" aria-label="B 14 ball - click to draw manually">14</div>
+            <div class="bingoBall" id="15bingo" aria-label="B 15 ball - click to draw manually">15</div>
           </div>
         </div>
         <div class="bingoCol iCol">
-          <div class="bingoLetter" onclick="hideBingo('I', 'toggle');">
+          <div class="bingoLetter" onclick="hideBingo('I', 'toggle');" aria-label="Toggle I column visibility">
             <div id="bingoI">I</div>
           </div>
           <div class="bingoBalls" id="bingoBallsI">
-            <div class="bingoBall" id="16bingo">16</div>
-            <div class="bingoBall" id="17bingo">17</div>
-            <div class="bingoBall" id="18bingo">18</div>
-            <div class="bingoBall" id="19bingo">19</div>
-            <div class="bingoBall" id="20bingo">20</div>
-            <div class="bingoBall" id="21bingo">21</div>
-            <div class="bingoBall" id="22bingo">22</div>
-            <div class="bingoBall" id="23bingo">23</div>
-            <div class="bingoBall" id="24bingo">24</div>
-            <div class="bingoBall" id="25bingo">25</div>
-            <div class="bingoBall" id="26bingo">26</div>
-            <div class="bingoBall" id="27bingo">27</div>
-            <div class="bingoBall" id="28bingo">28</div>
-            <div class="bingoBall" id="29bingo">29</div>
-            <div class="bingoBall" id="30bingo">30</div>
+            <div class="bingoBall" id="16bingo" aria-label="I 16 ball - click to draw manually">16</div>
+            <div class="bingoBall" id="17bingo" aria-label="I 17 ball - click to draw manually">17</div>
+            <div class="bingoBall" id="18bingo" aria-label="I 18 ball - click to draw manually">18</div>
+            <div class="bingoBall" id="19bingo" aria-label="I 19 ball - click to draw manually">19</div>
+            <div class="bingoBall" id="20bingo" aria-label="I 20 ball - click to draw manually">20</div>
+            <div class="bingoBall" id="21bingo" aria-label="I 21 ball - click to draw manually">21</div>
+            <div class="bingoBall" id="22bingo" aria-label="I 22 ball - click to draw manually">22</div>
+            <div class="bingoBall" id="23bingo" aria-label="I 23 ball - click to draw manually">23</div>
+            <div class="bingoBall" id="24bingo" aria-label="I 24 ball - click to draw manually">24</div>
+            <div class="bingoBall" id="25bingo" aria-label="I 25 ball - click to draw manually">25</div>
+            <div class="bingoBall" id="26bingo" aria-label="I 26 ball - click to draw manually">26</div>
+            <div class="bingoBall" id="27bingo" aria-label="I 27 ball - click to draw manually">27</div>
+            <div class="bingoBall" id="28bingo" aria-label="I 28 ball - click to draw manually">28</div>
+            <div class="bingoBall" id="29bingo" aria-label="I 29 ball - click to draw manually">29</div>
+            <div class="bingoBall" id="30bingo" aria-label="I 30 ball - click to draw manually">30</div>
           </div>
         </div>
         <div class="bingoCol nCol">
-          <div class="bingoLetter" onclick="hideBingo('N', 'toggle');">
+          <div class="bingoLetter" onclick="hideBingo('N', 'toggle');" aria-label="Toggle N column visibility">
             <div id="bingoN">N</div>
           </div>
           <div class="bingoBalls" id="bingoBallsN">
-            <div class="bingoBall" id="31bingo">31</div>
-            <div class="bingoBall" id="32bingo">32</div>
-            <div class="bingoBall" id="33bingo">33</div>
-            <div class="bingoBall" id="34bingo">34</div>
-            <div class="bingoBall" id="35bingo">35</div>
-            <div class="bingoBall" id="36bingo">36</div>
-            <div class="bingoBall" id="37bingo">37</div>
-            <div class="bingoBall" id="38bingo">38</div>
-            <div class="bingoBall" id="39bingo">39</div>
-            <div class="bingoBall" id="40bingo">40</div>
-            <div class="bingoBall" id="41bingo">41</div>
-            <div class="bingoBall" id="42bingo">42</div>
-            <div class="bingoBall" id="43bingo">43</div>
-            <div class="bingoBall" id="44bingo">44</div>
-            <div class="bingoBall" id="45bingo">45</div>
+            <div class="bingoBall" id="31bingo" aria-label="N 31 ball - click to draw manually">31</div>
+            <div class="bingoBall" id="32bingo" aria-label="N 32 ball - click to draw manually">32</div>
+            <div class="bingoBall" id="33bingo" aria-label="N 33 ball - click to draw manually">33</div>
+            <div class="bingoBall" id="34bingo" aria-label="N 34 ball - click to draw manually">34</div>
+            <div class="bingoBall" id="35bingo" aria-label="N 35 ball - click to draw manually">35</div>
+            <div class="bingoBall" id="36bingo" aria-label="N 36 ball - click to draw manually">36</div>
+            <div class="bingoBall" id="37bingo" aria-label="N 37 ball - click to draw manually">37</div>
+            <div class="bingoBall" id="38bingo" aria-label="N 38 ball - click to draw manually">38</div>
+            <div class="bingoBall" id="39bingo" aria-label="N 39 ball - click to draw manually">39</div>
+            <div class="bingoBall" id="40bingo" aria-label="N 40 ball - click to draw manually">40</div>
+            <div class="bingoBall" id="41bingo" aria-label="N 41 ball - click to draw manually">41</div>
+            <div class="bingoBall" id="42bingo" aria-label="N 42 ball - click to draw manually">42</div>
+            <div class="bingoBall" id="43bingo" aria-label="N 43 ball - click to draw manually">43</div>
+            <div class="bingoBall" id="44bingo" aria-label="N 44 ball - click to draw manually">44</div>
+            <div class="bingoBall" id="45bingo" aria-label="N 45 ball - click to draw manually">45</div>
           </div>
         </div>
         <div class="bingoCol gCol">
-          <div class="bingoLetter" onclick="hideBingo('G', 'toggle');">
+          <div class="bingoLetter" onclick="hideBingo('G', 'toggle');" aria-label="Toggle G column visibility">
             <div id="bingoG">G</div>
           </div>
           <div class="bingoBalls" id="bingoBallsG">
-            <div class="bingoBall" id="46bingo">46</div>
-            <div class="bingoBall" id="47bingo">47</div>
-            <div class="bingoBall" id="48bingo">48</div>
-            <div class="bingoBall" id="49bingo">49</div>
-            <div class="bingoBall" id="50bingo">50</div>
-            <div class="bingoBall" id="51bingo">51</div>
-            <div class="bingoBall" id="52bingo">52</div>
-            <div class="bingoBall" id="53bingo">53</div>
-            <div class="bingoBall" id="54bingo">54</div>
-            <div class="bingoBall" id="55bingo">55</div>
-            <div class="bingoBall" id="56bingo">56</div>
-            <div class="bingoBall" id="57bingo">57</div>
-            <div class="bingoBall" id="58bingo">58</div>
-            <div class="bingoBall" id="59bingo">59</div>
-            <div class="bingoBall" id="60bingo">60</div>
+            <div class="bingoBall" id="46bingo" aria-label="G 46 ball - click to draw manually">46</div>
+            <div class="bingoBall" id="47bingo" aria-label="G 47 ball - click to draw manually">47</div>
+            <div class="bingoBall" id="48bingo" aria-label="G 48 ball - click to draw manually">48</div>
+            <div class="bingoBall" id="49bingo" aria-label="G 49 ball - click to draw manually">49</div>
+            <div class="bingoBall" id="50bingo" aria-label="G 50 ball - click to draw manually">50</div>
+            <div class="bingoBall" id="51bingo" aria-label="G 51 ball - click to draw manually">51</div>
+            <div class="bingoBall" id="52bingo" aria-label="G 52 ball - click to draw manually">52</div>
+            <div class="bingoBall" id="53bingo" aria-label="G 53 ball - click to draw manually">53</div>
+            <div class="bingoBall" id="54bingo" aria-label="G 54 ball - click to draw manually">54</div>
+            <div class="bingoBall" id="55bingo" aria-label="G 55 ball - click to draw manually">55</div>
+            <div class="bingoBall" id="56bingo" aria-label="G 56 ball - click to draw manually">56</div>
+            <div class="bingoBall" id="57bingo" aria-label="G 57 ball - click to draw manually">57</div>
+            <div class="bingoBall" id="58bingo" aria-label="G 58 ball - click to draw manually">58</div>
+            <div class="bingoBall" id="59bingo" aria-label="G 59 ball - click to draw manually">59</div>
+            <div class="bingoBall" id="60bingo" aria-label="G 60 ball - click to draw manually">60</div>
           </div>
         </div>
         <div class="bingoCol oCol">
-          <div class="bingoLetter" onclick="hideBingo('O', 'toggle');">
+          <div class="bingoLetter" onclick="hideBingo('O', 'toggle');" aria-label="Toggle O column visibility">
             <div id="bingoO">O</div>
           </div>
           <div class="bingoBalls" id="bingoBallsO">
-            <div class="bingoBall" id="61bingo">61</div>
-            <div class="bingoBall" id="62bingo">62</div>
-            <div class="bingoBall" id="63bingo">63</div>
-            <div class="bingoBall" id="64bingo">64</div>
-            <div class="bingoBall" id="65bingo">65</div>
-            <div class="bingoBall" id="66bingo">66</div>
-            <div class="bingoBall" id="67bingo">67</div>
-            <div class="bingoBall" id="68bingo">68</div>
-            <div class="bingoBall" id="69bingo">69</div>
-            <div class="bingoBall" id="70bingo">70</div>
-            <div class="bingoBall" id="71bingo">71</div>
-            <div class="bingoBall" id="72bingo">72</div>
-            <div class="bingoBall" id="73bingo">73</div>
-            <div class="bingoBall" id="74bingo">74</div>
-            <div class="bingoBall" id="75bingo">75</div>
+            <div class="bingoBall" id="61bingo" aria-label="O 61 ball - click to draw manually">61</div>
+            <div class="bingoBall" id="62bingo" aria-label="O 62 ball - click to draw manually">62</div>
+            <div class="bingoBall" id="63bingo" aria-label="O 63 ball - click to draw manually">63</div>
+            <div class="bingoBall" id="64bingo" aria-label="O 64 ball - click to draw manually">64</div>
+            <div class="bingoBall" id="65bingo" aria-label="O 65 ball - click to draw manually">65</div>
+            <div class="bingoBall" id="66bingo" aria-label="O 66 ball - click to draw manually">66</div>
+            <div class="bingoBall" id="67bingo" aria-label="O 67 ball - click to draw manually">67</div>
+            <div class="bingoBall" id="68bingo" aria-label="O 68 ball - click to draw manually">68</div>
+            <div class="bingoBall" id="69bingo" aria-label="O 69 ball - click to draw manually">69</div>
+            <div class="bingoBall" id="70bingo" aria-label="O 70 ball - click to draw manually">70</div>
+            <div class="bingoBall" id="71bingo" aria-label="O 71 ball - click to draw manually">71</div>
+            <div class="bingoBall" id="72bingo" aria-label="O 72 ball - click to draw manually">72</div>
+            <div class="bingoBall" id="73bingo" aria-label="O 73 ball - click to draw manually">73</div>
+            <div class="bingoBall" id="74bingo" aria-label="O 74 ball - click to draw manually">74</div>
+            <div class="bingoBall" id="75bingo" aria-label="O 75 ball - click to draw manually">75</div>
           </div>
         </div>
         <!--Workaround to fix Bingo ball jumping bug in Chrome-->
@@ -443,25 +443,25 @@
             <div style="text-align:center;">
               <p><strong>Background</strong></p>
               <p class="themeSelection">
-                <span class="themeColor" id="classic" onclick="changeBackgroundColor('classic');">Classic</span>
-                <span class="themeColor" id="red" onclick="changeBackgroundColor('red');">Red</span>
-                <span class="themeColor" id="green" onclick="changeBackgroundColor('green');">Green</span>
-                <span class="themeColor" id="blue" onclick="changeBackgroundColor('blue');">Blue</span>
-                <span class="themeColor" id="purple" onclick="changeBackgroundColor('purple');">Purple</span>
+                <span class="themeColor" id="classic" onclick="changeBackgroundColor('classic');" aria-label="Change to classic theme">Classic</span>
+                <span class="themeColor" id="red" onclick="changeBackgroundColor('red');" aria-label="Change to red theme">Red</span>
+                <span class="themeColor" id="green" onclick="changeBackgroundColor('green');" aria-label="Change to green theme">Green</span>
+                <span class="themeColor" id="blue" onclick="changeBackgroundColor('blue');" aria-label="Change to blue theme">Blue</span>
+                <span class="themeColor" id="purple" onclick="changeBackgroundColor('purple');" aria-label="Change to purple theme">Purple</span>
               </p>
               <p class="themeSelection">
-                <span class="themeColor" id="orange" onclick="changeBackgroundColor('orange');">Orange</span>
-                <span class="themeColor" id="yellow" onclick="changeBackgroundColor('yellow');">Yellow</span>
-                <span class="themeColor" id="pink" onclick="changeBackgroundColor('pink');">Pink</span>
-                <span class="themeColor" id="teal" onclick="changeBackgroundColor('teal');">Teal</span>
-                <span class="themeColor" id="greyscale" onclick="changeBackgroundColor('greyscale');">Greyscale</span>
+                <span class="themeColor" id="orange" onclick="changeBackgroundColor('orange');" aria-label="Change to orange theme">Orange</span>
+                <span class="themeColor" id="yellow" onclick="changeBackgroundColor('yellow');" aria-label="Change to yellow theme">Yellow</span>
+                <span class="themeColor" id="pink" onclick="changeBackgroundColor('pink');" aria-label="Change to pink theme">Pink</span>
+                <span class="themeColor" id="teal" onclick="changeBackgroundColor('teal');" aria-label="Change to teal theme">Teal</span>
+                <span class="themeColor" id="greyscale" onclick="changeBackgroundColor('greyscale');" aria-label="Change to greyscale theme">Greyscale</span>
               </p>
               <p><strong>Bingo Numbers</strong></p>
               <p style="display:flex;justify-content:center;">
-                <span id="bingoStyleBall" onclick="changeBingoStyle('ball');">
+                <span id="bingoStyleBall" onclick="changeBingoStyle('ball');" aria-label="Change bingo numbers to ball style">
                   <span class="bingoBallBall bingoBallBallActiveB">15</span>
                 </span>&nbsp;&nbsp;&nbsp;
-                <span id="bingoStyleVintage" onclick="changeBingoStyle('vintage');">
+                <span id="bingoStyleVintage" onclick="changeBingoStyle('vintage');" aria-label="Change bingo numbers to vintage style">
                   <span class="bingoBallVintage bingoBallVintageActive">15</span>
                 </span>
               </p>
@@ -472,6 +472,7 @@
                 </select>
                 <button id="testVoiceButton" class="smallButton" onclick="testVoice()" aria-label="Test voice settings">Test</button>
                 <button class="smallButton" onclick="showAdvancedSpeech()" aria-label="Open advanced speech settings">Advanced</button>
+                <button class="smallButton" onclick="showScriptOverlay()" aria-label="Edit ball announcement scripts">Scripts</button>
               </p>
             </div>
           </div>
@@ -493,52 +494,52 @@
               <div class="bingoCardHeader bigBingoCardHeader">N</div>
               <div class="bingoCardHeader bigBingoCardHeader">G</div>
               <div class="bingoCardHeader bigBingoCardHeader">O</div>
-              <div class="bingoCardBody bigBingoCardBody" id="1bigcard" onclick="toggleWinningPattern(1);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="6bigcard" onclick="toggleWinningPattern(6);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="11bigcard" onclick="toggleWinningPattern(11);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="16bigcard" onclick="toggleWinningPattern(16);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="21bigcard" onclick="toggleWinningPattern(21);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="2bigcard" onclick="toggleWinningPattern(2);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="7bigcard" onclick="toggleWinningPattern(7);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="12bigcard" onclick="toggleWinningPattern(12);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="17bigcard" onclick="toggleWinningPattern(17);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="22bigcard" onclick="toggleWinningPattern(22);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="3bigcard" onclick="toggleWinningPattern(3);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="8bigcard" onclick="toggleWinningPattern(8);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="13bigcard" onclick="toggleWinningPattern(13);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="18bigcard" onclick="toggleWinningPattern(18);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="23bigcard" onclick="toggleWinningPattern(23);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="4bigcard" onclick="toggleWinningPattern(4);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="9bigcard" onclick="toggleWinningPattern(9);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="14bigcard" onclick="toggleWinningPattern(14);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="19bigcard" onclick="toggleWinningPattern(19);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="24bigcard" onclick="toggleWinningPattern(24);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="5bigcard" onclick="toggleWinningPattern(5);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="10bigcard" onclick="toggleWinningPattern(10);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="15bigcard" onclick="toggleWinningPattern(15);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="20bigcard" onclick="toggleWinningPattern(20);"></div>
-              <div class="bingoCardBody bigBingoCardBody" id="25bigcard" onclick="toggleWinningPattern(25);"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="1bigcard" onclick="toggleWinningPattern(1);" aria-label="Toggle winning pattern position 1 (B column, row 1)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="6bigcard" onclick="toggleWinningPattern(6);" aria-label="Toggle winning pattern position 6 (B column, row 2)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="11bigcard" onclick="toggleWinningPattern(11);" aria-label="Toggle winning pattern position 11 (B column, row 3)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="16bigcard" onclick="toggleWinningPattern(16);" aria-label="Toggle winning pattern position 16 (B column, row 4)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="21bigcard" onclick="toggleWinningPattern(21);" aria-label="Toggle winning pattern position 21 (B column, row 5)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="2bigcard" onclick="toggleWinningPattern(2);" aria-label="Toggle winning pattern position 2 (I column, row 1)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="7bigcard" onclick="toggleWinningPattern(7);" aria-label="Toggle winning pattern position 7 (I column, row 2)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="12bigcard" onclick="toggleWinningPattern(12);" aria-label="Toggle winning pattern position 12 (I column, row 3)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="17bigcard" onclick="toggleWinningPattern(17);" aria-label="Toggle winning pattern position 17 (I column, row 4)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="22bigcard" onclick="toggleWinningPattern(22);" aria-label="Toggle winning pattern position 22 (I column, row 5)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="3bigcard" onclick="toggleWinningPattern(3);" aria-label="Toggle winning pattern position 3 (N column, row 1)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="8bigcard" onclick="toggleWinningPattern(8);" aria-label="Toggle winning pattern position 8 (N column, row 2)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="13bigcard" onclick="toggleWinningPattern(13);" aria-label="Toggle winning pattern position 13 (N column, row 3)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="18bigcard" onclick="toggleWinningPattern(18);" aria-label="Toggle winning pattern position 18 (N column, row 4)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="23bigcard" onclick="toggleWinningPattern(23);" aria-label="Toggle winning pattern position 23 (N column, row 5)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="4bigcard" onclick="toggleWinningPattern(4);" aria-label="Toggle winning pattern position 4 (G column, row 1)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="9bigcard" onclick="toggleWinningPattern(9);" aria-label="Toggle winning pattern position 9 (G column, row 2)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="14bigcard" onclick="toggleWinningPattern(14);" aria-label="Toggle winning pattern position 14 (G column, row 3)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="19bigcard" onclick="toggleWinningPattern(19);" aria-label="Toggle winning pattern position 19 (G column, row 4)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="24bigcard" onclick="toggleWinningPattern(24);" aria-label="Toggle winning pattern position 24 (G column, row 5)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="5bigcard" onclick="toggleWinningPattern(5);" aria-label="Toggle winning pattern position 5 (O column, row 1)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="10bigcard" onclick="toggleWinningPattern(10);" aria-label="Toggle winning pattern position 10 (O column, row 2)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="15bigcard" onclick="toggleWinningPattern(15);" aria-label="Toggle winning pattern position 15 (O column, row 3)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="20bigcard" onclick="toggleWinningPattern(20);" aria-label="Toggle winning pattern position 20 (O column, row 4)"></div>
+              <div class="bingoCardBody bigBingoCardBody" id="25bigcard" onclick="toggleWinningPattern(25);" aria-label="Toggle winning pattern position 25 (O column, row 5)"></div>
             </div>
             <div>
               <div class="winningPatternNames">
-                <div class="winningName" id="pattern-No-Pattern" onclick="winningPatternFromName();">No Pattern</div>
-                <div class="winningName" id="pattern-Four-Corners" onclick="winningPatternFromName('Four Corners', 1,5,21,25);"><img src="./assets/img/pattern-four-corners.svg" class="patternPreview" alt="">Four Corners</div>
-                <div class="winningName" id="pattern-Top-Hat" onclick="winningPatternFromName('Top Hat', 5,7,8,9,10,12,13,14,15,17,18,19,20,25);"><img src="./assets/img/pattern-top-hat.svg" class="patternPreview" alt="">Top Hat</div>
-                <div class="winningName" id="pattern-Letter-L" onclick="winningPatternFromName('Letter L', 1,2,3,4,5,10,15,20,25);"><img src="./assets/img/pattern-letter-l.svg" class="patternPreview" alt="">Letter L</div>
-                <div class="winningName" id="pattern-Frame-Inside" onclick="winningPatternFromName('Frame Inside', 7,8,9,12,14,17,18,19);"><img src="./assets/img/pattern-frame-inside.svg" class="patternPreview" alt="">Frame Inside</div>
-                <div class="winningName" id="pattern-Tree" onclick="winningPatternFromName('Tree', 3,7,8,11,12,13,14,15,17,18,23);"><img src="./assets/img/pattern-tree.svg" class="patternPreview" alt="">Tree</div>
-                <div class="winningName" id="pattern-Letter-T" onclick="winningPatternFromName('Letter T', 1,6,11,12,13,14,15,16,21);"><img src="./assets/img/pattern-letter-t.svg" class="patternPreview" alt="">Letter T</div>
-                <div class="winningName" id="pattern-Frame-Outside" onclick="winningPatternFromName('Frame Outside', 1,2,3,4,5,6,10,11,15,16,20,21,22,23,24,25);"><img src="./assets/img/pattern-frame-outside.svg" class="patternPreview" alt="">Frame Outside</div>
-                <div class="winningName" id="pattern-Field-Goal" onclick="winningPatternFromName('Field Goal', 1,2,3,8,11,13,14,15,18,21,22,23);"><img src="./assets/img/pattern-field-goal.svg" class="patternPreview" alt="">Field Goal</div>
-                <div class="winningName" id="pattern-Letter-X" onclick="winningPatternFromName('Letter X', 1,5,7,9,13,17,19,21,25);"><img src="./assets/img/pattern-letter-x.svg" class="patternPreview" alt="">Letter X</div>
-                <div class="winningName" id="pattern-Plus-Sign" onclick="winningPatternFromName('Plus Sign', 3,8,11,12,13,14,15,18,23);"><img src="./assets/img/pattern-plus-sign.svg" class="patternPreview" alt="">Plus Sign</div>
-                <div class="winningName" id="pattern-Diamond" onclick="winningPatternFromName('Diamond', 3,7,9,11,15,17,19,23);"><img src="./assets/img/pattern-diamond.svg" class="patternPreview" alt="">Diamond</div>
-                <div class="winningName" id="pattern-Letter-Y" onclick="winningPatternFromName('Letter Y', 1,7,13,14,15,17,21);"><img src="./assets/img/pattern-letter-y.svg" class="patternPreview" alt="">Letter Y</div>
-                <div class="winningName" id="pattern-Lucky-7" onclick="winningPatternFromName('Lucky 7', 1,5,6,9,11,13,16,17,21);"><img src="./assets/img/pattern-lucky-7.svg" class="patternPreview" alt="">Lucky 7</div>
-                <div class="winningName" id="pattern-Blackout" onclick="winningPatternFromName('Blackout', 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25);"><img src="./assets/img/pattern-blackout.svg" class="patternPreview" alt="">Blackout</div>
+                <div class="winningName" id="pattern-No-Pattern" onclick="winningPatternFromName();" aria-label="Select no winning pattern">No Pattern</div>
+                <div class="winningName" id="pattern-Four-Corners" onclick="winningPatternFromName('Four Corners', 1,5,21,25);" aria-label="Select four corners winning pattern"><img src="./assets/img/pattern-four-corners.svg" class="patternPreview" alt="">Four Corners</div>
+                <div class="winningName" id="pattern-Top-Hat" onclick="winningPatternFromName('Top Hat', 5,7,8,9,10,12,13,14,15,17,18,19,20,25);" aria-label="Select top hat winning pattern"><img src="./assets/img/pattern-top-hat.svg" class="patternPreview" alt="">Top Hat</div>
+                <div class="winningName" id="pattern-Letter-L" onclick="winningPatternFromName('Letter L', 1,2,3,4,5,10,15,20,25);" aria-label="Select letter L winning pattern"><img src="./assets/img/pattern-letter-l.svg" class="patternPreview" alt="">Letter L</div>
+                <div class="winningName" id="pattern-Frame-Inside" onclick="winningPatternFromName('Frame Inside', 7,8,9,12,14,17,18,19);" aria-label="Select frame inside winning pattern"><img src="./assets/img/pattern-frame-inside.svg" class="patternPreview" alt="">Frame Inside</div>
+                <div class="winningName" id="pattern-Tree" onclick="winningPatternFromName('Tree', 3,7,8,11,12,13,14,15,17,18,23);" aria-label="Select tree winning pattern"><img src="./assets/img/pattern-tree.svg" class="patternPreview" alt="">Tree</div>
+                <div class="winningName" id="pattern-Letter-T" onclick="winningPatternFromName('Letter T', 1,6,11,12,13,14,15,16,21);" aria-label="Select letter T winning pattern"><img src="./assets/img/pattern-letter-t.svg" class="patternPreview" alt="">Letter T</div>
+                <div class="winningName" id="pattern-Frame-Outside" onclick="winningPatternFromName('Frame Outside', 1,2,3,4,5,6,10,11,15,16,20,21,22,23,24,25);" aria-label="Select frame outside winning pattern"><img src="./assets/img/pattern-frame-outside.svg" class="patternPreview" alt="">Frame Outside</div>
+                <div class="winningName" id="pattern-Field-Goal" onclick="winningPatternFromName('Field Goal', 1,2,3,8,11,13,14,15,18,21,22,23);" aria-label="Select field goal winning pattern"><img src="./assets/img/pattern-field-goal.svg" class="patternPreview" alt="">Field Goal</div>
+                <div class="winningName" id="pattern-Letter-X" onclick="winningPatternFromName('Letter X', 1,5,7,9,13,17,19,21,25);" aria-label="Select letter X winning pattern"><img src="./assets/img/pattern-letter-x.svg" class="patternPreview" alt="">Letter X</div>
+                <div class="winningName" id="pattern-Plus-Sign" onclick="winningPatternFromName('Plus Sign', 3,8,11,12,13,14,15,18,23);" aria-label="Select plus sign winning pattern"><img src="./assets/img/pattern-plus-sign.svg" class="patternPreview" alt="">Plus Sign</div>
+                <div class="winningName" id="pattern-Diamond" onclick="winningPatternFromName('Diamond', 3,7,9,11,15,17,19,23);" aria-label="Select diamond winning pattern"><img src="./assets/img/pattern-diamond.svg" class="patternPreview" alt="">Diamond</div>
+                <div class="winningName" id="pattern-Letter-Y" onclick="winningPatternFromName('Letter Y', 1,7,13,14,15,17,21);" aria-label="Select letter Y winning pattern"><img src="./assets/img/pattern-letter-y.svg" class="patternPreview" alt="">Letter Y</div>
+                <div class="winningName" id="pattern-Lucky-7" onclick="winningPatternFromName('Lucky 7', 1,5,6,9,11,13,16,17,21);" aria-label="Select lucky 7 winning pattern"><img src="./assets/img/pattern-lucky-7.svg" class="patternPreview" alt="">Lucky 7</div>
+                <div class="winningName" id="pattern-Blackout" onclick="winningPatternFromName('Blackout', 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25);" aria-label="Select blackout winning pattern"><img src="./assets/img/pattern-blackout.svg" class="patternPreview" alt="">Blackout</div>
               </div>
               <div style="text-align: center; margin-top: 10px; width: 600px;">
-                <div class="winningName" id="random" onclick="randomPattern();" style="display: inline-flex; justify-content: center;">Random</div>
+                <div class="winningName" id="random" onclick="randomPattern();" style="display: inline-flex; justify-content: center;" aria-label="Select a random winning pattern">Random</div>
               </div>
               <div class="cardExplanation">
                 You can also click the Bingo tiles to form your own pattern.
@@ -565,6 +566,7 @@
             <p><strong>S</strong> - Toggle sound on/off</p>
             <p><strong>F</strong> - Toggle fullscreen</p>
             <p><strong>T</strong> - Go to Themes page</p>
+            <p><strong>C</strong> - Edit ball announcement scripts</p>
             <p><strong>W</strong> - Go to Winning Pattern page</p>
           </div>
           <div>
@@ -595,9 +597,46 @@
             <span id="pitchValue" style="min-width:40px; font-size:18px;">1.0</span>
           </label>
           <div style="display:flex; gap:10px; justify-content:center;">
-            <button class="smallButton" onclick="resetAdvancedSpeech()" style="padding:10px 30px; font-size:18px;">Reset</button>
-            <button class="smallButton" onclick="testAdvancedSpeech()" style="padding:10px 30px; font-size:18px;">Test</button>
-            <button class="smallButton" onclick="saveAdvancedSpeech()" style="padding:10px 30px; font-size:18px;">Save</button>
+            <button class="smallButton" onclick="resetAdvancedSpeech()" style="padding:10px 30px; font-size:18px;" aria-label="Reset speech settings to defaults">Reset</button>
+            <button class="smallButton" onclick="testAdvancedSpeech()" style="padding:10px 30px; font-size:18px;" aria-label="Test current speech settings">Test</button>
+            <button class="smallButton" onclick="saveAdvancedSpeech()" style="padding:10px 30px; font-size:18px;" aria-label="Save speech settings">Save</button>
+          </div>
+        </div>
+        <p class="closeText">Press <strong>Esc</strong> or click outside to close</p>
+      </div>
+    </div>
+
+    <div id="scriptOverlay" class="overlay" onclick="hideScriptOverlay()" style="display:none;">
+      <div class="script-overlay-content" onclick="event.stopPropagation();">
+        <h2>Scripts</h2>
+        <div style="text-align:center; padding: 20px;">
+          <p style="font-size: 16px; margin-bottom: 15px;">Customize what is said for each ball number:</p>
+          <div id="scriptGrid" class="script-grid">
+            <!-- Script inputs will be generated dynamically -->
+          </div>
+          <div style="display:flex; gap:10px; justify-content:center; margin-top: 20px;">
+            <button class="smallButton" onclick="resetScript()" style="padding:10px 20px;" aria-label="Reset all scripts to default ball labels">Reset to Labels</button>
+            <button class="smallButton" onclick="testScript()" style="padding:10px 20px;" aria-label="Test a random ball script">Test Random</button>
+            <button class="smallButton" onclick="hideScriptOverlay()" style="padding:10px 20px;" aria-label="Close script editor">Close</button>
+          </div>
+        </div>
+        <p class="closeText">Press <strong>Esc</strong> or click outside to close</p>
+      </div>
+    </div>
+
+    <div id="scriptEditorOverlay" class="overlay" onclick="closeScriptEditor()" style="display:none;">
+      <div class="script-overlay-content" onclick="event.stopPropagation();">
+        <h2>Edit Script for <span id="scriptEditorTitle">Ball</span></h2>
+        <div style="text-align:center; padding: 20px;">
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 10px; font-size: 16px;">What to say when this ball is drawn:</label>
+            <textarea id="scriptEditorInput" rows="3" style="width: 100%; max-width: 400px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea>
+          </div>
+          <div style="display:flex; gap:10px; justify-content:center;">
+            <button class="smallButton" onclick="saveScriptEditor()" style="padding: 10px 20px;">Save</button>
+            <button class="smallButton" onclick="resetScriptEditor()" style="padding: 10px 20px;" aria-label="Reset script to default ball label">Reset to Default</button>
+            <button class="smallButton" onclick="testScriptEditor()" style="padding: 10px 20px;" aria-label="Test the current script">Test</button>
+            <button class="smallButton" onclick="closeScriptEditor()" style="padding: 10px 20px;" aria-label="Cancel script editing">Cancel</button>
           </div>
         </div>
         <p class="closeText">Press <strong>Esc</strong> or click outside to close</p>

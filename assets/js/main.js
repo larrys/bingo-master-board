@@ -20,7 +20,8 @@ let saveData = {
   currentPatternName: "No Pattern",
   speechRate: 1,
   speechPitch: 1,
-  speechVolume: 0.8
+  speechVolume: 0.8,
+  scriptData: {}
 }
 
 const namedPatterns = {
@@ -192,6 +193,15 @@ function testAdvancedSpeech() {
   saveData.speechPitch = originalPitch;
 }
 
+function showScriptOverlay() {
+  initializeScriptGrid();
+  document.getElementById('scriptOverlay').style.display = 'flex';
+}
+
+function hideScriptOverlay() {
+  document.getElementById('scriptOverlay').style.display = 'none';
+}
+
 function isFormFieldFocused(e) {
   const tagName = e.target && e.target.tagName;
   return tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName === 'SELECT';
@@ -210,6 +220,16 @@ function handleGlobalKeyEvents(e) {
   if (e.key === 'Escape') {
     if (document.getElementById('advancedSpeechOverlay').style.display === 'flex') {
       hideAdvancedSpeech();
+      e.preventDefault();
+      return true;
+    }
+    if (document.getElementById('scriptOverlay').style.display === 'flex') {
+      hideScriptOverlay();
+      e.preventDefault();
+      return true;
+    }
+    if (document.getElementById('scriptEditorOverlay').style.display === 'flex') {
+      closeScriptEditor();
       e.preventDefault();
       return true;
     }
@@ -326,6 +346,7 @@ function show(elementName, display) {
         else if (e.key === 'g') {hideBingo('G', 'toggle');}
         else if (e.key === 'o') {hideBingo('O', 'toggle');}
         else if (e.key === 't') {hide('masterBoardSlide');show('settingsSlide', 'grid');}
+        else if (e.key === 'c') {showScriptOverlay();}
         else if (e.key === 'w') {hide('masterBoardSlide');show('winningPatternSlide', 'grid');}
         else if (e.key === 'v') {toggleBallsDrawnRemaining('toggle');}
         else if (e.key === 's') {toggleVoice();}
@@ -558,7 +579,12 @@ function activateBingoBall(bingoIDNum) {
     saveData.drawnBingoBalls.push(bingoIDNum);
     saveData.lastActionWasRemove = false;
     save();
-    speak(typeOfBingoBallLetter + " " + bingoIDNum);
+    // Use custom script if defined, otherwise construct default letter + number announcement
+    if (saveData.scriptData[bingoIDNum]) {
+      speak(getScriptForBall(bingoIDNum));
+    } else {
+      speak(typeOfBingoBallLetter + " " + bingoIDNum);
+    }
     let counts = getBallCounts();
     if (document.getElementById("ballsDrawnRemaining").style.visibility === "visible") {
       if (saveData.ballsDrawnRemaining === "drawn") {
@@ -1038,6 +1064,7 @@ function setUpSettings() {
     }
   }
   updateSelectedPattern();
+  initializeScriptGrid();
 }
 
 function changeBackgroundColor(theColor) {
@@ -1326,5 +1353,113 @@ function keyboardNavCredits(leftOrRight) {
     if (leftOrRight === 0) {
       creditsHelp("About");
     }
+  }
+}
+
+function initializeScriptGrid() {
+  const scriptGrid = document.getElementById('scriptGrid');
+  scriptGrid.innerHTML = '';
+  
+  const bingoLetters = ['B', 'I', 'N', 'G', 'O'];
+  
+  for (let i = 1; i <= 75; i++) {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'script-item';
+    
+    const label = document.createElement('div');
+    label.className = 'script-label';
+    const letterIndex = Math.floor((i - 1) / 15);
+    const ballLabel = bingoLetters[letterIndex] + i;
+    label.textContent = ballLabel;
+    label.setAttribute('aria-label', 'Click to hear the announcement for ball ' + ballLabel);
+    label.onclick = function() {
+      const currentValue = valueDisplay.textContent;
+      speak(currentValue);
+    };
+    
+    const valueDisplay = document.createElement('div');
+    valueDisplay.className = 'script-value';
+    const currentScriptValue = saveData.scriptData[i] || ballLabel;
+    valueDisplay.textContent = currentScriptValue;
+    valueDisplay.setAttribute(
+      'aria-label',
+      'Edit script for ball ' + ballLabel + '. Currently: ' + currentScriptValue
+    );
+    valueDisplay.onclick = function() {
+      openScriptEditor(i, ballLabel);
+    };
+    valueDisplay.style.cursor = 'pointer';
+    
+    itemDiv.appendChild(label);
+    itemDiv.appendChild(valueDisplay);
+    scriptGrid.appendChild(itemDiv);
+  }
+}
+
+function resetScript() {
+  if (confirm('Are you sure you want to reset all scripts to default ball labels?')) {
+    saveData.scriptData = {};
+    save();
+    initializeScriptGrid();
+  }
+}
+
+function getDefaultBallLabel(ballNumber) {
+  const bingoLetters = ['B', 'I', 'N', 'G', 'O'];
+  const letterIndex = Math.floor((ballNumber - 1) / 15);
+  return bingoLetters[letterIndex] + ballNumber;
+}
+
+function testScript() {
+  const testNumber = Math.floor(Math.random() * 75) + 1;
+  const scriptText = getScriptForBall(testNumber);
+  speak(scriptText);
+}
+
+function getScriptForBall(ballNumber) {
+  return saveData.scriptData[ballNumber] || getDefaultBallLabel(ballNumber);
+}
+
+let currentEditingBall = null;
+
+function openScriptEditor(ballNumber, ballLabel) {
+  currentEditingBall = ballNumber;
+  document.getElementById('scriptEditorTitle').textContent = ballLabel;
+  document.getElementById('scriptEditorInput').value = saveData.scriptData[ballNumber] || ballLabel;
+  document.getElementById('scriptEditorOverlay').style.display = 'flex';
+}
+
+function closeScriptEditor() {
+  document.getElementById('scriptEditorOverlay').style.display = 'none';
+  currentEditingBall = null;
+}
+
+function saveScriptEditor() {
+  if (currentEditingBall) {
+    const newValue = document.getElementById('scriptEditorInput').value.trim();
+    if (newValue) {
+      saveData.scriptData[currentEditingBall] = newValue;
+    } else {
+      delete saveData.scriptData[currentEditingBall];
+    }
+    save();
+    initializeScriptGrid();
+    closeScriptEditor();
+  }
+}
+
+function resetScriptEditor() {
+  if (currentEditingBall) {
+    const bingoLetters = ['B', 'I', 'N', 'G', 'O'];
+    const letterIndex = Math.floor((currentEditingBall - 1) / 15);
+    const ballLabel = bingoLetters[letterIndex] + currentEditingBall;
+    document.getElementById('scriptEditorInput').value = ballLabel;
+  }
+}
+
+function testScriptEditor() {
+  const text = document.getElementById('scriptEditorInput').value.trim();
+  if (text) {
+    speak(text);
   }
 }

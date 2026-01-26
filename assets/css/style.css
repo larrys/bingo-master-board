@@ -1105,6 +1105,15 @@ color:gray;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
+.script-overlay-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 1000px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
 .overlayContent h2 {
   margin-top: 0;
   font-size: 28px;
@@ -1127,4 +1136,76 @@ color:gray;
   font-size: 16px;
   color: #666;
   margin-bottom: 0;
+}
+
+.script-grid {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  gap: 8px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.script-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.script-label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 2px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.script-label:hover {
+  color: #007acc;
+}
+
+.script-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+  background-color: white;
+  transition: border-color 0.2s;
+}
+
+.script-input:focus {
+  outline: none;
+  border-color: #007acc;
+  box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+}
+
+.script-input:hover {
+  border-color: #999;
+}
+
+.script-value {
+  font-size: 10px;
+  color: #666;
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.script-value:hover {
+  color: #007acc;
+  background-color: rgba(0, 122, 204, 0.1);
 }
