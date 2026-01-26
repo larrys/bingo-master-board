@@ -570,6 +570,12 @@ function activateBingoBall(bingoIDNum) {
     if (isLetterComplete(typeOfBingoBallLetter) && saveData.completedLetters.indexOf(typeOfBingoBallLetter) === -1) {
       saveData.completedLetters.push(typeOfBingoBallLetter);
       save();
+      speak("Letter " + typeOfBingoBallLetter + " is all complete");
+      
+      // Check if all letters are now complete
+      if (saveData.completedLetters.length === 5) {
+        speak("Bingo was his name-o");
+      }
     }
 	} else {
 		speak("removing " + typeOfBingoBallLetter + " " + bingoIDNum);
@@ -583,6 +589,7 @@ function activateBingoBall(bingoIDNum) {
       if (index !== -1) {
         saveData.completedLetters.splice(index, 1);
         save();
+        speak("Letter " + typeOfBingoBallLetter + " is no longer complete");
       }
     }
 	}
@@ -816,13 +823,13 @@ function hideBingo(bingoLetter, renderOrToggle) {
       document.getElementById(bingoBallsClass).style.display = "none";
       saveData.hiddenBingoLetters.push(bingoLetter);
       save();
-      if (!isHidingForPattern) speak("Hiding " + bingoLetter);
+      if (!isHidingForPattern) speak("Hiding letter " + bingoLetter);
     } else {
       document.getElementById(bingoLetterClass).classList.remove("bingoLetterGray");
       document.getElementById(bingoBallsClass).style.display = "block";
       saveData.hiddenBingoLetters.splice(saveData.hiddenBingoLetters.indexOf(bingoLetter), 1);
       save();
-      if (!isHidingForPattern) speak("Showing " + bingoLetter);
+      if (!isHidingForPattern) speak("Showing letter " + bingoLetter);
     }
     updateBallStats();
   }
@@ -934,7 +941,7 @@ function resetBoard() {
   save();
   hideBingo("", "reset");
   clearWinningPattern();
-  speak("Clear boards, please");
+  speak("Resetting board!");
   updateBallStats();
 }
 
