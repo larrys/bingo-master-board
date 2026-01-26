@@ -783,6 +783,48 @@ color:gray;
   background-color:rgba(0,0,0,0.05);
 }
 
+#voiceSelect {
+  padding: 3px 12px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background-color: rgba(255,255,255,0.9);
+  color: #000;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#voiceToggle {
+  position: absolute;
+  right: 90px;
+  top: 8px;
+  width: 25px;
+  height: 25px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.voice-on {
+  background-image: url("../img/voiceOn.svg");
+}
+
+.voice-on:hover {
+  background-image: url("../img/voiceOnHover.svg");
+}
+
+.voice-off {
+  background-image: url("../img/voiceOff.svg");
+}
+
+.voice-off:hover {
+  background-image: url("../img/voiceOffHover.svg");
+}
+
 #classic {
   color:rgb(148,138,84);
 }
@@ -897,6 +939,10 @@ color:gray;
   color:#16639a;
 }
 
+.winningName.selected {
+  font-weight: bold;
+}
+
 .bigBingoCardBody:hover {
   cursor:pointer;
   background-color:#ddd;
@@ -915,4 +961,50 @@ color:gray;
   height:100%;
   display:grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlayContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.overlayContent h2 {
+  margin-top: 0;
+  font-size: 28px;
+}
+
+.shortcutsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.shortcutsGrid p {
+  margin: 5px 0;
+  font-size: 18px;
+  text-align: left;
+}
+
+.closeText {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 0;
 }

@@ -13,8 +13,35 @@ let saveData = {
   ballsDrawnRemaining: "drawn",
   hiddenBingoLetters: [],
   winningPattern: [],
-  firstRun: 0
+  firstRun: 0,
+  voice: "off",
+  completedLetters: [],
+  lastVoice: null,
+  currentPatternName: "No Pattern"
 }
+
+const namedPatterns = {
+  "Four Corners": [1,5,21,25],
+  "Top Hat": [5,7,8,9,10,12,13,14,15,17,18,19,20,25],
+  "Letter L": [1,2,3,4,5,10,15,20,25],
+  "Frame Inside": [7,8,9,12,14,17,18,19],
+  "Tree": [3,7,8,11,12,13,14,15,17,18,23],
+  "Letter T": [1,6,11,12,13,14,15,16,21],
+  "Frame Outside": [1,2,3,4,5,6,10,11,15,16,20,21,22,23,24,25],
+  "Field Goal": [1,2,3,8,11,13,14,15,18,21,22,23],
+  "Letter X": [1,5,7,9,13,17,19,21,25],
+  "Plus Sign": [3,8,11,12,13,14,15,18,23],
+  "Diamond": [3,7,9,11,15,17,19,23],
+  "Letter Y": [1,7,13,14,15,17,21],
+  "Lucky 7": [1,5,6,9,11,13,16,17,21],
+  "Blackout": Array.from({length: 25}, (_, i) => i + 1)
+};
+
+const SPEECH_PARAMS = {
+  rate: 1.2,
+  pitch: 1,
+  volume: 0.8
+};
 
 if(supportsLocalStorage) {
   if (localStorage.getItem("bingoMasterBoardSaveData")) {
@@ -26,6 +53,9 @@ if(supportsLocalStorage) {
       }
     }
   }
+}
+if (saveData.voice && saveData.voice !== 'off') {
+  saveData.lastVoice = saveData.voice;
 }
 
 function save() {
@@ -41,11 +71,11 @@ function init() {
 	document.addEventListener("webkitfullscreenchange", onFullScreenChange, false);
 	const bingoBallClass = document.querySelectorAll(".bingoBall");
 	for (let i = 0; i < bingoBallClass.length; i+=1) {
-		bingoBallClass[i].addEventListener("click", () => {activateBingoBall(i+1)});
+		bingoBallClass[i].addEventListener("click", function() {activateBingoBall(i+1)});
 	}
   let param = location.search;
   if (param === "?masterboard") {
-    setTimeout(() => {
+    setTimeout(function() {
       hide("titleSlide");
       show("fullScreenToggleLayer");
   		show("masterBoardSlide", "grid");
@@ -54,14 +84,12 @@ function init() {
     if (saveData.firstRun === 0 && supportsLocalStorage) {
       saveData.firstRun = 1;
       save();
-      setTimeout(() => {
+      setTimeout(function() {
         hide("titleSlide");
-        show("fullScreenToggleLayer");
         show("onboardingSlide");
       },50);
     } else {
-      setTimeout(() => {
-        show("fullScreenToggleLayer");
+      setTimeout(function() {
         show("titleSlide");
       },50);
     }
@@ -75,6 +103,77 @@ function init() {
   img1.src = "./assets/img/fullscreenUpHover.svg";
   img2.src = "./assets/img/fullscreenDownHover.svg";
   img3.src = "./assets/img/homeButtonHover.svg";
+  if ('speechSynthesis' in window) {
+    speechSynthesis.onvoiceschanged = updateVoiceOptions;
+    updateVoiceOptions();
+  }
+  updateVoiceIcon();
+}
+
+function updateVoiceIcon() {
+  const icon = document.getElementById('voiceToggle');
+  if (icon) {
+    if (saveData.voice === 'off') {
+      icon.src = './assets/img/voiceOff.svg';
+    } else {
+      icon.src = './assets/img/voiceOn.svg';
+    }
+  }
+}
+
+function toggleVoice() {
+  if (saveData.voice === 'off') {
+    saveData.voice = saveData.lastVoice || 'voice0';
+  } else {
+    saveData.lastVoice = saveData.voice;
+    saveData.voice = 'off';
+    window.speechSynthesis.cancel();
+  }
+  save();
+  updateVoiceIcon();
+}
+
+function showKeyboardShortcuts() {
+  document.getElementById('keyboardShortcutsOverlay').style.display = 'flex';
+}
+
+function hideKeyboardShortcuts() {
+  document.getElementById('keyboardShortcutsOverlay').style.display = 'none';
+}
+
+function handleGlobalKeyEvents(e) {
+  if (e.key === '?' || (e.key === '/' && e.shiftKey)) {
+    showKeyboardShortcuts();
+    e.preventDefault();
+    return true;
+  }
+  return false;
+}
+
+function updateVoiceOptions() {
+  const voices = speechSynthesis.getVoices();
+  const select = document.getElementById('voiceSelect');
+  if (!select) return;
+  select.innerHTML = '';
+  // Add Off
+  const offOption = document.createElement('option');
+  offOption.value = 'off';
+  offOption.textContent = 'Off';
+  select.appendChild(offOption);
+  // Add voices (English only, unique names)
+  const addedNames = new Set();
+  voices.forEach(function(voice) {
+    if (voice.lang && voice.lang.startsWith('en')) {
+      const cleanName = voice.name.split(' (')[0];
+      if (!addedNames.has(cleanName)) {
+        addedNames.add(cleanName);
+        const option = document.createElement('option');
+        option.value = cleanName;
+        option.textContent = cleanName;
+        select.appendChild(option);
+      }
+    }
+  });
 }
 
 function resize() {
@@ -88,13 +187,12 @@ function resize() {
   let windowMultiplier = window.innerHeight/window.innerWidth;
   if (windowMultiplier < areaMultiplier) { // window is wider
     for (let i = 0; i<viewNames.length; i+=1) {
-        viewNames[i].style.transform = `scale(` + (window.innerHeight/fixedHeight) + `)`;
+        viewNames[i].style.transform = 'scale(' + (window.innerHeight/fixedHeight) + ')';
     }
   } else {
     for (let i = 0; i<viewNames.length; i+=1) {
-      viewNames[i].style.transform = `scale(` + (window.innerWidth/fixedWidth) + `)`;
+      viewNames[i].style.transform = 'scale(' + (window.innerWidth/fixedWidth) + ')';
     }
-
   }
 }
 
@@ -123,95 +221,110 @@ function show(elementName, display) {
 		document.getElementById("drawBallLayer").style.display = "block";
 		document.getElementById("fullScreenToggle").classList.add("fullScreenToggleSmall");
 		document.getElementById("homeButton").style.display = "block";
+		document.getElementById("fullScreenToggleLayer").style.display = "block";
     if (loadedMasterBoard === false) {
       setUpMasterBoard();
       loadedMasterBoard = true;
     }
     document.onkeydown = function(e) {
+      if (handleGlobalKeyEvents(e)) return;
       if(!keyPressed) {
         e.preventDefault();
         keyPressed = true;
-        if (e.keyCode === 32) {randomDraw();}
-        else if (e.keyCode === 82) {resetBoard();}
-        else if (e.keyCode === 88) {toggleBlocker();}
-        else if (e.keyCode === 66) {hideBingo('B', 'toggle');}
-        else if (e.keyCode === 73) {hideBingo('I', 'toggle');}
-        else if (e.keyCode === 78) {hideBingo('N', 'toggle');}
-        else if (e.keyCode === 71) {hideBingo('G', 'toggle');}
-        else if (e.keyCode === 79) {hideBingo('O', 'toggle');}
-        else if (e.keyCode === 84) {hide('masterBoardSlide');show('settingsSlide', 'grid');}
-        else if (e.keyCode === 87) {hide('masterBoardSlide');show('winningPatternSlide', 'grid');}
-        else if (e.keyCode === 86) {toggleBallsDrawnRemaining('toggle');}
-        else if (e.keyCode === 72) {hide('masterBoardSlide');show('titleSlide');}
-        else if (e.keyCode === 70) {toggleFullScreen();}
+        if (e.key === ' ') {randomDraw();}
+        else if (e.key === 'r') {resetBoard();}
+        else if (e.key === 'x') {toggleBlocker();}
+        else if (e.key === 'b') {hideBingo('B', 'toggle');}
+        else if (e.key === 'i') {hideBingo('I', 'toggle');}
+        else if (e.key === 'n') {hideBingo('N', 'toggle');}
+        else if (e.key === 'g') {hideBingo('G', 'toggle');}
+        else if (e.key === 'o') {hideBingo('O', 'toggle');}
+        else if (e.key === 't') {hide('masterBoardSlide');show('settingsSlide', 'grid');}
+        else if (e.key === 'w') {hide('masterBoardSlide');show('winningPatternSlide', 'grid');}
+        else if (e.key === 'v') {toggleBallsDrawnRemaining('toggle');}
+        else if (e.key === 's') {toggleVoice();}
+        else if (e.key === 'h') {hide('masterBoardSlide');show('titleSlide');}
+        else if (e.key === 'f') {toggleFullScreen();}
+        else if (e.key === 'Escape') {hideKeyboardShortcuts();}
       }
     }
 	}
   else if (elementName === "settingsSlide") {
     setUpSettings(saveData.themeColor);
     document.onkeydown = function(e) {
+      if (handleGlobalKeyEvents(e)) return;
       if(!keyPressed) {
         e.preventDefault();
         keyPressed = true;
-        if (e.keyCode === 84 || e.keyCode === 13) {hide('settingsSlide');show('masterBoardSlide', 'grid');}
-        else if (e.keyCode === 70) {toggleFullScreen();}
+        if (e.key === 't' || e.key === 'Enter') {hide('settingsSlide');show('masterBoardSlide', 'grid');}
+        else if (e.key === 'f') {toggleFullScreen();}
+        else if (e.key === 'Escape') {hideKeyboardShortcuts();}
       }
     }
   }
   else if (elementName === "winningPatternSlide") {
     document.onkeydown = function(e) {
+      if (handleGlobalKeyEvents(e)) return;
       if(!keyPressed) {
         e.preventDefault();
         keyPressed = true;
-        if (e.keyCode === 87 || e.keyCode === 13) {hideBingoLettersBasedOnWinningPattern();hide('winningPatternSlide');show('masterBoardSlide', 'grid');}
-        else if (e.keyCode === 70) {toggleFullScreen();}
+        if (e.key === 'w' || e.key === 'Enter') {hideBingoLettersBasedOnWinningPattern();hide('winningPatternSlide');show('masterBoardSlide', 'grid');}
+        else if (e.key === 'f') {toggleFullScreen();}
+        else if (e.key === 'Escape') {hideKeyboardShortcuts();}
       }
     }
   }
   else if (elementName === "titleSlide") {
     document.onkeydown = function(e) {
+      if (handleGlobalKeyEvents(e)) return;
       if(!keyPressed) {
         e.preventDefault();
         keyPressed = true;
-        if (e.keyCode === 13) {hide('titleSlide');show('masterBoardSlide', 'grid');}
-        else if (e.keyCode === 70) {toggleFullScreen();}
+        if (e.key === 'Enter') {hide('titleSlide');show('masterBoardSlide', 'grid');}
+        else if (e.key === 'f') {toggleFullScreen();}
+        else if (e.key === 'Escape') {hideKeyboardShortcuts();}
       }
     }
   }
   else if (elementName === "howToUseSlide") {
     document.onkeydown = function(e) {
+      if (handleGlobalKeyEvents(e)) return;
       if(!keyPressed) {
         e.preventDefault();
         keyPressed = true;
-        if (e.keyCode === 37) {keyboardNavHowToUse(0);}
-        else if (e.keyCode === 39) {keyboardNavHowToUse(1);}
-        else if (e.keyCode === 70) {toggleFullScreen();}
-        else if (e.keyCode === 13) {hide('howToUseSlide');show('titleSlide');}
+        if (e.key === 'ArrowLeft') {keyboardNavHowToUse(0);}
+        else if (e.key === 'ArrowRight') {keyboardNavHowToUse(1);}
+        else if (e.key === 'f') {toggleFullScreen();}
+        else if (e.key === 'Enter') {hide('howToUseSlide');show('titleSlide');}
+        else if (e.key === 'Escape') {hideKeyboardShortcuts();}
       }
     }
   }
   else if (elementName === "aboutCreditsSlide") {
     document.onkeydown = function(e) {
+      if (handleGlobalKeyEvents(e)) return;
       if(!keyPressed) {
         e.preventDefault();
         keyPressed = true;
-        if (e.keyCode === 37) {keyboardNavCredits(0);}
-        else if (e.keyCode === 39) {keyboardNavCredits(1);}
-        else if (e.keyCode === 70) {toggleFullScreen();}
-        else if (e.keyCode === 13) {hide('aboutCreditsSlide');show('titleSlide');}
+        if (e.key === 'ArrowLeft') {keyboardNavCredits(0);}
+        else if (e.key === 'ArrowRight') {keyboardNavCredits(1);}
+        else if (e.key === 'f') {toggleFullScreen();}
+        else if (e.key === 'Enter') {hide('aboutCreditsSlide');show('titleSlide');}
+        else if (e.key === 'Escape') {hideKeyboardShortcuts();}
       }
     }
   }
   else {
     document.onkeydown = function(e) {
+      if (handleGlobalKeyEvents(e)) return;
       if(!keyPressed) {
         e.preventDefault();
         keyPressed = true;
-        if (e.keyCode === 70) {toggleFullScreen();}
+        if (e.key === 'f') {toggleFullScreen();}
       }
     }
   }
-	setTimeout(() => {
+	setTimeout(function() {
 	  document.getElementById("fader").classList.remove("notransition");
 	  document.getElementById("fader").style.opacity = "0";
 	},50);
@@ -224,6 +337,7 @@ function hide(elementName) {
 		document.getElementById("drawBallLayer").style.display = "none";
 		document.getElementById("fullScreenToggle").classList.remove("fullScreenToggleSmall");
 		document.getElementById("homeButton").style.display = "none";
+		document.getElementById("fullScreenToggleLayer").style.display = "none";
 	}
 }
 
@@ -282,37 +396,95 @@ function changeBG(color) {
 	document.getElementById("fader").style.background=newColor;
 }
 
+function setBigBingoBall(typeOfBingoBall, typeOfBingoBallLetter, bingoIDNum) {
+  document.getElementById("bigBingoBall").classList.remove(document.getElementById("bigBingoBall").classList.item(1));
+  if (saveData.bingoStyle === "ball") {
+    document.getElementById("bigBingoBall").classList.add(typeOfBingoBall);
+  } else {
+    document.getElementById("bigBingoBall").classList.add("bigBingoBallVintage");
+  }
+  document.getElementById("bigBingoLetter").innerHTML = typeOfBingoBallLetter;
+  document.getElementById("bigBingoNumber").innerHTML = bingoIDNum;
+}
+
+function clearBigBingoBall() {
+  document.getElementById("bigBingoBall").classList.remove(document.getElementById("bigBingoBall").classList.item(1));
+  document.getElementById("bigBingoLetter").innerHTML = "&nbsp;";
+  document.getElementById("bigBingoNumber").innerHTML = "&nbsp;";
+}
+
 function activateBingoBall(bingoIDNum) {
   let typeOfBingoBall = typeOfBingo(bingoIDNum);
   let typeOfBingoBallLetter = typeOfBingoLetter(bingoIDNum);
   let bingoID = bingoIDNum + "bingo";
 	if (saveData.drawnBingoBalls.indexOf(bingoIDNum) === -1) {
 		document.getElementById(bingoID).classList.add(typeOfBingoBall);
-    document.getElementById("bigBingoBall").classList.remove(document.getElementById("bigBingoBall").classList.item(1));
-    if (saveData.bingoStyle === "ball") {
-    document.getElementById("bigBingoBall").classList.add(typeOfBingoBall);
-    } else {
-      document.getElementById("bigBingoBall").classList.add("bigBingoBallVintage");
-    }
-    document.getElementById("bigBingoLetter").innerHTML=typeOfBingoBallLetter;
-    document.getElementById("bigBingoNumber").innerHTML=bingoIDNum;
+    setBigBingoBall(typeOfBingoBall, typeOfBingoBallLetter, bingoIDNum);
     document.getElementById("bigBingoNumber").style.fontSize=104+"px";
-    setTimeout(() => {
+    setTimeout(function() {
       document.getElementById("bigBingoNumber").style.fontSize=95+"px";
     },100);
     saveData.drawnBingoBalls.push(bingoIDNum);
     saveData.lastActionWasRemove = false;
     save();
+    speakBall(typeOfBingoBallLetter, bingoIDNum);
+    let counts = getBallCounts();
+    if (document.getElementById("ballsDrawnRemaining").style.visibility === "visible") {
+      if (saveData.ballsDrawnRemaining === "drawn") {
+        speak(counts.drawn + " drawn");
+      } else {
+        speak(counts.remaining + " remaining");
+      }
+    }
+    if (isLetterComplete(typeOfBingoBallLetter) && saveData.completedLetters.indexOf(typeOfBingoBallLetter) === -1) {
+      saveData.completedLetters.push(typeOfBingoBallLetter);
+      save();
+    }
 	} else {
+		speak("removing " + typeOfBingoBallLetter + " " + bingoIDNum);
 		document.getElementById(bingoID).classList.remove(typeOfBingoBall);
-    document.getElementById("bigBingoBall").classList.remove(document.getElementById("bigBingoBall").classList.item(1));
-    document.getElementById("bigBingoLetter").innerHTML="&nbsp;";
-    document.getElementById("bigBingoNumber").innerHTML="&nbsp;";
+    clearBigBingoBall();
     saveData.drawnBingoBalls.splice(saveData.drawnBingoBalls.indexOf(bingoIDNum), 1);
     saveData.lastActionWasRemove = true;
     save();
+    if (!isLetterComplete(typeOfBingoBallLetter)) {
+      const index = saveData.completedLetters.indexOf(typeOfBingoBallLetter);
+      if (index !== -1) {
+        saveData.completedLetters.splice(index, 1);
+        save();
+      }
+    }
 	}
   updateBallStats();
+}
+
+function createAndSpeak(text) {
+  if ('speechSynthesis' in window && saveData.voice !== 'off') {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = SPEECH_PARAMS.rate;
+    utterance.pitch = SPEECH_PARAMS.pitch;
+    utterance.volume = SPEECH_PARAMS.volume;
+    setVoice(utterance);
+    window.speechSynthesis.speak(utterance);
+  }
+}
+
+function speakBall(letter, number) {
+  createAndSpeak(letter + " " + number);
+}
+
+function speak(text) {
+  createAndSpeak(text);
+}
+
+function setVoice(utterance) {
+  const voices = speechSynthesis.getVoices();
+  if (saveData.voice && saveData.voice.startsWith('voice')) {
+    const index = parseInt(saveData.voice.slice(5));
+    if (voices[index]) {
+      utterance.voice = voices[index];
+    }
+  }
 }
 
 function typeOfBingo(num) {
@@ -347,20 +519,26 @@ function typeOfBingoLetter(num) {
   }
 }
 
+function isLetterComplete(letter) {
+  let start, end;
+  if (letter === 'B') { start = 1; end = 15; }
+  else if (letter === 'I') { start = 16; end = 30; }
+  else if (letter === 'N') { start = 31; end = 45; }
+  else if (letter === 'G') { start = 46; end = 60; }
+  else if (letter === 'O') { start = 61; end = 75; }
+  for (let i = start; i <= end; i++) {
+    if (saveData.drawnBingoBalls.indexOf(i) === -1) return false;
+  }
+  return true;
+}
+
 function loadBingoBall(bingoIDNum) {
   let typeOfBingoBall = typeOfBingo(bingoIDNum);
   let bingoID = bingoIDNum + "bingo";
 		document.getElementById(bingoID).classList.add(typeOfBingoBall);
   if (saveData.drawnBingoBalls.indexOf(bingoIDNum) === saveData.drawnBingoBalls.length-1 && saveData.lastActionWasRemove === false) {
     let typeOfBingoBallLetter = typeOfBingoLetter(bingoIDNum);
-    document.getElementById("bigBingoBall").classList.remove(document.getElementById("bigBingoBall").classList.item(1));
-    if (saveData.bingoStyle === "ball") {
-    document.getElementById("bigBingoBall").classList.add(typeOfBingoBall);
-    } else {
-      document.getElementById("bigBingoBall").classList.add("bigBingoBallVintage");
-    }
-    document.getElementById("bigBingoLetter").innerHTML=typeOfBingoBallLetter;
-    document.getElementById("bigBingoNumber").innerHTML=bingoIDNum;
+    setBigBingoBall(typeOfBingoBall, typeOfBingoBallLetter, bingoIDNum);
   }
 }
 
@@ -388,6 +566,12 @@ function changeBingoStyle(theStyle) {
     loadBingoBall(saveData.drawnBingoBalls[i]);
   }
   setUpSettings();
+}
+
+function getBallCounts() {
+  let ballsRemaining = getBallsRemaining().length;
+  let ballsDrawn = 75 - (saveData.hiddenBingoLetters.length * 15) - ballsRemaining;
+  return { drawn: ballsDrawn, remaining: ballsRemaining };
 }
 
 function getBallsRemaining() {
@@ -423,13 +607,13 @@ function getBallsRemaining() {
 function randomDraw() {
   if (getBallsRemaining().length === 0) {
     document.getElementById("drawBallDiv").style.transform = "rotate(15deg)";
-    setTimeout(() => {
+    setTimeout(function() {
       document.getElementById("drawBallDiv").style.transform = "rotate(0deg)";
     },100);
   } else {
     document.getElementById("drawBallDiv").style.transform = "scale(0.9)";
     document.getElementById("drawBallDiv").style.opacity = 0.6;
-    setTimeout(() => {
+    setTimeout(function() {
       document.getElementById("drawBallDiv").style.transform = "scale(1)";
       document.getElementById("drawBallDiv").style.opacity = 1;
     },100)
@@ -455,9 +639,9 @@ function cryptoRandom (min, max) {
 }
 
 function updateBallStats() {
-  let ballsRemaining = getBallsRemaining().length;
-  document.getElementById("ballsDrawnNum").innerHTML = 75 - (saveData.hiddenBingoLetters.length*15) - ballsRemaining;
-  document.getElementById("ballsRemainingNum").innerHTML = ballsRemaining;
+  let counts = getBallCounts();
+  document.getElementById("ballsDrawnNum").innerHTML = counts.drawn;
+  document.getElementById("ballsRemainingNum").innerHTML = counts.remaining;
 }
 
 function hideBingo(bingoLetter, renderOrToggle) {
@@ -490,11 +674,13 @@ function hideBingo(bingoLetter, renderOrToggle) {
       document.getElementById(bingoBallsClass).style.display = "none";
       saveData.hiddenBingoLetters.push(bingoLetter);
       save();
+      if (!isHidingForPattern) speak("Hiding " + bingoLetter);
     } else {
       document.getElementById(bingoLetterClass).classList.remove("bingoLetterGray");
       document.getElementById(bingoBallsClass).style.display = "block";
       saveData.hiddenBingoLetters.splice(saveData.hiddenBingoLetters.indexOf(bingoLetter), 1);
       save();
+      if (!isHidingForPattern) speak("Showing " + bingoLetter);
     }
     updateBallStats();
   }
@@ -522,16 +708,19 @@ function hideBingo(bingoLetter, renderOrToggle) {
 
 function toggleBallsDrawnRemaining(renderOrToggle) {
   if (renderOrToggle === "toggle") {
+    let counts = getBallCounts();
     if (saveData.ballsDrawnRemaining === "hidden") {
       document.getElementById("ballsDrawnRemaining").style.visibility = "visible";
       document.getElementById("ballsDrawn").style.display = "flex";
       saveData.ballsDrawnRemaining = "drawn";
       save();
+      speak(counts.drawn + " drawn");
     } else if (saveData.ballsDrawnRemaining === "drawn") {
       document.getElementById("ballsDrawn").style.display = "none";
       document.getElementById("ballsRemaining").style.display = "flex";
       saveData.ballsDrawnRemaining = "remaining";
       save();
+      speak(counts.remaining + " remaining");
     } else {
       document.getElementById("ballsRemaining").style.display = "none";
       document.getElementById("ballsDrawnRemaining").style.visibility = "hidden";
@@ -552,6 +741,7 @@ function toggleBallsDrawnRemaining(renderOrToggle) {
 }
 
 function resetBoard() {
+  window.speechSynthesis.cancel();
   for (let i=0;i<75;i+=1) {
     document.getElementById(i+1 + "bingo").classList.remove(document.getElementById(i+1 + "bingo").classList.item(2));
   }
@@ -562,7 +752,7 @@ function resetBoard() {
   for (let i = 0; i < bingoBallsClass.length; i+=1) {
     bingoBallsClass[i].classList.add("notransition");
     bingoBallsClass[i].style.opacity = 0;
-    setTimeout(() => {
+    setTimeout(function() {
       bingoBallsClass[i].classList.remove("notransition");
       bingoBallsClass[i].style.opacity = 1;
     },100)
@@ -578,21 +768,23 @@ function resetBoard() {
     const bingoLetterClass = document.querySelectorAll(".bingoLetter");
     for (let i = 0; i < bingoLetterClass.length; i+=1) {
       bingoLetterClass[i].classList.add("chromeBingoLetterFix");
-      setTimeout(() => {
+      setTimeout(function() {
         bingoLetterClass[i].classList.remove("chromeBingoLetterFix");
       },410)
     }
   }
 
-  setTimeout(() => {
+  setTimeout(function() {
     document.getElementById("blocker").classList.remove("notransition");
     document.getElementById("blocker").style.opacity = 1;
   },100)
   saveData.drawnBingoBalls = [];
   saveData.lastActionWasRemove = false;
+  saveData.completedLetters = [];
   save();
   hideBingo("", "reset");
   clearWinningPattern();
+  speak("Clear boards, please");
   updateBallStats();
 }
 
@@ -602,11 +794,13 @@ function toggleBlocker() {
 		document.getElementById("blocker").style.left = 1287 + "px";
     document.getElementById("showBoard").style.display = "none";
     document.getElementById("hideBoard").style.display = "flex";
+    speak("Showing board");
 	} else {
     saveData.blockerEnabled = true;
 		document.getElementById("blocker").style.left = 255 + "px";
     document.getElementById("hideBoard").style.display = "none";
     document.getElementById("showBoard").style.display = "flex";
+    speak("Hiding board");
 	}
   save();
 }
@@ -644,6 +838,7 @@ function setUpSettings() {
   document.getElementById("purple").style.backgroundColor = "";
   document.getElementById("bingoStyleBall").style.backgroundColor = "";
   document.getElementById("bingoStyleVintage").style.backgroundColor = "";
+  document.getElementById("voiceSelect").value = saveData.voice || 'off';
   if (saveData.themeColor === "classic") {
     document.getElementById("classic").style.backgroundColor = "rgba(148,138,84,0.28)";
   } else if (saveData.themeColor === "red") {
@@ -660,6 +855,17 @@ function setUpSettings() {
   } else if (saveData.bingoStyle === "vintage") {
     document.getElementById("bingoStyleVintage").style.backgroundColor = "rgba(0,0,0,0.15)";
   }
+  // Detect current pattern name
+  saveData.currentPatternName = "No Pattern";
+  let sortedWinning = [...saveData.winningPattern].sort((a, b) => a - b);
+  for (let name in namedPatterns) {
+    let sortedPattern = [...namedPatterns[name]].sort((a, b) => a - b);
+    if (JSON.stringify(sortedWinning) === JSON.stringify(sortedPattern)) {
+      saveData.currentPatternName = name;
+      break;
+    }
+  }
+  updateSelectedPattern();
 }
 
 function changeBackgroundColor(theColor) {
@@ -668,35 +874,131 @@ function changeBackgroundColor(theColor) {
   setUpSettings();
 }
 
-function toggleWinningPattern(theNumber) {
-  let bingoID = theNumber + "bigcard";
-  let bingoID2 = theNumber + "card";
-  if (saveData.winningPattern.indexOf(theNumber) === -1) {
-    document.getElementById(bingoID).classList.add("bingoCardActive");
-    document.getElementById(bingoID2).classList.add("bingoCardActive2");
-    saveData.winningPattern.push(theNumber);
-  } else {
-    saveData.winningPattern.splice(saveData.winningPattern.indexOf(theNumber), 1);
-    document.getElementById(bingoID).classList.remove("bingoCardActive");
-    document.getElementById(bingoID2).classList.remove("bingoCardActive2");
+function changeVoice(theVoice) {
+  saveData.voice = theVoice;
+  if (theVoice !== 'off') {
+    saveData.lastVoice = theVoice;
   }
   save();
+  setUpSettings();
+  updateVoiceIcon();
+  if (theVoice !== 'off') {
+    speak("B 15");
+  }
 }
 
-function winningPatternFromName() {
+function randomPattern() {
   clearWinningPattern();
-  for (let i = 0; i < arguments.length; i+=1) {
-    toggleWinningPattern(arguments[i]);
+  let names = Object.keys(namedPatterns);
+  let randomName = names[Math.floor(Math.random() * names.length)];
+  saveData.winningPattern = namedPatterns[randomName].slice();
+  for (let tile of saveData.winningPattern) {
+    toggleTileClasses(tile, true);
   }
+  saveData.currentPatternName = randomName;
+  save();
+  updateSelectedPattern();
+  speak(randomName);
+}
+
+function updateCurrentPatternName() {
+  let sortedWinning = [...saveData.winningPattern].sort((a, b) => a - b);
+  let found = false;
+  let newName = "";
+  for (let name in namedPatterns) {
+    let sortedPattern = [...namedPatterns[name]].sort((a, b) => a - b);
+    if (JSON.stringify(sortedWinning) === JSON.stringify(sortedPattern)) {
+      newName = name;
+      found = true;
+      break;
+    }
+  }
+  if (!found) {
+    newName = saveData.winningPattern.length === 0 ? "No Pattern" : "";
+  }
+  if (newName !== saveData.currentPatternName) {
+    if (newName && newName !== "No Pattern" && !isSetting) {
+      speak(newName);
+    } else if (newName === "No Pattern" && saveData.currentPatternName !== "") {
+      speak("No Pattern");
+    } else if (newName === "" && saveData.currentPatternName !== "" && !isSetting) {
+      speak("Custom design");
+    }
+  }
+  saveData.currentPatternName = newName;
+  save();
+  updateSelectedPattern();
+}
+
+function toggleTileClasses(tileNumber, add) {
+  const bigcard = document.getElementById(tileNumber + "bigcard");
+  const card = document.getElementById(tileNumber + "card");
+  if (add) {
+    bigcard.classList.add("bingoCardActive");
+    card.classList.add("bingoCardActive2");
+  } else {
+    bigcard.classList.remove("bingoCardActive");
+    card.classList.remove("bingoCardActive2");
+  }
+}
+
+function toggleWinningPattern(theNumber) {
+  if (saveData.winningPattern.indexOf(theNumber) === -1) {
+    toggleTileClasses(theNumber, true);
+    saveData.winningPattern.push(theNumber);
+  } else {
+    toggleTileClasses(theNumber, false);
+    saveData.winningPattern.splice(saveData.winningPattern.indexOf(theNumber), 1);
+  }
+  save();
+  updateCurrentPatternName();
+}
+
+let isSetting = false;
+
+let isHidingForPattern = false;
+
+function winningPatternFromName() {
+  let name = arguments.length > 0 ? arguments[0] : "No Pattern";
+  let targetPattern = [];
+  for (let i = 1; i < arguments.length; i += 1) {
+    targetPattern.push(arguments[i]);
+  }
+  // Check if the current pattern is the same as the target
+  const targetPatternSet = new Set(targetPattern);
+  if (saveData.winningPattern.length === targetPattern.length &&
+      saveData.winningPattern.every(num => targetPatternSet.has(num))) {
+    clearWinningPattern();
+    speak("No Pattern");
+  } else {
+    clearWinningPattern();
+    isSetting = true;
+    for (let i = 0; i < targetPattern.length; i += 1) {
+      toggleWinningPattern(targetPattern[i]);
+    }
+    isSetting = false;
+    saveData.currentPatternName = name;
+    speak(name);
+  }
+  updateCurrentPatternName();
 }
 
 function clearWinningPattern() {
   for (let i=0;i<saveData.winningPattern.length;i+=1) {
-    document.getElementById(saveData.winningPattern[i] + "card").classList.remove("bingoCardActive2");
-    document.getElementById(saveData.winningPattern[i] + "bigcard").classList.remove("bingoCardActive");
+    toggleTileClasses(saveData.winningPattern[i], false);
   }
   saveData.winningPattern = [];
+  saveData.currentPatternName = "No Pattern";
   save();
+}
+
+function updateSelectedPattern() {
+  document.querySelectorAll('.winningName').forEach(el => el.classList.remove('selected'));
+  if (saveData.currentPatternName) {
+    let patternId = 'pattern-' + saveData.currentPatternName.replace(/\s+/g, '-');
+    let el = document.getElementById(patternId);
+    if (el) el.classList.add('selected');
+  }
 }
 
 function hideBingoLettersBasedOnWinningPattern() {
@@ -719,7 +1021,7 @@ function hideBingoLettersBasedOnWinningPattern() {
         oExists = true;
       }
     }
-    hideBingo("", "reset");
+    isHidingForPattern = true;
     if (bExists === false) {
       hideBingo('B', 'toggle');
     }
@@ -735,6 +1037,7 @@ function hideBingoLettersBasedOnWinningPattern() {
     if (oExists === false) {
       hideBingo('O', 'toggle');
     }
+    isHidingForPattern = false;
   }
 }
 
