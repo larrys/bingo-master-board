@@ -1089,6 +1089,9 @@ function winningPatternFromName() {
   if (saveData.winningPattern.length === targetPattern.length &&
       saveData.winningPattern.every(num => targetPatternSet.has(num))) {
     clearWinningPattern();
+    saveData.currentPatternName = "No Pattern";
+    save();
+    updateSelectedPattern();
     speak("No Pattern");
   } else {
     clearWinningPattern();
@@ -1098,9 +1101,10 @@ function winningPatternFromName() {
     }
     isSetting = false;
     saveData.currentPatternName = name;
+    save();
+    updateSelectedPattern();
     speak(name);
   }
-  updateCurrentPatternName();
 }
 
 function clearWinningPattern() {

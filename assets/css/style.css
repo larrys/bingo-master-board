@@ -807,6 +807,11 @@ color:gray;
   align-items: center;
   justify-content: center;
   pointer-events: auto;
+  transition: filter 0.15s;
+}
+
+#voiceToggle:hover {
+  filter: brightness(0);
 }
 
 .voice-on {
@@ -909,7 +914,7 @@ color:gray;
 .winningPatternNames {
   width:600px;
   height:380px;
-  font-size:27px;
+  font-size:23px;
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -934,6 +939,12 @@ color:gray;
   transition: color 0.15s, background-color 0.2s;
 }
 
+.winningName {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
 .winningName:hover {
   cursor:pointer;
   color:#16639a;
@@ -941,6 +952,18 @@ color:gray;
 
 .winningName.selected {
   font-weight: bold;
+}
+
+.patternPreview {
+  width: 0.75em;
+  height: 0.75em;
+  flex-shrink: 0;
+  transition: filter 0.15s;
+  pointer-events: none;
+}
+
+.winningName:hover .patternPreview {
+  filter: invert(32%) sepia(95%) saturate(752%) hue-rotate(169deg) brightness(91%) contrast(93%);
 }
 
 .bigBingoCardBody:hover {
