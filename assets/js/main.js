@@ -464,12 +464,21 @@ function changeFullScreenImg() {
 
 function changeBG(color) {
   let newColor;
+  // Remove greyscale classes from letters
+  const letters = ['bingoB', 'bingoI', 'bingoN', 'bingoG', 'bingoO'];
+  letters.forEach(letterId => {
+    const elem = document.getElementById(letterId);
+    if (elem && elem.parentElement) {
+      elem.parentElement.classList.remove('bingoLetterGreyscale');
+    }
+  });
+  
   if (color === "classic") {
     newColor = "#d1cc85";
     document.getElementById("blocker").style.backgroundImage = "linear-gradient(#c4bd97, #948A54)";
   } else if (color === "red") {
-    newColor = "rgb(253, 166, 166)";
-    document.getElementById("blocker").style.backgroundImage = "linear-gradient(#ed9f9d, #c0504d)";
+    newColor = "rgb(220, 100, 100)";
+    document.getElementById("blocker").style.backgroundImage = "linear-gradient(#d96459, #c62828)";
   } else if (color === "green") {
     newColor = "rgb(150, 206, 129)";
     document.getElementById("blocker").style.backgroundImage = "linear-gradient(#a9c571, #77933c)";
@@ -479,6 +488,28 @@ function changeBG(color) {
   } else if (color === "purple") {
     newColor = "rgb(189, 176, 216)";
     document.getElementById("blocker").style.backgroundImage = "linear-gradient(#b3a2c7, #725892)";
+  } else if (color === "orange") {
+    newColor = "rgb(255, 200, 130)";
+    document.getElementById("blocker").style.backgroundImage = "linear-gradient(#f0b070, #d87a25)";
+  } else if (color === "yellow") {
+    newColor = "rgb(255, 245, 157)";
+    document.getElementById("blocker").style.backgroundImage = "linear-gradient(#f5e79e, #d4c45a)";
+  } else if (color === "pink") {
+    newColor = "rgb(255, 182, 193)";
+    document.getElementById("blocker").style.backgroundImage = "linear-gradient(#ffb6c1, #ff69b4)";
+  } else if (color === "teal") {
+    newColor = "rgb(128, 203, 196)";
+    document.getElementById("blocker").style.backgroundImage = "linear-gradient(#80cbc4, #00897b)";
+  } else if (color === "greyscale") {
+    newColor = "rgb(180, 180, 180)";
+    document.getElementById("blocker").style.backgroundImage = "linear-gradient(#b8b8b8, #6e6e6e)";
+    // Apply greyscale to letters
+    letters.forEach(letterId => {
+      const elem = document.getElementById(letterId);
+      if (elem && elem.parentElement) {
+        elem.parentElement.classList.add('bingoLetterGreyscale');
+      }
+    });
   } else {
     newColor = "radial-gradient(#f7eaab, #bfbb73)";
   }
@@ -490,7 +521,9 @@ function setBigBingoBall(typeOfBingoBall, typeOfBingoBallLetter, bingoIDNum) {
   const bigBall = document.getElementById("bigBingoBall");
   bigBall.classList.remove(bigBall.classList.item(1));
   if (saveData.bingoStyle === "ball") {
-    bigBall.classList.add(typeOfBingoBall);
+    // Convert small ball class to big ball class
+    const bigBallClass = typeOfBingoBall.replace("bingoBallBall", "bigBingoBallBall");
+    bigBall.classList.add(bigBallClass);
   } else {
     bigBall.classList.add("bigBingoBallVintage");
   }
@@ -597,6 +630,9 @@ function typeOfBingo(num) {
   if (saveData.bingoStyle === "vintage") {
     return "bingoBallVintageActive";
   } else {
+    if (saveData.themeColor === "greyscale") {
+      return "bingoBallBallActiveGrey";
+    }
     if (num <= 15){
       return "bingoBallBallActiveB";
     } else if (num <= 30) {
@@ -950,19 +986,34 @@ function setUpSettings() {
   document.getElementById("green").style.backgroundColor = "";
   document.getElementById("blue").style.backgroundColor = "";
   document.getElementById("purple").style.backgroundColor = "";
+  document.getElementById("orange").style.backgroundColor = "";
+  document.getElementById("yellow").style.backgroundColor = "";
+  document.getElementById("pink").style.backgroundColor = "";
+  document.getElementById("teal").style.backgroundColor = "";
+  document.getElementById("greyscale").style.backgroundColor = "";
   document.getElementById("bingoStyleBall").style.backgroundColor = "";
   document.getElementById("bingoStyleVintage").style.backgroundColor = "";
   document.getElementById("voiceSelect").value = saveData.voice || 'off';
   if (saveData.themeColor === "classic") {
     document.getElementById("classic").style.backgroundColor = "rgba(148,138,84,0.28)";
   } else if (saveData.themeColor === "red") {
-    document.getElementById("red").style.backgroundColor = "rgba(255,0,0,0.2)";
+    document.getElementById("red").style.backgroundColor = "rgba(198,40,40,0.2)";
   } else if (saveData.themeColor === "green") {
     document.getElementById("green").style.backgroundColor = "rgba(0,128,0,0.2)";
   } else if (saveData.themeColor === "blue") {
     document.getElementById("blue").style.backgroundColor = "rgba(51,102,255,0.2)";
   } else if (saveData.themeColor === "purple") {
     document.getElementById("purple").style.backgroundColor = "rgba(164,70,153,0.2)";
+  } else if (saveData.themeColor === "orange") {
+    document.getElementById("orange").style.backgroundColor = "rgba(255,140,0,0.2)";
+  } else if (saveData.themeColor === "yellow") {
+    document.getElementById("yellow").style.backgroundColor = "rgba(218,165,32,0.2)";
+  } else if (saveData.themeColor === "pink") {
+    document.getElementById("pink").style.backgroundColor = "rgba(255,105,180,0.2)";
+  } else if (saveData.themeColor === "teal") {
+    document.getElementById("teal").style.backgroundColor = "rgba(0,128,128,0.2)";
+  } else if (saveData.themeColor === "greyscale") {
+    document.getElementById("greyscale").style.backgroundColor = "rgba(110,110,110,0.2)";
   }
   if (saveData.bingoStyle === "ball") {
     document.getElementById("bingoStyleBall").style.backgroundColor = "rgba(0,0,0,0.15)";

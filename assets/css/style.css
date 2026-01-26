@@ -481,6 +481,14 @@ margin:0.5em 0;
   color:#808080;
 }
 
+.bingoLetterGreyscale {
+  color:#555;
+}
+
+.bingoLetterGreyscale:hover {
+  color:#888;
+}
+
 #blocker {
   position:relative;
   width:1280px;
@@ -705,7 +713,15 @@ font-weight:700;
   background:radial-gradient(circle at 31.5px 12px, rgba(255, 138, 135,0.85), rgba(221, 98, 95,0.85));
 }
 
-.bingoBallBallActiveB:hover, .bingoBallBallActiveI:hover, .bingoBallBallActiveN:hover, .bingoBallBallActiveG:hover, .bingoBallBallActiveO:hover {
+.bingoBallBallActiveGrey {
+  border-color:rgb(80,80,80);
+  color:#2a2a2a;
+  opacity:1;
+  font-weight:700;
+  background:radial-gradient(circle at 31.5px 12px, rgba(200, 200, 200,0.85), rgba(140, 140, 140,0.85));
+}
+
+.bingoBallBallActiveB:hover, .bingoBallBallActiveI:hover, .bingoBallBallActiveN:hover, .bingoBallBallActiveG:hover, .bingoBallBallActiveO:hover, .bingoBallBallActiveGrey:hover {
   opacity:0.8;
 }
 
@@ -746,6 +762,48 @@ color:gray;
   opacity:0.75;
 }
 
+.bigBingoBallBallActiveB {
+  background:radial-gradient(circle at 62px 40px, rgba(247, 182, 128,0.85), rgba(228,108,10,0.85));
+  border-color:rgb(228,108,10);
+  color:#6b3205;
+  opacity:1;
+}
+
+.bigBingoBallBallActiveI {
+  background:radial-gradient(circle at 62px 40px, rgba(176, 204, 120,0.85), rgba(135, 170, 63,0.85));
+  border-color:rgb(119,147,60);
+  color:#3e4f1f;
+  opacity:1;
+}
+
+.bigBingoBallBallActiveN {
+  background:radial-gradient(circle at 62px 40px, rgba(108, 201, 226,0.85), rgba(84, 165, 188,0.85));
+  border-color:rgb(49,133,156);
+  color:#194551;
+  opacity:1;
+}
+
+.bigBingoBallBallActiveG {
+  background:radial-gradient(circle at 62px 40px, rgba(195, 164, 234,0.85), rgba(159, 129, 193,0.85));
+  border-color:rgb(96,74,123);
+  color:#352944;
+  opacity:1;
+}
+
+.bigBingoBallBallActiveO {
+  background:radial-gradient(circle at 62px 40px, rgba(255, 138, 135,0.85), rgba(221, 98, 95,0.85));
+  border-color:rgb(149,55,53);
+  color:#5e2221;
+  opacity:1;
+}
+
+.bigBingoBallBallActiveGrey {
+  background:radial-gradient(circle at 62px 40px, rgba(200, 200, 200,0.85), rgba(140, 140, 140,0.85));
+  border-color:rgb(80,80,80);
+  color:#2a2a2a;
+  opacity:1;
+}
+
 #bingoStyleBall {
   border-radius:12px;
   transition: background-color 0.15s;
@@ -775,12 +833,12 @@ color:gray;
 }
 
 .themeSelection {
-  font-size:38px;
+  font-size:28px;
   font-weight:700;
 }
 
 .themeSelection span {
-    margin: 0 24px;
+    margin: 0 16px;
 }
 
 .themeSelection span:first-of-type {
@@ -854,7 +912,7 @@ color:gray;
 }
 
 #red {
-  color:rgb(255,0,0);
+  color:rgb(198,40,40);
 }
 
 #green {
@@ -867,6 +925,26 @@ color:gray;
 
 #purple {
   color:rgb(164,70,153);
+}
+
+#orange {
+  color:rgb(255,140,0);
+}
+
+#yellow {
+  color:rgb(218,165,32);
+}
+
+#pink {
+  color:rgb(255,105,180);
+}
+
+#teal {
+  color:rgb(0,128,128);
+}
+
+#greyscale {
+  color:rgb(110,110,110);
 }
 
 .chromeBingoLetterFix {
