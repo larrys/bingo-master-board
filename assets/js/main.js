@@ -487,11 +487,12 @@ function changeBG(color) {
 }
 
 function setBigBingoBall(typeOfBingoBall, typeOfBingoBallLetter, bingoIDNum) {
-  document.getElementById("bigBingoBall").classList.remove(document.getElementById("bigBingoBall").classList.item(1));
+  const bigBall = document.getElementById("bigBingoBall");
+  bigBall.classList.remove(bigBall.classList.item(1));
   if (saveData.bingoStyle === "ball") {
-    document.getElementById("bigBingoBall").classList.add(typeOfBingoBall);
+    bigBall.classList.add(typeOfBingoBall);
   } else {
-    document.getElementById("bigBingoBall").classList.add("bigBingoBallVintage");
+    bigBall.classList.add("bigBingoBallVintage");
   }
   document.getElementById("bigBingoLetter").innerHTML = typeOfBingoBallLetter;
   document.getElementById("bigBingoNumber").innerHTML = bingoIDNum;
@@ -508,7 +509,14 @@ function activateBingoBall(bingoIDNum) {
   let typeOfBingoBallLetter = typeOfBingoLetter(bingoIDNum);
   let bingoID = bingoIDNum + "bingo";
 	if (saveData.drawnBingoBalls.indexOf(bingoIDNum) === -1) {
-		document.getElementById(bingoID).classList.add(typeOfBingoBall);
+		const ballElement = document.getElementById(bingoID);
+		ballElement.classList.add(typeOfBingoBall);
+		
+		// Trigger animation
+		ballElement.classList.remove('animate');
+		void ballElement.offsetWidth; // Force reflow
+		ballElement.classList.add('animate');
+		
     setBigBingoBall(typeOfBingoBall, typeOfBingoBallLetter, bingoIDNum);
     document.getElementById("bigBingoNumber").style.fontSize=104+"px";
     setTimeout(function() {

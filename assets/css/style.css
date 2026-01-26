@@ -546,6 +546,20 @@ margin:0.5em 0;
   background-color:rgba(80,80,80,0.25);
 }
 
+@keyframes ballPopIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .bigBingoBallClass {
   background:#9b9b9b;
   border:2.5px solid #333;
@@ -640,6 +654,11 @@ margin:0.5em 0;
   border-color:#333;
   color:#000;
   opacity:0.21;
+}
+
+.bingoBallBall.animate,
+.bingoBallVintage.animate {
+  animation: ballPopIn 0.4s ease-out;
 }
 
 .bingoBallBall:hover {
