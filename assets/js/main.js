@@ -17,7 +17,10 @@ let saveData = {
   voice: "off",
   completedLetters: [],
   lastVoice: null,
-  currentPatternName: "No Pattern"
+  currentPatternName: "No Pattern",
+  speechRate: 1,
+  speechPitch: 1,
+  speechVolume: 0.8
 }
 
 const namedPatterns = {
@@ -141,11 +144,75 @@ function hideKeyboardShortcuts() {
   document.getElementById('keyboardShortcutsOverlay').style.display = 'none';
 }
 
+function showAdvancedSpeech() {
+  document.getElementById('speechRate').value = saveData.speechRate;
+  document.getElementById('speechPitch').value = saveData.speechPitch;
+  document.getElementById('rateValue').textContent = saveData.speechRate.toFixed(1);
+  document.getElementById('pitchValue').textContent = saveData.speechPitch.toFixed(1);
+  document.getElementById('advancedSpeechOverlay').style.display = 'flex';
+}
+
+function hideAdvancedSpeech() {
+  document.getElementById('advancedSpeechOverlay').style.display = 'none';
+}
+
+function updateRateLabel(value) {
+  document.getElementById('rateValue').textContent = parseFloat(value).toFixed(1);
+}
+
+function updatePitchLabel(value) {
+  document.getElementById('pitchValue').textContent = parseFloat(value).toFixed(1);
+}
+
+function resetAdvancedSpeech() {
+  document.getElementById('speechRate').value = 1;
+  document.getElementById('speechPitch').value = 1;
+  document.getElementById('rateValue').textContent = '1.0';
+  document.getElementById('pitchValue').textContent = '1.0';
+}
+
+function saveAdvancedSpeech() {
+  const rate = parseFloat(document.getElementById('speechRate').value);
+  const pitch = parseFloat(document.getElementById('speechPitch').value);
+  if (!isNaN(rate)) saveData.speechRate = rate;
+  if (!isNaN(pitch)) saveData.speechPitch = pitch;
+  save();
+  hideAdvancedSpeech();
+}
+
+function testAdvancedSpeech() {
+  const originalRate = saveData.speechRate;
+  const originalPitch = saveData.speechPitch;
+  const rate = parseFloat(document.getElementById('speechRate').value);
+  const pitch = parseFloat(document.getElementById('speechPitch').value);
+  if (!isNaN(rate)) saveData.speechRate = rate;
+  if (!isNaN(pitch)) saveData.speechPitch = pitch;
+  speak('B 15');
+  saveData.speechRate = originalRate;
+  saveData.speechPitch = originalPitch;
+}
+
+function isFormFieldFocused(e) {
+  const tagName = e.target && e.target.tagName;
+  return tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName === 'SELECT';
+}
+
 function handleGlobalKeyEvents(e) {
+  // Don't process shortcuts if user is typing in an input field
+  if (isFormFieldFocused(e)) {
+    return false;
+  }
   if (e.key === '?' || (e.key === '/' && e.shiftKey)) {
     showKeyboardShortcuts();
     e.preventDefault();
     return true;
+  }
+  if (e.key === 'Escape') {
+    if (document.getElementById('advancedSpeechOverlay').style.display === 'flex') {
+      hideAdvancedSpeech();
+      e.preventDefault();
+      return true;
+    }
   }
   return false;
 }
@@ -160,19 +227,34 @@ function updateVoiceOptions() {
   offOption.value = 'off';
   offOption.textContent = 'Off';
   select.appendChild(offOption);
-  // Add voices (English only, unique names)
-  const addedNames = new Set();
-  voices.forEach(function(voice) {
-    if (voice.lang && voice.lang.startsWith('en')) {
+  // Add voices matching browser language (unique names). Use the actual voices[] index
+  // as the option value (prefix with 'voice') so we can consistently
+  // set the utterance.voice by index later.
+  // Collect voices matching browser language with their original index, dedupe by name,
+  // then sort alphabetically (case-insensitive) before populating.
+  const browserLang = ((typeof navigator !== 'undefined' && navigator.language) || 'en').split('-')[0];
+  const entries = [];
+  voices.forEach(function(voice, i) {
+    if (voice.lang && voice.lang.startsWith(browserLang)) {
       const cleanName = voice.name.split(' (')[0];
-      if (!addedNames.has(cleanName)) {
-        addedNames.add(cleanName);
-        const option = document.createElement('option');
-        option.value = cleanName;
-        option.textContent = cleanName;
-        select.appendChild(option);
-      }
+      entries.push({ name: cleanName, index: i });
     }
+  });
+  // Dedupe by name, keeping the first occurrence
+  const seen = new Set();
+  const deduped = [];
+  for (const e of entries) {
+    if (!seen.has(e.name)) {
+      seen.add(e.name);
+      deduped.push(e);
+    }
+  }
+  deduped.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+  deduped.forEach(function(item) {
+    const option = document.createElement('option');
+    option.value = 'voice' + item.index;
+    option.textContent = item.name;
+    select.appendChild(option);
   });
 }
 
@@ -228,6 +310,10 @@ function show(elementName, display) {
     }
     document.onkeydown = function(e) {
       if (handleGlobalKeyEvents(e)) return;
+      // Don't intercept keyboard input in form fields
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
+        return;
+      }
       if(!keyPressed) {
         e.preventDefault();
         keyPressed = true;
@@ -253,6 +339,10 @@ function show(elementName, display) {
     setUpSettings(saveData.themeColor);
     document.onkeydown = function(e) {
       if (handleGlobalKeyEvents(e)) return;
+      // Don't intercept keyboard input in form fields
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
+        return;
+      }
       if(!keyPressed) {
         e.preventDefault();
         keyPressed = true;
@@ -427,7 +517,7 @@ function activateBingoBall(bingoIDNum) {
     saveData.drawnBingoBalls.push(bingoIDNum);
     saveData.lastActionWasRemove = false;
     save();
-    speakBall(typeOfBingoBallLetter, bingoIDNum);
+    speak(typeOfBingoBallLetter + " " + bingoIDNum);
     let counts = getBallCounts();
     if (document.getElementById("ballsDrawnRemaining").style.visibility === "visible") {
       if (saveData.ballsDrawnRemaining === "drawn") {
@@ -458,31 +548,39 @@ function activateBingoBall(bingoIDNum) {
   updateBallStats();
 }
 
-function createAndSpeak(text) {
+function speak(text) {
   if ('speechSynthesis' in window && saveData.voice !== 'off') {
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = SPEECH_PARAMS.rate;
-    utterance.pitch = SPEECH_PARAMS.pitch;
-    utterance.volume = SPEECH_PARAMS.volume;
+    utterance.lang = navigator.language || 'en-US';
+    utterance.rate = saveData.speechRate;
+    utterance.pitch = saveData.speechPitch;
+    utterance.volume = saveData.speechVolume;
     setVoice(utterance);
     window.speechSynthesis.speak(utterance);
   }
 }
 
-function speakBall(letter, number) {
-  createAndSpeak(letter + " " + number);
-}
-
-function speak(text) {
-  createAndSpeak(text);
-}
-
 function setVoice(utterance) {
   const voices = speechSynthesis.getVoices();
-  if (saveData.voice && saveData.voice.startsWith('voice')) {
-    const index = parseInt(saveData.voice.slice(5));
-    if (voices[index]) {
-      utterance.voice = voices[index];
+  if (!voices || voices.length === 0) return;
+  // First, support the new stored format 'voice<index>' which references
+  // the voices[] index. If that isn't present, fall back to matching by
+  // voice name (legacy saved values or other cases).
+  if (saveData.voice && typeof saveData.voice === 'string') {
+    if (saveData.voice.startsWith('voice')) {
+      const index = parseInt(saveData.voice.slice(5));
+      if (!Number.isNaN(index) && voices[index]) {
+        utterance.voice = voices[index];
+        return;
+      }
+    }
+    // Fallback: try to match by name (case-insensitive, prefix match)
+    const targetName = saveData.voice.split(' (')[0].toLowerCase();
+    for (const v of voices) {
+      if (v.name && v.name.toLowerCase().startsWith(targetName)) {
+        utterance.voice = v;
+        return;
+      }
     }
   }
 }
@@ -706,6 +804,14 @@ function hideBingo(bingoLetter, renderOrToggle) {
 
 }
 
+function hideBallsDrawnRemaining() {
+  document.getElementById("ballsDrawn").style.display = "none";
+  document.getElementById("ballsRemaining").style.display = "none";
+  document.getElementById("ballsDrawnRemaining").style.visibility = "hidden";
+  saveData.ballsDrawnRemaining = "hidden";
+  save();
+}
+
 function toggleBallsDrawnRemaining(renderOrToggle) {
   if (renderOrToggle === "toggle") {
     let counts = getBallCounts();
@@ -882,9 +988,23 @@ function changeVoice(theVoice) {
   save();
   setUpSettings();
   updateVoiceIcon();
-  if (theVoice !== 'off') {
-    speak("B 15");
+}
+
+function changeSpeechParam(param, value) {
+  const numValue = parseFloat(value);
+  if (isNaN(numValue)) return;
+  if (param === 'rate') {
+    saveData.speechRate = numValue;
+  } else if (param === 'pitch') {
+    saveData.speechPitch = numValue;
+  } else if (param === 'volume') {
+    saveData.speechVolume = numValue;
   }
+  save();
+}
+
+function testVoice() {
+  speak('B 15');
 }
 
 function randomPattern() {
