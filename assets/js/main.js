@@ -3,6 +3,11 @@ const fixedHeight = document.getElementById("area").offsetHeight;
 let isFullScreen = false;
 let loadedMasterBoard = false;
 let keyPressed = false;
+let winnersHoldTimer = null;
+let winnersRepeatTimer = null;
+let winnersActiveDirection = null;
+let winnersPersistTimer = null;
+let winnersAnnounceTimer = null;
 
 let saveData = {
   drawnBingoBalls: [],
@@ -29,6 +34,7 @@ let saveData = {
 const namedPatterns = {
   "Four Corners": [1,5,21,25],
   "Top Hat": [5,7,8,9,10,12,13,14,15,17,18,19,20,25],
+  "Magician Hat": [2,7,8,9,10,12,13,14,15,17,18,19,20,22],
   "Letter L": [1,2,3,4,5,10,15,20,25],
   "Frame Inside": [7,8,9,12,14,17,18,19],
   "Tree": [3,7,8,11,12,13,14,15,17,18,23],
@@ -38,6 +44,8 @@ const namedPatterns = {
   "Letter X": [1,5,7,9,13,17,19,21,25],
   "Plus Sign": [3,8,11,12,13,14,15,18,23],
   "Diamond": [3,7,9,11,15,17,19,23],
+  "Checkerboard": [1,3,5,7,9,11,13,15,17,19,21,23,25],
+  "Checkerboard Inverse": [2,4,6,8,10,12,14,16,18,20,22,24],
   "Letter Y": [1,7,13,14,15,17,21],
   "Lucky 7": [1,5,6,9,11,13,16,17,21],
   "Blackout": Array.from({length: 25}, (_, i) => i + 1)
@@ -232,9 +240,18 @@ function init() {
     show("fullScreenToggleLayer");
 		show("masterBoardSlide", "grid");
 	},50);
-  document.onkeyup = function() {
+  document.onkeyup = function(e) {
+    if (!e || isWinnersIncreaseKey(e) || isWinnersDecreaseKey(e)) {
+      stopWinnersKeyRepeat();
+    }
     keyPressed = false;
   }
+  window.addEventListener('blur', stopWinnersKeyRepeat);
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      stopWinnersKeyRepeat();
+    }
+  });
   const img1 = new Image();
   const img2 = new Image();
   const img3 = new Image();
@@ -357,6 +374,78 @@ function hideScriptOverlay() {
 function isFormFieldFocused(e) {
   const tagName = e.target && e.target.tagName;
   return tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName === 'SELECT';
+}
+
+function isWinnersIncreaseKey(e) {
+  return e.key === 'ArrowUp' ||
+    e.key === 'Up' ||
+    e.keyIdentifier === 'Up' ||
+    e.code === 'ArrowUp' ||
+    e.keyCode === 63232 ||
+    e.keyCode === 38 ||
+    e.which === 38;
+}
+
+function isWinnersDecreaseKey(e) {
+  return e.key === 'ArrowDown' ||
+    e.key === 'Down' ||
+    e.keyIdentifier === 'Down' ||
+    e.code === 'ArrowDown' ||
+    e.keyCode === 63233 ||
+    e.keyCode === 40 ||
+    e.which === 40;
+}
+
+function stopWinnersKeyRepeat() {
+  if (winnersHoldTimer) {
+    clearTimeout(winnersHoldTimer);
+    winnersHoldTimer = null;
+  }
+  if (winnersRepeatTimer) {
+    clearInterval(winnersRepeatTimer);
+    winnersRepeatTimer = null;
+  }
+  winnersActiveDirection = null;
+}
+
+function startWinnersKeyRepeat(direction) {
+  if (winnersActiveDirection === direction && (winnersHoldTimer || winnersRepeatTimer)) {
+    return;
+  }
+  stopWinnersKeyRepeat();
+  winnersActiveDirection = direction;
+  winnersHoldTimer = setTimeout(function() {
+    winnersRepeatTimer = setInterval(function() {
+      if (winnersActiveDirection === 'increase') {
+        adjustBingosWon(1, { announce: false });
+      } else if (winnersActiveDirection === 'decrease') {
+        adjustBingosWon(-1, { announce: false });
+      }
+    }, 75);
+  }, 260);
+}
+
+function queueWinnersSave() {
+  if (winnersPersistTimer) {
+    clearTimeout(winnersPersistTimer);
+  }
+  winnersPersistTimer = setTimeout(function() {
+    save();
+    winnersPersistTimer = null;
+  }, 120);
+}
+
+function queueWinnersAnnouncement(value) {
+  if (saveData.voice === 'off') {
+    return;
+  }
+  if (winnersAnnounceTimer) {
+    clearTimeout(winnersAnnounceTimer);
+  }
+  winnersAnnounceTimer = setTimeout(function() {
+    speak(value + (value === 1 ? ' bingo won' : ' bingos won'));
+    winnersAnnounceTimer = null;
+  }, 140);
 }
 
 function handleGlobalKeyEvents(e) {
@@ -499,6 +588,21 @@ function show(elementName, display) {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
         return;
       }
+
+      // Handle winner counter keys outside keyPressed lock for better hardware keyboard support.
+      if (isWinnersIncreaseKey(e)) {
+        e.preventDefault();
+        incrementBingosWon();
+        startWinnersKeyRepeat('increase');
+        return;
+      }
+      if (isWinnersDecreaseKey(e)) {
+        e.preventDefault();
+        decrementBingosWon();
+        startWinnersKeyRepeat('decrease');
+        return;
+      }
+
       if(!keyPressed) {
         e.preventDefault();
         keyPressed = true;
@@ -722,6 +826,54 @@ function clearBigBingoBall() {
   document.getElementById("bigBingoNumber").innerHTML = "&nbsp;";
 }
 
+let screenTiltFrame = null;
+let screenTiltEndMs = 0;
+let screenTiltOriginalTransform = "";
+let screenTiltOriginalOrigin = "";
+
+function tiltScreenForDuration(durationMs = 2400) {
+  const tiltTarget = document.body;
+  if (!tiltTarget) return;
+
+  const now = performance.now();
+  screenTiltEndMs = now + durationMs;
+  if (screenTiltFrame !== null) {
+    return;
+  }
+
+  screenTiltOriginalTransform = tiltTarget.style.transform || "";
+  screenTiltOriginalOrigin = tiltTarget.style.transformOrigin || "";
+  tiltTarget.style.transformOrigin = "center center";
+
+  const animateTilt = function() {
+    const t = performance.now();
+    const remaining = screenTiltEndMs - t;
+    if (remaining <= 0) {
+      tiltTarget.style.transform = screenTiltOriginalTransform;
+      tiltTarget.style.transformOrigin = screenTiltOriginalOrigin;
+      screenTiltFrame = null;
+      return;
+    }
+
+    // Skew left-right a few times, then damp to neutral.
+    const progress = Math.min(1, Math.max(0, (t - now) / durationMs));
+    const rampIn = Math.min(1, progress / 0.08);
+    const decay = Math.max(0, 1 - Math.pow(progress, 1.25));
+    const amplitude = 9.0 * rampIn * decay;
+    const cycles = 3.6;
+    const phase = progress * Math.PI * 2 * cycles;
+    const skew = Math.sin(phase) * amplitude;
+    const rotate = Math.sin(phase + 0.4) * (amplitude * 0.16);
+
+    tiltTarget.style.transform =
+      screenTiltOriginalTransform +
+      " skewX(" + skew.toFixed(2) + "deg) rotate(" + rotate.toFixed(2) + "deg)";
+    screenTiltFrame = requestAnimationFrame(animateTilt);
+  };
+
+  screenTiltFrame = requestAnimationFrame(animateTilt);
+}
+
 function activateBingoBall(bingoIDNum) {
   let typeOfBingoBall = typeOfBingo(bingoIDNum);
   let typeOfBingoBallLetter = typeOfBingoLetter(bingoIDNum);
@@ -767,6 +919,11 @@ function activateBingoBall(bingoIDNum) {
       if (saveData.completedLetters.length === 5) {
         speak("Bingo was his name-o");
       }
+    }
+
+    // Trigger the celebratory tilt when 67 is called.
+    if (bingoIDNum === 67) {
+      tiltScreenForDuration(2400);
     }
 	} else {
 		speak("removing " + typeOfBingoBallLetter + " " + bingoIDNum);
@@ -995,11 +1152,28 @@ function getDrawnCountForLetter(letter) {
 
 function updateLetterDrawCounts() {
   const letters = ['B', 'I', 'N', 'G', 'O'];
+  const doneClassByLetter = {
+    B: 'bingoLetterDoneB',
+    I: 'bingoLetterDoneI',
+    N: 'bingoLetterDoneN',
+    G: 'bingoLetterDoneG',
+    O: 'bingoLetterDoneO'
+  };
   for (let i = 0; i < letters.length; i += 1) {
     const letter = letters[i];
+    const drawnCount = getDrawnCountForLetter(letter);
     const counter = document.getElementById('bingo' + letter + 'Count');
     if (counter) {
-      counter.textContent = getDrawnCountForLetter(letter);
+      counter.textContent = drawnCount;
+    }
+
+    const letterNode = document.getElementById('bingo' + letter);
+    if (letterNode) {
+      letterNode.classList.remove('bingoLetterDoneB', 'bingoLetterDoneI', 'bingoLetterDoneN', 'bingoLetterDoneG', 'bingoLetterDoneO');
+      const isHidden = saveData.hiddenBingoLetters.indexOf(letter) !== -1;
+      if (!isHidden) {
+        letterNode.classList.add(doneClassByLetter[letter]);
+      }
     }
   }
 }
@@ -1019,12 +1193,19 @@ function updateBallStats() {
   updateLetterDrawCounts();
 }
 
-function adjustBingosWon(delta) {
+function adjustBingosWon(delta, options) {
+  const opts = options || { announce: true };
   const nextValue = Math.max(0, (saveData.bingosWonInRound || 0) + delta);
+  if (nextValue === saveData.bingosWonInRound) {
+    return;
+  }
   saveData.bingosWonInRound = nextValue;
-  save();
+  // Update visuals first; defer storage/speech to keep input responsive on iPad.
   updateBallStats();
-  speak(nextValue + (nextValue === 1 ? " bingo won" : " bingos won"));
+  queueWinnersSave();
+  if (opts.announce !== false) {
+    queueWinnersAnnouncement(nextValue);
+  }
 }
 
 function incrementBingosWon() {

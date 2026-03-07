@@ -506,6 +506,27 @@ margin:0.5em 0;
   color:#808080;
 }
 
+.bingoLetterDoneB {
+  color:#f2f2f2;
+  text-shadow:0 1px 2px rgba(0,0,0,0.35);
+}
+
+.bingoLetterDoneI {
+  color:#d24642;
+}
+
+.bingoLetterDoneN {
+  color:#e4bc45;
+}
+
+.bingoLetterDoneG {
+  color:#4a86d6;
+}
+
+.bingoLetterDoneO {
+  color:#5aa561;
+}
+
 .bingoLetterGreyscale {
   color:#555;
 }
@@ -742,43 +763,43 @@ margin:0.5em 0;
 }
 
 .bingoBallBallActiveB {
-  border-color:rgb(228,108,10);
-  color:#6b3205;
+  border-color:rgb(160,160,160);
+  color:#1f1f1f;
   opacity:1;
 font-weight:700;
-  background:radial-gradient(circle at 31.5px 12px, rgba(247, 182, 128,0.85), rgba(228,108,10,0.85));
+  background:radial-gradient(circle at 31.5px 12px, rgba(255,255,255,0.95), rgba(228,228,228,0.95));
 }
 
 .bingoBallBallActiveI {
-  border-color:rgb(119,147,60);
-  color:#3e4f1f;
+  border-color:rgb(149,55,53);
+  color:#ffffff;
   opacity:1;
   font-weight:700;
-  background:radial-gradient(circle at 31.5px 12px, rgba(176, 204, 120,0.85), rgba(135, 170, 63,0.85));
+  background:radial-gradient(circle at 31.5px 12px, rgba(255, 138, 135,0.92), rgba(221, 98, 95,0.92));
 }
 
 .bingoBallBallActiveN {
-  border-color:rgb(49,133,156);
-  color:#194551;
+  border-color:rgb(184,146,21);
+  color:#3a3200;
   opacity:1;
   font-weight:700;
-  background:radial-gradient(circle at 31.5px 12px, rgba(108, 201, 226,0.85), rgba(84, 165, 188,0.85));
+  background:radial-gradient(circle at 31.5px 12px, rgba(255, 238, 146,0.92), rgba(234, 195, 67,0.92));
 }
 
 .bingoBallBallActiveG {
-  border-color:rgb(96,74,123);
-  color:#352944;
+  border-color:rgb(34,89,153);
+  color:#ffffff;
   opacity:1;
   font-weight:700;
-  background:radial-gradient(circle at 31.5px 12px, rgba(195, 164, 234,0.85), rgba(159, 129, 193,0.85));
+  background:radial-gradient(circle at 31.5px 12px, rgba(111, 183, 255,0.92), rgba(63, 126, 208,0.92));
 }
 
 .bingoBallBallActiveO {
-  border-color:rgb(149,55,53);
-  color:#5e2221;
+  border-color:rgb(53,112,58);
+  color:#ffffff;
   opacity:1;
   font-weight:700;
-  background:radial-gradient(circle at 31.5px 12px, rgba(255, 138, 135,0.85), rgba(221, 98, 95,0.85));
+  background:radial-gradient(circle at 31.5px 12px, rgba(141, 226, 147,0.92), rgba(82, 165, 89,0.92));
 }
 
 .bingoBallBallActiveGrey {
@@ -831,37 +852,37 @@ color:gray;
 }
 
 .bigBingoBallBallActiveB {
-  background:radial-gradient(circle at 62px 40px, rgba(247, 182, 128,0.85), rgba(228,108,10,0.85));
-  border-color:rgb(228,108,10);
-  color:#6b3205;
+  background:radial-gradient(circle at 62px 40px, rgba(255,255,255,0.95), rgba(228,228,228,0.95));
+  border-color:rgb(160,160,160);
+  color:#1f1f1f;
   opacity:1;
 }
 
 .bigBingoBallBallActiveI {
-  background:radial-gradient(circle at 62px 40px, rgba(176, 204, 120,0.85), rgba(135, 170, 63,0.85));
-  border-color:rgb(119,147,60);
-  color:#3e4f1f;
+  background:radial-gradient(circle at 62px 40px, rgba(255, 138, 135,0.92), rgba(221, 98, 95,0.92));
+  border-color:rgb(149,55,53);
+  color:#ffffff;
   opacity:1;
 }
 
 .bigBingoBallBallActiveN {
-  background:radial-gradient(circle at 62px 40px, rgba(108, 201, 226,0.85), rgba(84, 165, 188,0.85));
-  border-color:rgb(49,133,156);
-  color:#194551;
+  background:radial-gradient(circle at 62px 40px, rgba(255, 238, 146,0.92), rgba(234, 195, 67,0.92));
+  border-color:rgb(184,146,21);
+  color:#3a3200;
   opacity:1;
 }
 
 .bigBingoBallBallActiveG {
-  background:radial-gradient(circle at 62px 40px, rgba(195, 164, 234,0.85), rgba(159, 129, 193,0.85));
-  border-color:rgb(96,74,123);
-  color:#352944;
+  background:radial-gradient(circle at 62px 40px, rgba(111, 183, 255,0.92), rgba(63, 126, 208,0.92));
+  border-color:rgb(34,89,153);
+  color:#ffffff;
   opacity:1;
 }
 
 .bigBingoBallBallActiveO {
-  background:radial-gradient(circle at 62px 40px, rgba(255, 138, 135,0.85), rgba(221, 98, 95,0.85));
-  border-color:rgb(149,55,53);
-  color:#5e2221;
+  background:radial-gradient(circle at 62px 40px, rgba(141, 226, 147,0.92), rgba(82, 165, 89,0.92));
+  border-color:rgb(53,112,58);
+  color:#ffffff;
   opacity:1;
 }
 
