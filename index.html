@@ -30,6 +30,12 @@
     <!-- External layers -->
 
     <div class="layer" id="fullScreenToggleLayer">
+      <div id="bingosWonTop" aria-label="Bingos won this round">
+        <button type="button" class="bingosWonAdjust" onclick="decrementBingosWon();" aria-label="Decrease bingos won">-</button>
+        <span id="bingosWonNumTop" style="font-size:27px;font-weight:700;">0</span>
+        <span>won</span>
+        <button type="button" class="bingosWonAdjust" onclick="incrementBingosWon();" aria-label="Increase bingos won">+</button>
+      </div>
       <div class="homeButtonLabel">
         <div id="homeButton" onclick="hide('masterBoardSlide');show('titleSlide');" aria-label="Go to home/title screen"></div>
       </div>
@@ -37,6 +43,7 @@
         <div id="fullScreenButton" onclick="toggleFullScreen();" aria-label="Enter fullscreen mode"></div>
         <div id="fullScreenButtonDown" onclick="toggleFullScreen();" aria-label="Exit fullscreen mode"></div>
       </div>
+      <div id="boardToggleIcon" onclick="toggleBlocker()" role="button" aria-label="Toggle board hidden/shown"></div>
       <img id="voiceToggle" onclick="toggleVoice()" alt="Toggle voice on/off" />
     </div>
 
@@ -298,7 +305,7 @@
               <div class="bingoCardBody" id="25card"></div>
             </div>
           </div>
-          <div class="bigBingoBallClass" id="bigBingoBall" onclick="toggleBallsDrawnRemaining('toggle');" aria-label="Toggle between showing drawn balls count or remaining balls count">
+          <div class="bigBingoBallClass" id="bigBingoBall" onclick="toggleBallsDrawnRemaining('toggle');" aria-label="Toggle between showing drawn count and remaining count">
             <div id="bigBingoLetter">&nbsp;</div>
             <div id="bigBingoNumber">&nbsp;</div>
           </div>
@@ -311,9 +318,13 @@
               <span id="ballsRemainingNum" style="font-size:38px;font-weight:700;"></span>
               &nbsp;remaining
             </span>
+            <span id="bingosWon" onclick="hideBallsDrawnRemaining(); event.stopPropagation();" style="cursor:pointer;" aria-label="Show bingos won count">
+              <button type="button" class="bingosWonAdjust" onclick="decrementBingosWon(); event.stopPropagation();" aria-label="Decrease bingos won">-</button>
+              <span id="bingosWonNum" style="font-size:38px;font-weight:700;"></span>
+              <span style="margin-left:6px;">won</span>
+              <button type="button" class="bingosWonAdjust" onclick="incrementBingosWon(); event.stopPropagation();" aria-label="Increase bingos won">+</button>
+            </span>
           </div>
-          <div class="boardToggle" id="hideBoard" onclick="toggleBlocker()" aria-label="Hide the bingo board for a more challenging game">Hide Board</div>
-          <div class="boardToggle" id="showBoard" onclick="toggleBlocker()" aria-label="Show the bingo board">Show Board</div>
         </div>
         <div class="bingoCol bCol">
           <div class="bingoLetter" onclick="hideBingo('B', 'toggle');" aria-label="Toggle B column visibility">

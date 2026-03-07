@@ -22,7 +22,8 @@ let saveData = {
   speechPitch: 1,
   speechVolume: 0.8,
   scriptPresets: {},
-  currentScriptPreset: "Default"
+  currentScriptPreset: "Default",
+  bingosWonInRound: 0
 }
 
 const namedPatterns = {
@@ -217,31 +218,20 @@ function init() {
 		bingoBallClass[i].addEventListener("click", function() {activateBingoBall(i+1)});
 	}
   let param = location.search;
-  if (param === "?masterboard") {
-    setTimeout(function() {
-      hide("titleSlide");
-      show("fullScreenToggleLayer");
-  		show("masterBoardSlide", "grid");
-  	},50);
-  } else {
-    if (saveData.firstRun === 0 && supportsLocalStorage) {
-      saveData.firstRun = 1;
-      saveData.ballsDrawnRemaining = 'hidden';
-      saveData.currentScriptPreset = 'Default';
-      saveData.voice = 'Daniel';
-      saveData.lastVoice = 'Daniel';
-      loadDefaultScripts();
-      save();
-      setTimeout(function() {
-        hide("titleSlide");
-        show("onboardingSlide");
-      },50);
-    } else {
-      setTimeout(function() {
-        show("titleSlide");
-      },50);
-    }
+  if (saveData.firstRun === 0 && supportsLocalStorage) {
+    saveData.firstRun = 1;
+    saveData.ballsDrawnRemaining = 'hidden';
+    saveData.currentScriptPreset = 'Default';
+    saveData.voice = 'Daniel';
+    saveData.lastVoice = 'Daniel';
+    loadDefaultScripts();
+    save();
   }
+  setTimeout(function() {
+    hide("titleSlide");
+    show("fullScreenToggleLayer");
+		show("masterBoardSlide", "grid");
+	},50);
   document.onkeyup = function() {
     keyPressed = false;
   }
@@ -257,6 +247,7 @@ function init() {
     primeSpeechOnFirstInteraction();
   }
   updateVoiceIcon();
+  updateBoardToggleIcon();
 }
 
 function updateVoiceIcon() {
@@ -267,6 +258,17 @@ function updateVoiceIcon() {
     } else {
       icon.src = './assets/img/voiceOn.svg';
     }
+  }
+}
+
+function updateBoardToggleIcon() {
+  const icon = document.getElementById('boardToggleIcon');
+  if (!icon) return;
+  icon.classList.remove('board-shown', 'board-hidden');
+  if (saveData.blockerEnabled === true) {
+    icon.classList.add('board-hidden');
+  } else {
+    icon.classList.add('board-shown');
   }
 }
 
@@ -502,7 +504,6 @@ function show(elementName, display) {
         keyPressed = true;
         if (e.key === ' ') {randomDraw();}
         else if (e.key === 'r') {resetBoard();}
-        else if (e.key === 'x') {toggleBlocker();}
         else if (e.key === 'b') {hideBingo('B', 'toggle');}
         else if (e.key === 'i') {hideBingo('I', 'toggle');}
         else if (e.key === 'n') {hideBingo('N', 'toggle');}
@@ -753,7 +754,7 @@ function activateBingoBall(bingoIDNum) {
     if (document.getElementById("ballsDrawnRemaining").style.visibility === "visible") {
       if (saveData.ballsDrawnRemaining === "drawn") {
         speak(counts.drawn + " drawn");
-      } else {
+      } else if (saveData.ballsDrawnRemaining === "remaining") {
         speak(counts.remaining + " remaining");
       }
     }
@@ -978,6 +979,30 @@ function updateBallStats() {
   let counts = getBallCounts();
   document.getElementById("ballsDrawnNum").innerHTML = counts.drawn;
   document.getElementById("ballsRemainingNum").innerHTML = counts.remaining;
+  const bingosWon = document.getElementById("bingosWonNum");
+  if (bingosWon) {
+    bingosWon.innerHTML = saveData.bingosWonInRound;
+  }
+  const bingosWonTop = document.getElementById("bingosWonNumTop");
+  if (bingosWonTop) {
+    bingosWonTop.innerHTML = saveData.bingosWonInRound;
+  }
+}
+
+function adjustBingosWon(delta) {
+  const nextValue = Math.max(0, (saveData.bingosWonInRound || 0) + delta);
+  saveData.bingosWonInRound = nextValue;
+  save();
+  updateBallStats();
+  speak(nextValue + (nextValue === 1 ? " bingo won" : " bingos won"));
+}
+
+function incrementBingosWon() {
+  adjustBingosWon(1);
+}
+
+function decrementBingosWon() {
+  adjustBingosWon(-1);
 }
 
 function hideBingo(bingoLetter, renderOrToggle) {
@@ -1045,27 +1070,37 @@ function hideBingo(bingoLetter, renderOrToggle) {
 function hideBallsDrawnRemaining() {
   document.getElementById("ballsDrawn").style.display = "none";
   document.getElementById("ballsRemaining").style.display = "none";
+  document.getElementById("bingosWon").style.display = "none";
   document.getElementById("ballsDrawnRemaining").style.visibility = "hidden";
   saveData.ballsDrawnRemaining = "hidden";
   save();
 }
 
 function toggleBallsDrawnRemaining(renderOrToggle) {
+  // Backward compatibility for older saved states.
+  if (saveData.ballsDrawnRemaining === "bingos") {
+    saveData.ballsDrawnRemaining = "hidden";
+    save();
+  }
   if (renderOrToggle === "toggle") {
     let counts = getBallCounts();
     if (saveData.ballsDrawnRemaining === "hidden") {
       document.getElementById("ballsDrawnRemaining").style.visibility = "visible";
       document.getElementById("ballsDrawn").style.display = "flex";
+      document.getElementById("ballsRemaining").style.display = "none";
+      document.getElementById("bingosWon").style.display = "none";
       saveData.ballsDrawnRemaining = "drawn";
       save();
       speak(counts.drawn + " drawn");
     } else if (saveData.ballsDrawnRemaining === "drawn") {
       document.getElementById("ballsDrawn").style.display = "none";
       document.getElementById("ballsRemaining").style.display = "flex";
+      document.getElementById("bingosWon").style.display = "none";
       saveData.ballsDrawnRemaining = "remaining";
       save();
       speak(counts.remaining + " remaining");
     } else {
+      document.getElementById("bingosWon").style.display = "none";
       document.getElementById("ballsRemaining").style.display = "none";
       document.getElementById("ballsDrawnRemaining").style.visibility = "hidden";
       saveData.ballsDrawnRemaining = "hidden";
@@ -1077,9 +1112,12 @@ function toggleBallsDrawnRemaining(renderOrToggle) {
     } else if (saveData.ballsDrawnRemaining === "drawn") {
       document.getElementById("ballsDrawnRemaining").style.visibility = "visible";
       document.getElementById("ballsDrawn").style.display = "flex";
-    } else {
+    } else if (saveData.ballsDrawnRemaining === "remaining") {
       document.getElementById("ballsDrawnRemaining").style.visibility = "visible";
       document.getElementById("ballsRemaining").style.display = "flex";
+    } else {
+      document.getElementById("ballsDrawnRemaining").style.visibility = "visible";
+      document.getElementById("bingosWon").style.display = "flex";
     }
   }
 }
@@ -1126,6 +1164,7 @@ function resetBoard() {
   saveData.drawnBingoBalls = [];
   saveData.lastActionWasRemove = false;
   saveData.completedLetters = [];
+  saveData.bingosWonInRound = 0;
   save();
   hideBingo("", "reset");
   clearWinningPattern();
@@ -1137,29 +1176,23 @@ function toggleBlocker() {
 	if (saveData.blockerEnabled === true) {
     saveData.blockerEnabled = false;
 		document.getElementById("blocker").style.left = 1287 + "px";
-    document.getElementById("showBoard").style.display = "none";
-    document.getElementById("hideBoard").style.display = "flex";
     speak("Showing board");
 	} else {
     saveData.blockerEnabled = true;
 		document.getElementById("blocker").style.left = 255 + "px";
-    document.getElementById("hideBoard").style.display = "none";
-    document.getElementById("showBoard").style.display = "flex";
     speak("Hiding board");
 	}
   save();
+  updateBoardToggleIcon();
 }
 
 function setUpMasterBoard() {
   if (saveData.blockerEnabled === false) {
-    document.getElementById("showBoard").style.display = "none";
-    document.getElementById("hideBoard").style.display = "flex";
     document.getElementById("blocker").style.left = 1287 + "px";
   } else {
-    document.getElementById("hideBoard").style.display = "none";
-    document.getElementById("showBoard").style.display = "flex";
     document.getElementById("blocker").style.left = 255 + "px";
   }
+  updateBoardToggleIcon();
   renderBingoStyle();
   for (let i=0;i<saveData.drawnBingoBalls.length;i+=1) {
     loadBingoBall(saveData.drawnBingoBalls[i]);

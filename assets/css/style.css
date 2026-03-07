@@ -369,10 +369,26 @@ h2 {
 
 #drawBallDiv {
   position:absolute;
-  top:256px;
+  top:242px;
   left:48px;
   pointer-events:auto;
   transition:0.1s;
+}
+
+/* iPad/touch layout: keep draw button clear of the winning pattern card area. */
+@media (hover: none) and (pointer: coarse) {
+  #drawBallDiv {
+    top: 252px;
+    left: 48px;
+  }
+}
+
+/* iOS Safari can report pointer/hover inconsistently; force safe position there too. */
+@supports (-webkit-touch-callout: none) {
+  #drawBallDiv {
+    top: 252px;
+    left: 48px;
+  }
 }
 
 #hex {
@@ -542,6 +558,24 @@ margin:0.5em 0;
   margin-right:14px;
 }
 
+#bingosWonTop {
+  position:absolute;
+  left:31px;
+  top:auto;
+  bottom:calc(10px + env(safe-area-inset-bottom, 0px));
+  width:193px;
+  height:44px;
+  font-size:25px;
+  background:rgba(179,162,199,0.8);
+  border:1.2px solid rgba(74,126,187,0.9);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  pointer-events:auto;
+}
+
 #reset:hover {
   background-color:rgba(255,0,0,0.25);
 }
@@ -634,6 +668,30 @@ margin:0.5em 0;
   display:none;
   align-items:center;
   justify-content:center;
+}
+
+#bingosWon {
+  display:none;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+
+.bingosWonAdjust {
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  border:1px solid rgba(0,0,0,0.3);
+  background:rgba(255,255,255,0.65);
+  font-size:18px;
+  font-weight:700;
+  line-height:1;
+  cursor:pointer;
+  padding:0;
+}
+
+.bingosWonAdjust:hover {
+  background:rgba(255,255,255,0.85);
 }
 
 #bingoB, #bingoI, #bingoN, #bingoG, #bingoO {
@@ -885,6 +943,54 @@ color:gray;
   justify-content: center;
   pointer-events: auto;
   transition: filter 0.15s;
+}
+
+#boardToggleIcon {
+  position: absolute;
+  right: 122px;
+  top: 8px;
+  width: 25px;
+  height: 25px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  border-radius: 4px;
+  transition: filter 0.15s;
+}
+
+#boardToggleIcon:hover {
+  filter: brightness(0.8);
+}
+
+.board-shown {
+  background-image: linear-gradient(90deg, rgba(75,172,198,0.95), rgba(75,172,198,0.45));
+  border: 1px solid rgba(49,133,156,0.9);
+}
+
+.board-hidden {
+  background-image: linear-gradient(90deg, rgba(192,80,77,0.95), rgba(192,80,77,0.45));
+  border: 1px solid rgba(149,55,53,0.95);
+}
+
+.board-shown::before,
+.board-hidden::before {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.board-shown::before {
+  content: "B";
+}
+
+.board-hidden::before {
+  content: "X";
 }
 
 #voiceToggle:hover {
