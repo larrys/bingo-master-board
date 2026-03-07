@@ -31,10 +31,10 @@
 
     <div class="layer" id="fullScreenToggleLayer">
       <div id="bingosWonTop" aria-label="Bingos won this round">
-        <button type="button" class="bingosWonAdjust" onclick="decrementBingosWon();" aria-label="Decrease bingos won">-</button>
+        <button type="button" class="bingosWonAdjust" onclick="decrementBingosWon();" ontouchstart="decrementBingosWon(); event.preventDefault();" aria-label="Decrease bingos won">-</button>
         <span id="bingosWonNumTop" style="font-size:27px;font-weight:700;">0</span>
         <span>won</span>
-        <button type="button" class="bingosWonAdjust" onclick="incrementBingosWon();" aria-label="Increase bingos won">+</button>
+        <button type="button" class="bingosWonAdjust" onclick="incrementBingosWon();" ontouchstart="incrementBingosWon(); event.preventDefault();" aria-label="Increase bingos won">+</button>
       </div>
       <div class="homeButtonLabel">
         <div id="homeButton" onclick="hide('masterBoardSlide');show('titleSlide');" aria-label="Go to home/title screen"></div>
@@ -328,6 +328,7 @@
         </div>
         <div class="bingoCol bCol">
           <div class="bingoLetter" onclick="hideBingo('B', 'toggle');" aria-label="Toggle B column visibility">
+            <div class="bingoLetterCount" id="bingoBCount">0</div>
             <div id="bingoB">B</div>
           </div>
           <div class="bingoBalls" id="bingoBallsB">
@@ -350,6 +351,7 @@
         </div>
         <div class="bingoCol iCol">
           <div class="bingoLetter" onclick="hideBingo('I', 'toggle');" aria-label="Toggle I column visibility">
+            <div class="bingoLetterCount" id="bingoICount">0</div>
             <div id="bingoI">I</div>
           </div>
           <div class="bingoBalls" id="bingoBallsI">
@@ -372,6 +374,7 @@
         </div>
         <div class="bingoCol nCol">
           <div class="bingoLetter" onclick="hideBingo('N', 'toggle');" aria-label="Toggle N column visibility">
+            <div class="bingoLetterCount" id="bingoNCount">0</div>
             <div id="bingoN">N</div>
           </div>
           <div class="bingoBalls" id="bingoBallsN">
@@ -394,6 +397,7 @@
         </div>
         <div class="bingoCol gCol">
           <div class="bingoLetter" onclick="hideBingo('G', 'toggle');" aria-label="Toggle G column visibility">
+            <div class="bingoLetterCount" id="bingoGCount">0</div>
             <div id="bingoG">G</div>
           </div>
           <div class="bingoBalls" id="bingoBallsG">
@@ -416,6 +420,7 @@
         </div>
         <div class="bingoCol oCol">
           <div class="bingoLetter" onclick="hideBingo('O', 'toggle');" aria-label="Toggle O column visibility">
+            <div class="bingoLetterCount" id="bingoOCount">0</div>
             <div id="bingoO">O</div>
           </div>
           <div class="bingoBalls" id="bingoBallsO">

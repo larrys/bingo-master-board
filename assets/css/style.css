@@ -473,7 +473,7 @@ margin:0.5em 0;
   font-family:arya;
   font-weight:700;
   color:#ce181e;
-  font-size:110px;
+  font-size:100px;
   text-align:center;
   line-height:0.8;
   left:50%;
@@ -482,6 +482,15 @@ margin:0.5em 0;
   overflow:hidden;
   z-index:2;
   position:absolute;
+}
+
+.bingoLetterCount {
+  font-family:"open sans", sans-serif;
+  font-size:21px;
+  font-weight:700;
+  line-height:1;
+  margin-bottom:4px;
+  color:inherit;
 }
 
 .bingoLetter:hover {
@@ -688,6 +697,7 @@ margin:0.5em 0;
   line-height:1;
   cursor:pointer;
   padding:0;
+  touch-action: manipulation;
 }
 
 .bingosWonAdjust:hover {

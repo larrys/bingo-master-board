@@ -975,6 +975,35 @@ function cryptoRandom (min, max) {
     return Math.floor(cryptoRandomNumber * (max - min + 1)) + min;
 }
 
+function getDrawnCountForLetter(letter) {
+  let start;
+  let end;
+  if (letter === 'B') { start = 1; end = 15; }
+  else if (letter === 'I') { start = 16; end = 30; }
+  else if (letter === 'N') { start = 31; end = 45; }
+  else if (letter === 'G') { start = 46; end = 60; }
+  else { start = 61; end = 75; }
+
+  let count = 0;
+  for (let i = start; i <= end; i += 1) {
+    if (saveData.drawnBingoBalls.indexOf(i) !== -1) {
+      count += 1;
+    }
+  }
+  return count;
+}
+
+function updateLetterDrawCounts() {
+  const letters = ['B', 'I', 'N', 'G', 'O'];
+  for (let i = 0; i < letters.length; i += 1) {
+    const letter = letters[i];
+    const counter = document.getElementById('bingo' + letter + 'Count');
+    if (counter) {
+      counter.textContent = getDrawnCountForLetter(letter);
+    }
+  }
+}
+
 function updateBallStats() {
   let counts = getBallCounts();
   document.getElementById("ballsDrawnNum").innerHTML = counts.drawn;
@@ -987,6 +1016,7 @@ function updateBallStats() {
   if (bingosWonTop) {
     bingosWonTop.innerHTML = saveData.bingosWonInRound;
   }
+  updateLetterDrawCounts();
 }
 
 function adjustBingosWon(delta) {
