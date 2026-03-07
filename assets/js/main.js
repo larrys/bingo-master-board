@@ -607,7 +607,7 @@ function show(elementName, display) {
 function hide(elementName) {
   document.getElementById(elementName).style.display = "none";
 	if (elementName === "masterBoardSlide") {
-		changeBG();
+    changeBG(saveData.themeColor);
 		document.getElementById("drawBallLayer").style.display = "none";
 		document.getElementById("fullScreenToggle").classList.remove("fullScreenToggleSmall");
 		document.getElementById("homeButton").style.display = "none";
@@ -1232,6 +1232,8 @@ function setUpSettings() {
 function changeBackgroundColor(theColor) {
   saveData.themeColor = theColor;
   save();
+  // Live preview selected theme while still on the Themes page.
+  changeBG(theColor);
   setUpSettings();
 }
 
