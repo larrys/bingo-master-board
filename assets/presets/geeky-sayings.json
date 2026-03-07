@@ -1,0 +1,381 @@
+{
+  "presetName": "Geeky",
+  "scripts": {
+    "B1": [
+      "There are 10 types of people in the world: those who understand binary, and those who don't.",
+      "Why did the programmer quit his job? Because he didn't get arrays.",
+      "A SQL query walks into a bar, approaches two tables and asks: 'Can I join you?'"
+    ],
+    "B2": [
+      "Why do programmers prefer dark mode? Because light attracts bugs.",
+      "How many programmers does it take to change a light bulb? None, that's a hardware problem.",
+      "Why did the computer go to therapy? It had too many bytes of emotional baggage. 2 bytes make a word!"
+    ],
+    "B3": [
+      "Why was the JavaScript developer sad? Because he didn't know how to 'null' his feelings.",
+      "What do you call a bug in a computer program? A feature.",
+      "Why did the developer install a knocker on his door? He wanted to 'byte' his guests. 3 bytes make a tryte!"
+    ],
+    "B4": [
+      "Why did the scarecrow become a successful developer? He was outstanding in his field.",
+      "What do you call a computer that sings? A Dell.",
+      "Why did the programmer wear glasses? Because he couldn't C#."
+    ],
+    "B5": [
+      "Why did the database administrator leave his wife? She had one-to-many relationships.",
+      "What do you call a bug in a computer program? A feature.",
+      "Why did the computer keep sneezing? It had a virus."
+    ],
+    "B6": [
+      "Why did the programmer get stuck in the shower? The instructions said: 'Lather, rinse, repeat'.",
+      "What do you call a computer that sings opera? An aria processor.",
+      "Why did the developer go to art school? To improve his CSS skills."
+    ],
+    "B7": [
+      "Why did the HTML element go to therapy? It had too many unresolved issues.",
+      "What do you call a computer superhero? Captain Algorithm.",
+      "Why did the smartphone go to school? To improve its 'cell' service."
+    ],
+    "B8": [
+      "Why did the programmer quit smoking? Because he couldn't handle the exceptions.",
+      "What do you call a dinosaur with an extensive vocabulary? A thesaurus.",
+      "Why did the computer scientist get kicked off the plane? He was caught trying to board without a ticket."
+    ],
+    "B9": [
+      "Why did the banana go to the doctor? It wasn't peeling well.",
+      "What do you call a group of 8 cats? An octet.",
+      "Why did the developer get a job? He was outstanding in his field."
+    ],
+    "B10": [
+      "Why did the math book look sad? It had too many problems.",
+      "What do you call a computer that sings country music? A Dell-uxe.",
+      "Why did the smartphone need glasses? It lost its contacts."
+    ],
+    "B11": [
+      "Why did the cookie go to the doctor? It was feeling crumbly.",
+      "What do you call a group of musical rabbits? A hare-mony.",
+      "Why did the developer go to the beach? To work on his tan-gent."
+    ],
+    "B12": [
+      "Why did the belt get arrested? For holding up a pair of pants.",
+      "What do you call a computer that sings rock music? A hard drive.",
+      "Why did the broom get a promotion? It swept the competition away."
+    ],
+    "B13": [
+      "Why did the stadium get hot after the game? All the fans left.",
+      "What do you call a group of musical vegetables? A band of beets.",
+      "Why did the developer get promoted? He was outstanding in his field."
+    ],
+    "B14": [
+      "Why did the golfer wear two pairs of pants? In case he got a hole in one.",
+      "What do you call a computer that sings pop? A bubble sort.",
+      "Why did the calendar get promoted? Its days are numbered."
+    ],
+    "B15": [
+      "Why did the banana go to the doctor? It wasn't peeling well.",
+      "What do you call a group of musical stars? A sky-line.",
+      "Why did the bicycle fall over? It was two-tired."
+    ],
+    "I16": [
+      "Why did the scarecrow become a successful banker? He was outstanding in his field.",
+      "What do you call a computer that sings jazz? A scat-ter plot.",
+      "Why did the tomato blush? It saw the salad dressing."
+    ],
+    "I17": [
+      "Why did the math book look sad? It had too many problems.",
+      "What do you call a computer that sings blues? A delta function.",
+      "Why did the coffee file a police report? It got mugged."
+    ],
+    "I18": [
+      "Why did the cookie go to the doctor? It was feeling crumbly.",
+      "What do you call a group of musical photons? A light wave.",
+      "Why did the computer go to therapy? It had too many bytes of emotional baggage."
+    ],
+    "I19": [
+      "Why did the belt get arrested? For holding up a pair of pants.",
+      "What do you call a computer that sings gospel? A soul driver.",
+      "Why did the picture get arrested? It was framed."
+    ],
+    "I20": [
+      "Why did the stadium get hot after the game? All the fans left.",
+      "What do you call a group of musical rivers? A stream.",
+      "Why did the broom get a promotion? It swept the competition away."
+    ],
+    "I21": [
+      "Why did the golfer wear two pairs of pants? In case he got a hole in one.",
+      "What do you call a computer that sings techno? A loop de loop.",
+      "Why did the calendar get promoted? Its days are numbered."
+    ],
+    "I22": [
+      "Why did the banana go to the doctor? It wasn't peeling well.",
+      "What do you call a group of musical algorithms? A sort.",
+      "Why did the bicycle fall over? It was two-tired."
+    ],
+    "I23": [
+      "Why did the scarecrow become a successful banker? He was outstanding in his field.",
+      "What do you call a computer that sings reggae? A rasta-algorithm.",
+      "Why did the tomato blush? It saw the salad dressing."
+    ],
+    "I24": [
+      "Why did the math book look sad? It had too many problems.",
+      "What do you call a computer that sings hip-hop? A beat generator.",
+      "Why did the coffee file a police report? It got mugged."
+    ],
+    "I25": [
+      "Why did the cookie go to the doctor? It was feeling crumbly.",
+      "What do you call a group of musical caches? A memory.",
+      "Why did the computer go to therapy? It had too many bytes of emotional baggage."
+    ],
+    "I26": [
+      "Why did the belt get arrested? For holding up a pair of pants.",
+      "What do you call a computer that sings punk? A crash symbol.",
+      "Why did the picture get arrested? It was framed."
+    ],
+    "I27": [
+      "Why did the stadium get hot after the game? All the fans left.",
+      "What do you call a group of musical stacks? A pile.",
+      "Why did the broom get a promotion? It swept the competition away."
+    ],
+    "I28": [
+      "Why did the golfer wear two pairs of pants? In case he got a hole in one.",
+      "What do you call a computer that sings waltz? A three-quarter note.",
+      "Why did the calendar get promoted? Its days are numbered."
+    ],
+    "I29": [
+      "Why did the banana go to the doctor? It wasn't peeling well.",
+      "What do you call a group of musical variables? A scope.",
+      "Why did the bicycle fall over? It was two-tired."
+    ],
+    "I30": [
+      "Why did the scarecrow become a successful banker? He was outstanding in his field.",
+      "What do you call a computer that sings samba? A bossa nova.",
+      "Why did the tomato blush? It saw the salad dressing."
+    ],
+    "N31": [
+      "Why did the math book look sad? It had too many problems.",
+      "What do you call a computer that sings march? A parade.",
+      "Why did the coffee file a police report? It got mugged."
+    ],
+    "N32": [
+      "Why did the cookie go to the doctor? It was feeling crumbly.",
+      "What do you call a group of musical firewalls? A block.",
+      "Why did the computer go to therapy? It had too many bytes of emotional baggage."
+    ],
+    "N33": [
+      "Why did the belt get arrested? For holding up a pair of pants.",
+      "What do you call a computer that sings ballad? A slow query.",
+      "Why did the picture get arrested? It was framed."
+    ],
+    "N34": [
+      "Why did the stadium get hot after the game? All the fans left.",
+      "What do you call a group of musical bits? A byte.",
+      "Why did the broom get a promotion? It swept the competition away."
+    ],
+    "N35": [
+      "Why did the golfer wear two pairs of pants? In case he got a hole in one.",
+      "What do you call a computer that sings aria? An opera-tor.",
+      "Why did the calendar get promoted? Its days are numbered."
+    ],
+    "N36": [
+      "Why did the banana go to the doctor? It wasn't peeling well.",
+      "What do you call a group of musical pixels? A resolution.",
+      "Why did the bicycle fall over? It was two-tired."
+    ],
+    "N37": [
+      "Why did the scarecrow become a successful banker? He was outstanding in his field.",
+      "What do you call a computer that sings rap? A beat-box.",
+      "Why did the tomato blush? It saw the salad dressing."
+    ],
+    "N38": [
+      "Why did the math book look sad? It had too many problems.",
+      "What do you call a computer that sings cantata? A voice.",
+      "Why did the coffee file a police report? It got mugged."
+    ],
+    "N39": [
+      "Why did the cookie go to the doctor? It was feeling crumbly.",
+      "What do you call a group of musical codes? A cipher.",
+      "Why did the computer go to therapy? It had too many bytes of emotional baggage."
+    ],
+    "N40": [
+      "Why did the belt get arrested? For holding up a pair of pants.",
+      "What do you call a computer that sings motet? A polyphony.",
+      "Why did the picture get arrested? It was framed."
+    ],
+    "N41": [
+      "Why did the stadium get hot after the game? All the fans left.",
+      "What do you call a group of musical hashes? A table.",
+      "Why did the broom get a promotion? It swept the competition away."
+    ],
+    "N42": [
+      "Why did the golfer wear two pairs of pants? In case he got a hole in one.",
+      "What do you call a computer that sings fugue? A counterpoint.",
+      "Why did the calendar get promoted? Its days are numbered."
+    ],
+    "N43": [
+      "Why did the banana go to the doctor? It wasn't peeling well.",
+      "What do you call a group of musical loops? A cycle.",
+      "Why did the bicycle fall over? It was two-tired."
+    ],
+    "N44": [
+      "Why did the scarecrow become a successful banker? He was outstanding in his field.",
+      "What do you call a computer that sings madrigal? A group.",
+      "Why did the tomato blush? It saw the salad dressing."
+    ],
+    "N45": [
+      "Why did the math book look sad? It had too many problems.",
+      "What do you call a computer that sings sonata? A key.",
+      "Why did the coffee file a police report? It got mugged."
+    ],
+    "G46": [
+      "Why did the cookie go to the doctor? It was feeling crumbly.",
+      "What do you call a group of musical functions? A call.",
+      "Why did the computer go to therapy? It had too many bytes of emotional baggage."
+    ],
+    "G47": [
+      "Why did the belt get arrested? For holding up a pair of pants.",
+      "What do you call a computer that sings concerto? A program.",
+      "Why did the picture get arrested? It was framed."
+    ],
+    "G48": [
+      "Why did the stadium get hot after the game? All the fans left.",
+      "What do you call a group of musical servers? A cluster.",
+      "Why did the broom get a promotion? It swept the competition away."
+    ],
+    "G49": [
+      "Why did the golfer wear two pairs of pants? In case he got a hole in one.",
+      "What do you call a computer that sings symphony? An orchestra.",
+      "Why did the calendar get promoted? Its days are numbered."
+    ],
+    "G50": [
+      "Why did the banana go to the doctor? It wasn't peeling well.",
+      "What do you call a group of musical arrays? An index.",
+      "Why did the bicycle fall over? It was two-tired."
+    ],
+    "G51": [
+      "Why did the scarecrow become a successful banker? He was outstanding in his field.",
+      "What do you call a computer that sings cantata? A voice.",
+      "Why did the tomato blush? It saw the salad dressing."
+    ],
+    "G52": [
+      "Why did the math book look sad? It had too many problems.",
+      "What do you call a computer that sings march? A parade.",
+      "Why did the coffee file a police report? It got mugged."
+    ],
+    "G53": [
+      "Why did the cookie go to the doctor? It was feeling crumbly.",
+      "What do you call a group of musical variables? A scope.",
+      "Why did the computer go to therapy? It had too many bytes of emotional baggage."
+    ],
+    "G54": [
+      "Why did the belt get arrested? For holding up a pair of pants.",
+      "What do you call a computer that sings ballad? A slow query.",
+      "Why did the picture get arrested? It was framed."
+    ],
+    "G55": [
+      "Why did the stadium get hot after the game? All the fans left.",
+      "What do you call a group of musical bits? A byte.",
+      "Why did the broom get a promotion? It swept the competition away."
+    ],
+    "G56": [
+      "Why did the golfer wear two pairs of pants? In case he got a hole in one.",
+      "What do you call a computer that sings aria? An opera-tor.",
+      "Why did the calendar get promoted? Its days are numbered."
+    ],
+    "G57": [
+      "Why did the banana go to the doctor? It wasn't peeling well.",
+      "What do you call a group of musical pixels? A resolution.",
+      "Why did the bicycle fall over? It was two-tired."
+    ],
+    "G58": [
+      "Why did the scarecrow become a successful banker? He was outstanding in his field.",
+      "What do you call a computer that sings rap? A beat-box.",
+      "Why did the tomato blush? It saw the salad dressing."
+    ],
+    "G59": [
+      "Why did the math book look sad? It had too many problems.",
+      "What do you call a computer that sings cantata? A voice.",
+      "Why did the coffee file a police report? It got mugged."
+    ],
+    "G60": [
+      "Why did the cookie go to the doctor? It was feeling crumbly.",
+      "What do you call a group of musical codes? A cipher.",
+      "Why did the computer go to therapy? It had too many bytes of emotional baggage."
+    ],
+    "O61": [
+      "Why did the belt get arrested? For holding up a pair of pants.",
+      "What do you call a computer that sings motet? A polyphony.",
+      "Why did the picture get arrested? It was framed."
+    ],
+    "O62": [
+      "Why did the stadium get hot after the game? All the fans left.",
+      "What do you call a group of musical hashes? A table.",
+      "Why did the broom get a promotion? It swept the competition away."
+    ],
+    "O63": [
+      "Why did the golfer wear two pairs of pants? In case he got a hole in one.",
+      "What do you call a computer that sings fugue? A counterpoint.",
+      "Why did the calendar get promoted? Its days are numbered."
+    ],
+    "O64": [
+      "Why did the banana go to the doctor? It wasn't peeling well.",
+      "What do you call a group of musical loops? A cycle.",
+      "Why did the bicycle fall over? It was two-tired."
+    ],
+    "O65": [
+      "Why did the scarecrow become a successful banker? He was outstanding in his field.",
+      "What do you call a computer that sings madrigal? A group.",
+      "Why did the tomato blush? It saw the salad dressing."
+    ],
+    "O66": [
+      "Why did the math book look sad? It had too many problems.",
+      "What do you call a computer that sings sonata? A key.",
+      "Why did the coffee file a police report? It got mugged."
+    ],
+    "O67": [
+      "Why did the cookie go to the doctor? It was feeling crumbly.",
+      "What do you call a group of musical functions? A call.",
+      "Why did the computer go to therapy? It had too many bytes of emotional baggage."
+    ],
+    "O68": [
+      "Why did the belt get arrested? For holding up a pair of pants.",
+      "What do you call a computer that sings concerto? A program.",
+      "Why did the picture get arrested? It was framed."
+    ],
+    "O69": [
+      "Why did the stadium get hot after the game? All the fans left.",
+      "What do you call a group of musical stacks? A pile.",
+      "Why did the broom get a promotion? It swept the competition away."
+    ],
+    "O70": [
+      "Why did the golfer wear two pairs of pants? In case he got a hole in one.",
+      "What do you call a computer that sings symphony? An orchestra.",
+      "Why did the calendar get promoted? Its days are numbered."
+    ],
+    "O71": [
+      "Why did the banana go to the doctor? It wasn't peeling well.",
+      "What do you call a group of musical arrays? An index.",
+      "Why did the bicycle fall over? It was two-tired."
+    ],
+    "O72": [
+      "Why did the scarecrow become a successful banker? He was outstanding in his field.",
+      "What do you call a computer that sings cantata? A voice.",
+      "Why did the tomato blush? It saw the salad dressing."
+    ],
+    "O73": [
+      "Why did the math book look sad? It had too many problems.",
+      "What do you call a group of musical hashes? A table.",
+      "Why did the coffee file a police report? It got mugged."
+    ],
+    "O74": [
+      "Why did the cookie go to the doctor? It was feeling crumbly.",
+      "What do you call a group of musical variables? A scope.",
+      "Why did the computer go to therapy? It had too many bytes of emotional baggage."
+    ],
+    "O75": [
+      "Why did the belt get arrested? For holding up a pair of pants.",
+      "What do you call a computer that sings ballad? A slow query.",
+      "Why did the picture get arrested? It was framed."
+    ]
+  },
+  "exportedAt": "2026-01-27T12:00:00.000Z"
+}

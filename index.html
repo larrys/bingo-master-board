@@ -610,11 +610,21 @@
       <div class="script-overlay-content" onclick="event.stopPropagation();">
         <h2>Scripts</h2>
         <div style="text-align:center; padding: 20px;">
+          <div style="margin-bottom: 20px;">
+            <label for="scriptPresetDropdown" style="display: block; margin-bottom: 10px; font-size: 16px;">Script Preset:</label>
+            <select id="scriptPresetDropdown" onchange="switchScriptPreset()" style="padding: 8px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; margin-right: 10px;">
+              <!-- Options will be populated by JavaScript -->
+            </select>
+            <button class="smallButton" onclick="saveCurrentScriptsAsPreset()" style="padding: 8px 16px;" aria-label="Save current scripts as a new preset">Save As</button>
+            <button class="smallButton" onclick="deleteScriptPreset()" style="padding: 8px 16px; margin-left: 5px;" aria-label="Delete the current preset">Delete</button>
+          </div>
           <p style="font-size: 16px; margin-bottom: 15px;">Customize what is said for each ball number:</p>
           <div id="scriptGrid" class="script-grid">
             <!-- Script inputs will be generated dynamically -->
           </div>
-          <div style="display:flex; gap:10px; justify-content:center; margin-top: 20px;">
+          <div style="display:flex; gap:10px; justify-content:center; margin-top: 20px; flex-wrap: wrap;">
+            <button class="smallButton" onclick="exportScriptsToJSON()" style="padding:10px 20px;" aria-label="Export current scripts to JSON file">Export JSON</button>
+            <button class="smallButton" onclick="importScriptsFromJSON()" style="padding:10px 20px;" aria-label="Import scripts from JSON file">Import JSON</button>
             <button class="smallButton" onclick="resetScript()" style="padding:10px 20px;" aria-label="Reset all scripts to default ball labels">Reset to Labels</button>
             <button class="smallButton" onclick="testScript()" style="padding:10px 20px;" aria-label="Test a random ball script">Test Random</button>
             <button class="smallButton" onclick="hideScriptOverlay()" style="padding:10px 20px;" aria-label="Close script editor">Close</button>
@@ -629,13 +639,15 @@
         <h2>Edit Script for <span id="scriptEditorTitle">Ball</span></h2>
         <div style="text-align:center; padding: 20px;">
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 10px; font-size: 16px;">What to say when this ball is drawn:</label>
-            <textarea id="scriptEditorInput" rows="3" style="width: 100%; max-width: 400px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea>
+            <label style="display: block; margin-bottom: 10px; font-size: 16px;">What to say when this ball is drawn (multiple sayings will be chosen randomly):</label>
+            <div id="scriptInputsContainer" style="margin-bottom: 10px;">
+              <!-- Input fields will be generated dynamically -->
+            </div>
+            <button class="smallButton" onclick="addScriptInput('', document.querySelectorAll('#scriptInputsContainer .script-input-group').length)" style="padding: 8px 16px;">Add Saying</button>
           </div>
           <div style="display:flex; gap:10px; justify-content:center;">
             <button class="smallButton" onclick="saveScriptEditor()" style="padding: 10px 20px;">Save</button>
             <button class="smallButton" onclick="resetScriptEditor()" style="padding: 10px 20px;" aria-label="Reset script to default ball label">Reset to Default</button>
-            <button class="smallButton" onclick="testScriptEditor()" style="padding: 10px 20px;" aria-label="Test the current script">Test</button>
             <button class="smallButton" onclick="closeScriptEditor()" style="padding: 10px 20px;" aria-label="Cancel script editing">Cancel</button>
           </div>
         </div>

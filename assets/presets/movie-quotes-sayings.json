@@ -1,0 +1,205 @@
+{
+  "presetName": "Movie Quotes",
+  "scripts": {
+    "B1": [
+      "One Flew Over the Cuckoo's Nest",
+      "One Hour Photo",
+      "The One"
+    ],
+    "B2": [
+      "The Two Towers",
+      "Double Indemnity"
+    ],
+    "B3": [
+      "The Three Musketeers",
+      "Three Billboards Outside Ebbing, Missouri",
+      "Triple Frontier"
+    ],
+    "B4": [
+      "Four Weddings and a Funeral",
+      "The Fantastic Four",
+      "Four Rooms"
+    ],
+    "B5": [
+      "The Fifth Element",
+      "Five Easy Pieces",
+      "Five Feet Apart"
+    ],
+    "B6": [
+      "Six Degrees of Separation",
+      "The Sixth Sense"
+    ],
+    "B7": [
+      "Seven",
+      "The Magnificent Seven",
+      "Seven Brides for Seven Brothers"
+    ],
+    "B8": [
+      "Eight Men Out",
+      "Ocean's Eight",
+      "Eight Below",
+      "8 Seconds"
+    ],
+    "B9": [
+      "The Ninth Gate",
+      "Nine",
+      "Nine Months"
+    ],
+    "B10": [
+      "10 Things I Hate About You",
+      "10 Cloverfield Lane",
+      "The Ten Commandments"
+    ],
+    "B11": [
+      "Ocean's Eleven"
+    ],
+    "B12": [
+      "Twelve Angry Men",
+      "Ocean's Twelve",
+      "The Dirty Dozen"
+    ],
+    "B13": [
+      "Friday the 13th",
+      "13 Going on 30",
+      "Apollo 13"
+    ],
+    "B14": [
+      "The 14th Warrior",
+      "14 Blades"
+    ],
+    "B15": [
+      "15 Minutes"
+    ],
+    "I16": [
+      "Sixteen Candles",
+      "16 Blocks"
+    ],
+    "I17": [
+    ],
+    "I18": [
+      "18 Again"
+    ],
+    "I19": [],
+    "I20": [
+      "20,000 Leagues Under the Sea"
+    ],
+    "I21": [
+      "21 Jump Street"
+    ],
+    "I22": [
+      "22 Jump Street"
+    ],
+    "I23": [],
+    "I24": [
+      "The 24th Day"
+    ],
+    "I25": [
+      "25th Hour"
+    ],
+    "I26": [
+      "The 26th Letter"
+    ],
+    "I27": [
+      "27 Dresses",
+      "The 27th Day"
+    ],
+    "I28": [
+      "28 Days Later",
+      "28 Days"
+    ],
+    "I29": [
+      "The 29th Street"
+    ],
+    "I30": [
+      "30 Days of Night"
+    ],
+    "N31": [],
+    "N32": [],
+    "N33": [],
+    "N34": [],
+    "N35": [],
+    "N36": [
+      "The 36th Chamber of Shaolin"
+    ],
+    "N37": [],
+    "N38": [
+      "The 38th Parallel"
+    ],
+    "N39": [
+      "The 39 Steps"
+    ],
+    "N40": [
+      "40 Days and 40 Nights",
+      "The 40-Year-Old Virgin"
+    ],
+    "N41": [],
+    "N42": [
+      "The Hitchhiker's Guide to the Galaxy",
+      "Life, the Universe and Everything"
+    ],
+    "N43": [],
+    "N44": [],
+    "N45": [],
+    "G46": [],
+    "G47": [
+      "47 Ronin"
+    ],
+    "G48": [],
+    "G49": [
+      "The 49th Parallel"
+    ],
+    "G50": [
+      "50 First Dates"
+    ],
+    "G51": [
+      "The 51st State"
+    ],
+    "G52": [
+      "The 52nd Street"
+    ],
+    "G53": [],
+    "G54": [
+      "The 54th Massachusetts"
+    ],
+    "G55": [],
+    "G56": [],
+    "G57": [
+      "Passenger 57"
+    ],
+    "G58": [
+      "58 Minutes"
+    ],
+    "G59": [],
+    "G60": [],
+    "O61": [],
+    "O62": [],
+    "O63": [],
+    "O64": [],
+    "O65": [],
+    "O66": [
+      "Route 66"
+    ],
+    "O67": [],
+    "O68": [
+      "68 Kill"
+    ],
+    "O69": [
+      "Summer of '69"
+    ],
+    "O70": [
+      "70 Million Jobs"
+    ],
+    "O71": [],
+    "O72": [
+      "72 Hours: Martyr Who Never Died"
+    ],
+    "O73": [
+      "73 Questions"
+    ],
+    "O74": [
+      "74 Minutes"
+    ],
+    "O75": []
+  },
+  "exportedAt": "2026-01-27T12:00:00.000Z"
+}

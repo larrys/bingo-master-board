@@ -1,0 +1,381 @@
+{
+  "presetName": "Math Jokes",
+  "scripts": {
+    "B1": [
+      "Why was the math book sad? Because it had too many problems!",
+      "What do you call a number that can't keep still? A roamin' numeral!",
+      "Why did the student wear glasses in math class? To improve di-vision!"
+    ],
+    "B2": [
+      "Why was the equal sign so humble? Because it knew it wasn't less than or greater than anyone else!",
+      "What do you call friends who love math? Alge-bros!",
+      "Why did the two fours skip lunch? Because they already eight!"
+    ],
+    "B3": [
+      "Why did the triangle refuse to be photographed? It didn't want to be in a right angle!",
+      "What do you call a math teacher who pokes people? A calcu-lator!",
+      "Why was the obtuse angle always so frustrated? Because it was never right!"
+    ],
+    "B4": [
+      "Why did the student do multiplication problems on the floor? Because she wanted to make a mat!",
+      "What do you call a number that can't be divided? A prime example!",
+      "Why did the math teacher take a ladder to class? To reach the high numbers!"
+    ],
+    "B5": [
+      "Why did the scarecrow become a successful mathematician? Because he was outstanding in his field!",
+      "What do you call a group of musical mathematicians? A band of alge-bros!",
+      "Why did the math book look sad? Because of all its problems!"
+    ],
+    "B6": [
+      "Why did the bicycle fall over in math class? It was two-tired!",
+      "What do you call a math teacher who lives near the beach? A tangent!",
+      "Why was the math lecture so long? The professor kept going off on a tangent!"
+    ],
+    "B7": [
+      "Why did the math teacher break up with the calculator? It couldn't handle their relationship!",
+      "What do you call a math competition between angles? A right fight!",
+      "Why did the geometry teacher get locked out? Because she lost her keys to the angles!"
+    ],
+    "B8": [
+      "Why did the math student bring a ladder to school? To reach the high scores!",
+      "What do you call a math teacher who loves to garden? A plant geometer!",
+      "Why did the circle go to therapy? It had too many unresolved issues!"
+    ],
+    "B9": [
+      "Why did the math teacher wear sunglasses? Because his students were so bright!",
+      "What do you call a math teacher who loves baseball? A curveball specialist!",
+      "Why did the square go to the party alone? Because it couldn't find a date!"
+    ],
+    "B10": [
+      "Why did the math teacher go to the beach? To work on his tan-gent!",
+      "What do you call a math teacher who loves music? A calcu-lator!",
+      "Why did the decimal point go to school? To become a little dot-educated!"
+    ],
+    "B11": [
+      "Why did the math book hide in the corner? It didn't want to be spotted!",
+      "What do you call a math teacher who loves to cook? A recipe for success!",
+      "Why did the parallelogram go to the doctor? It was feeling a little skewed!"
+    ],
+    "B12": [
+      "Why did the math teacher bring string to class? To tie up loose ends!",
+      "What do you call a math teacher who loves astronomy? A star calculator!",
+      "Why did the triangle go to the doctor? It had three sides of pain!"
+    ],
+    "B13": [
+      "Why did the math teacher get a job at the bakery? Because he kneaded the dough!",
+      "What do you call a math teacher who loves history? A calculator of events!",
+      "Why did the square root go to therapy? It had too many radicals!"
+    ],
+    "B14": [
+      "Why did the math teacher go to art school? To learn how to draw conclusions!",
+      "What do you call a math teacher who loves sports? A stat-istician!",
+      "Why did the angle go to school? To become a little more acute!"
+    ],
+    "B15": [
+      "Why did the math teacher bring a broom to class? To sweep away the problems!",
+      "What do you call a math teacher who loves magic? A mathemagician!",
+      "Why did the polygon go to therapy? It had too many sides to its personality!"
+    ],
+    "I16": [
+      "Why did the math teacher go to the eye doctor? To improve his di-vision!",
+      "What do you call a math teacher who loves gardening? A root specialist!",
+      "Why did the sixteen go to the party? To turn into a square!"
+    ],
+    "I17": [
+      "Why did the math teacher bring a map to class? To show the students the way!",
+      "What do you call a math teacher who loves music? A note-worthy calculator!",
+      "Why did the seventeen feel left out? Because it wasn't a prime number!"
+    ],
+    "I18": [
+      "Why did the math teacher go to the bank? To check his balance!",
+      "What do you call a math teacher who loves cars? A transmission specialist!",
+      "Why did the eighteen go to school? To become well-rounded!"
+    ],
+    "I19": [
+      "Why did the math teacher bring a clock to class? To teach about time!",
+      "What do you call a math teacher who loves animals? A zoo-metrician!",
+      "Why did the nineteen go to the gym? To work on its core values!"
+    ],
+    "I20": [
+      "Why did the math teacher go to the concert? To hear the band play!",
+      "What do you call a math teacher who loves food? A recipe analyst!",
+      "Why did the twenty go to the doctor? It was feeling a bit square!"
+    ],
+    "I21": [
+      "Why did the math teacher bring a camera to class? To capture the moment!",
+      "What do you call a math teacher who loves movies? A plot calculator!",
+      "Why did the twenty-one go to the casino? To try its luck!"
+    ],
+    "I22": [
+      "Why did the math teacher go to the library? To check out some books!",
+      "What do you call a math teacher who loves sports? A field goal expert!",
+      "Why did the twenty-two go to school? To become twice as smart!"
+    ],
+    "I23": [
+      "Why did the math teacher bring a phone to class? To call on students!",
+      "What do you call a math teacher who loves art? A perspective drawer!",
+      "Why did the twenty-three go to the party? To celebrate being prime!"
+    ],
+    "I24": [
+      "Why did the math teacher go to the store? To buy some supplies!",
+      "What do you call a math teacher who loves travel? A geo-metrician!",
+      "Why did the twenty-four go to the clock store? To find its match!"
+    ],
+    "I25": [
+      "Why did the math teacher bring a key to class? To unlock potential!",
+      "What do you call a math teacher who loves music? A rhythm calculator!",
+      "Why did the twenty-five go to the bakery? To become a square meal!"
+    ],
+    "I26": [
+      "Why did the math teacher go to the park? To enjoy some fresh air!",
+      "What do you call a math teacher who loves science? A lab technician!",
+      "Why did the twenty-six go to school? To learn the alphabet of numbers!"
+    ],
+    "I27": [
+      "Why did the math teacher bring a light to class? To shed some light!",
+      "What do you call a math teacher who loves history? A timeline expert!",
+      "Why did the twenty-seven go to the concert? To rock out!"
+    ],
+    "I28": [
+      "Why did the math teacher go to the restaurant? To have a square meal!",
+      "What do you call a math teacher who loves games? A puzzle master!",
+      "Why did the twenty-eight go to the calendar? To mark its days!"
+    ],
+    "I29": [
+      "Why did the math teacher bring a mirror to class? To reflect on problems!",
+      "What do you call a math teacher who loves nature? A tree hugger!",
+      "Why did the twenty-nine go to the party? To count down to thirty!"
+    ],
+    "I30": [
+      "Why did the math teacher go to the gym? To work on his abs!",
+      "What do you call a math teacher who loves fashion? A style calculator!",
+      "Why did the thirty go to school? To become a perfect score!"
+    ],
+    "N31": [
+      "Why did the math teacher bring a boat to class? To navigate problems!",
+      "What do you call a math teacher who loves the sea? A nautical calculator!",
+      "Why did the thirty-one go to the calendar? To find its place!"
+    ],
+    "N32": [
+      "Why did the math teacher go to the farm? To count the chickens!",
+      "What do you call a math teacher who loves animals? A beast calculator!",
+      "Why did the thirty-two go to the dentist? To check its bite!"
+    ],
+    "N33": [
+      "Why did the math teacher bring a tree to class? To branch out!",
+      "What do you call a math teacher who loves plants? A root specialist!",
+      "Why did the thirty-three go to the record store? To spin some records!"
+    ],
+    "N34": [
+      "Why did the math teacher go to the mountain? To reach new heights!",
+      "What do you call a math teacher who loves climbing? A peak calculator!",
+      "Why did the thirty-four go to school? To become well-rounded!"
+    ],
+    "N35": [
+      "Why did the math teacher bring a star to class? To reach for the stars!",
+      "What do you call a math teacher who loves space? An astro-nomical calculator!",
+      "Why did the thirty-five go to the party? To celebrate halfway!"
+    ],
+    "N36": [
+      "Why did the math teacher go to the circus? To see the big top!",
+      "What do you call a math teacher who loves entertainment? A show calculator!",
+      "Why did the thirty-six go to the bakery? To get a dozen dozen!"
+    ],
+    "N37": [
+      "Why did the math teacher bring a bridge to class? To connect ideas!",
+      "What do you call a math teacher who loves engineering? A structure specialist!",
+      "Why did the thirty-seven go to the party? To prime the fun!"
+    ],
+    "N38": [
+      "Why did the math teacher go to the castle? To rule the problems!",
+      "What do you call a math teacher who loves royalty? A king calculator!",
+      "Why did the thirty-eight go to school? To become a smart cookie!"
+    ],
+    "N39": [
+      "Why did the math teacher bring a road to class? To pave the way!",
+      "What do you call a math teacher who loves driving? A mileage calculator!",
+      "Why did the thirty-nine go to the movies? To see a double feature!"
+    ],
+    "N40": [
+      "Why did the math teacher go to the lake? To make some waves!",
+      "What do you call a math teacher who loves water? A fluid calculator!",
+      "Why did the forty go to the party? To have a square dance!"
+    ],
+    "N41": [
+      "Why did the math teacher bring a bell to class? To ring in success!",
+      "What do you call a math teacher who loves music? A tone calculator!",
+      "Why did the forty-one go to the casino? To play some odds!"
+    ],
+    "N42": [
+      "Why did the math teacher go to the universe? To find the answer!",
+      "What do you call a math teacher who loves philosophy? A deep thinker!",
+      "Why did the forty-two go to school? To become the answer to everything!"
+    ],
+    "N43": [
+      "Why did the math teacher bring a map to class? To chart success!",
+      "What do you call a math teacher who loves geography? A coordinate calculator!",
+      "Why did the forty-three go to the party? To prime the evening!"
+    ],
+    "N44": [
+      "Why did the math teacher go to the market? To buy some solutions!",
+      "What do you call a math teacher who loves shopping? A retail calculator!",
+      "Why did the forty-four go to the game? To double the score!"
+    ],
+    "N45": [
+      "Why did the math teacher bring a record to class? To break some records!",
+      "What do you call a math teacher who loves music? A beat calculator!",
+      "Why did the forty-five go to the dance? To spin some moves!"
+    ],
+    "G46": [
+      "Why did the math teacher go to the garden? To plant some seeds!",
+      "What do you call a math teacher who loves nature? A growth calculator!",
+      "Why did the forty-six go to school? To grow smarter!"
+    ],
+    "G47": [
+      "Why did the math teacher bring a light to class? To illuminate ideas!",
+      "What do you call a math teacher who loves science? A bright calculator!",
+      "Why did the forty-seven go to the party? To prime the fun!"
+    ],
+    "G48": [
+      "Why did the math teacher go to the theater? To see the show!",
+      "What do you call a math teacher who loves drama? A scene calculator!",
+      "Why did the forty-eight go to the bakery? To get half a gross!"
+    ],
+    "G49": [
+      "Why did the math teacher bring a key to class? To unlock knowledge!",
+      "What do you call a math teacher who loves mysteries? A puzzle calculator!",
+      "Why did the forty-nine go to the party? To count down to fifty!"
+    ],
+    "G50": [
+      "Why did the math teacher go to the milestone? To celebrate!",
+      "What do you call a math teacher who loves celebrations? A party calculator!",
+      "Why did the fifty go to school? To become a perfect half-century!"
+    ],
+    "G51": [
+      "Why did the math teacher bring a wave to class? To make an impact!",
+      "What do you call a math teacher who loves the ocean? A tide calculator!",
+      "Why did the fifty-one go to the store? To buy some prime cuts!"
+    ],
+    "G52": [
+      "Why did the math teacher go to the calendar? To check the date!",
+      "What do you call a math teacher who loves time? A clock calculator!",
+      "Why did the fifty-two go to the party? To celebrate the weeks!"
+    ],
+    "G53": [
+      "Why did the math teacher bring a prime to class? To show quality!",
+      "What do you call a math teacher who loves quality? A prime calculator!",
+      "Why did the fifty-three go to school? To become prime and proper!"
+    ],
+    "G54": [
+      "Why did the math teacher go to the weather station? To check the forecast!",
+      "What do you call a math teacher who loves weather? A climate calculator!",
+      "Why did the fifty-four go to the party? To have a cool time!"
+    ],
+    "G55": [
+      "Why did the math teacher bring a golden to class? To show value!",
+      "What do you call a math teacher who loves treasure? A gold calculator!",
+      "Why did the fifty-five go to the anniversary? To celebrate golden years!"
+    ],
+    "G56": [
+      "Why did the math teacher go to the fountain? To make some change!",
+      "What do you call a math teacher who loves money? A coin calculator!",
+      "Why did the fifty-six go to school? To become wiser than before!"
+    ],
+    "G57": [
+      "Why did the math teacher bring a prime to class? To demonstrate!",
+      "What do you call a math teacher who loves demonstrations? A show calculator!",
+      "Why did the fifty-seven go to the party? To prime the celebration!"
+    ],
+    "G58": [
+      "Why did the math teacher go to the retirement home? To count blessings!",
+      "What do you call a math teacher who loves retirement? A relax calculator!",
+      "Why did the fifty-eight go to school? To prepare for the future!"
+    ],
+    "G59": [
+      "Why did the math teacher bring a countdown to class? To build excitement!",
+      "What do you call a math teacher who loves countdowns? A timer calculator!",
+      "Why did the fifty-nine go to the party? To count down to sixty!"
+    ],
+    "G60": [
+      "Why did the math teacher go to the diamond? To sparkle!",
+      "What do you call a math teacher who loves gems? A jewel calculator!",
+      "Why did the sixty go to the anniversary? To celebrate diamond years!"
+    ],
+    "O61": [
+      "Why did the math teacher bring a wave to class? To ride the numbers!",
+      "What do you call a math teacher who loves surfing? A wave calculator!",
+      "Why did the sixty-one go to the beach? To catch some prime waves!"
+    ],
+    "O62": [
+      "Why did the math teacher go to the zoo? To count the animals!",
+      "What do you call a math teacher who loves wildlife? A safari calculator!",
+      "Why did the sixty-two go to school? To become a smart cookie!"
+    ],
+    "O63": [
+      "Why did the math teacher bring a tree to class? To grow knowledge!",
+      "What do you call a math teacher who loves forestry? A branch calculator!",
+      "Why did the sixty-three go to the party? To celebrate being prime!"
+    ],
+    "O64": [
+      "Why did the math teacher go to the mountain? To summit problems!",
+      "What do you call a math teacher who loves hiking? A trail calculator!",
+      "Why did the sixty-four go to the chess tournament? To become a square master!"
+    ],
+    "O65": [
+      "Why did the math teacher bring a retirement to class? To show the end!",
+      "What do you call a math teacher who loves retirement? A final calculator!",
+      "Why did the sixty-five go to the party? To celebrate retirement age!"
+    ],
+    "O66": [
+      "Why did the math teacher go to the highway? To take the scenic route!",
+      "What do you call a math teacher who loves roads? A path calculator!",
+      "Why did the sixty-six go to the casino? To roll the dice!"
+    ],
+    "O67": [
+      "Why did the math teacher bring a light to class? To brighten minds!",
+      "What do you call a math teacher who loves brightness? A beam calculator!",
+      "Why did the sixty-seven go to school? To shine brighter!"
+    ],
+    "O68": [
+      "Why did the math teacher go to the music festival? To feel the rhythm!",
+      "What do you call a math teacher who loves beats? A rhythm calculator!",
+      "Why did the sixty-eight go to the party? To groove to the music!"
+    ],
+    "O69": [
+      "Why did the math teacher bring a twist to class? To turn things around!",
+      "What do you call a math teacher who loves surprises? A twist calculator!",
+      "Why did the sixty-nine go to the funhouse? To enjoy the twists!"
+    ],
+    "O70": [
+      "Why did the math teacher go to the golden years? To celebrate!",
+      "What do you call a math teacher who loves gold? A precious calculator!",
+      "Why did the seventy go to the anniversary? To celebrate golden years!"
+    ],
+    "O71": [
+      "Why did the math teacher bring a prime to class? To show excellence!",
+      "What do you call a math teacher who loves primes? A quality calculator!",
+      "Why did the seventy-one go to the party? To celebrate being prime!"
+    ],
+    "O72": [
+      "Why did the math teacher go to the stars? To reach new heights!",
+      "What do you call a math teacher who loves astronomy? A stellar calculator!",
+      "Why did the seventy-two go to the horoscope? To check its stars!"
+    ],
+    "O73": [
+      "Why did the math teacher bring a prime to class? To demonstrate value!",
+      "What do you call a math teacher who loves demonstrations? A proof calculator!",
+      "Why did the seventy-three go to school? To prove its worth!"
+    ],
+    "O74": [
+      "Why did the math teacher go to the finish line? To complete the race!",
+      "What do you call a math teacher who loves endings? A final calculator!",
+      "Why did the seventy-four go to the party? To celebrate almost there!"
+    ],
+    "O75": [
+      "Why did the math teacher bring a diamond to class? To show perfection!",
+      "What do you call a math teacher who loves perfection? A flawless calculator!",
+      "Why did the seventy-five go to the anniversary? To celebrate diamond years!"
+    ]
+  },
+  "exportedAt": "2026-01-27T12:00:00.000Z"
+}

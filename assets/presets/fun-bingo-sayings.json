@@ -1,0 +1,381 @@
+{
+  "presetName": "Fun Sayings",
+  "scripts": {
+    "B1": [
+      "The loneliest number!",
+      "Number one!",
+      "First but not least!"
+    ],
+    "B2": [
+      "Me and you, just us two!",
+      "Dynamic duo!",
+      "Two's company!"
+    ],
+    "B3": [
+      "Lucky number three!",
+      "Third time's the charm!",
+      "Holy trinity!"
+    ],
+    "B4": [
+      "Four score and... wait, wrong game!",
+      "Four by four!",
+      "Fantastic four!"
+    ],
+    "B5": [
+      "High five!",
+      "Five star!",
+      "Take five!"
+    ],
+    "B6": [
+      "Six pack coming through!",
+      "Six of one, half dozen of another!",
+      "Sixth sense!"
+    ],
+    "B7": [
+      "Lucky number seven!",
+      "Seven wonders!",
+      "Seventh heaven!"
+    ],
+    "B8": [
+      "Figure eight, roller skate!",
+      "Eight ball corner pocket!",
+      "Great eight!"
+    ],
+    "B9": [
+      "Cloud nine, feeling fine!",
+      "Nine lives!",
+      "Ninety-nine bottles of beer on the wall!"
+    ],
+    "B10": [
+      "Perfect ten!",
+      "Ten out of ten!",
+      "Top ten!"
+    ],
+    "B11": [
+      "Double ones, lucky buns!",
+      "Eleven pipers piping!",
+      "Jack and ace!"
+    ],
+    "B12": [
+      "A dozen roses for you!",
+      "Twelve apostles!",
+      "Midnight!"
+    ],
+    "B13": [
+      "Unlucky for some, lucky for you!",
+      "Friday the thirteenth!",
+      "Baker's dozen!"
+    ],
+    "B14": [
+      "Valentine's Day is coming!",
+      "Fourteen karat!",
+      "Sweet fourteen!"
+    ],
+    "B15": [
+      "Fifteen minutes of fame!",
+      "Quarter past fourteen!",
+      "Fifteen going on sixteen!"
+    ],
+    "I16": [
+      "Sweet sixteen!",
+      "Sweet sixteen and never been kissed!",
+      "Sixteen candles!"
+    ],
+    "I17": [
+      "Seventeen going on eighteen!",
+      "Seventeen, prime number!",
+      "Sweet seventeen!"
+    ],
+    "I18": [
+      "Old enough to vote!",
+      "Eighteen, legal adult!",
+      "Sweet eighteen!"
+    ],
+    "I19": [
+      "Nineteen ninety-nine!",
+      "Nineteen, almost twenty!",
+      "Sweet nineteen!"
+    ],
+    "I20": [
+      "Perfect score!",
+      "Twenty-twenty vision!",
+      "Sweet twenty!"
+    ],
+    "I21": [
+      "Legal drinking age!",
+      "Twenty-one guns!",
+      "Sweet twenty-one!"
+    ],
+    "I22": [
+      "Double deuce!",
+      "Twenty-two, double the fun!",
+      "Sweet twenty-two!"
+    ],
+    "I23": [
+      "Twenty-three, prime time!",
+      "Twenty-three skidoo!",
+      "Sweet twenty-three!"
+    ],
+    "I24": [
+      "Two dozen!",
+      "Twenty-four seven!",
+      "Sweet twenty-four!"
+    ],
+    "I25": [
+      "Silver anniversary!",
+      "Twenty-five, quarter century!",
+      "Sweet twenty-five!"
+    ],
+    "I26": [
+      "Twenty-six, that's a lot!",
+      "Twenty-six miles to Boston!",
+      "Sweet twenty-six!"
+    ],
+    "I27": [
+      "Twenty-seven, heaven's door!",
+      "Twenty-seven club!",
+      "Sweet twenty-seven!"
+    ],
+    "I28": [
+      "Twenty-eight days hath September...",
+      "Twenty-eight, almost thirty!",
+      "Sweet twenty-eight!"
+    ],
+    "I29": [
+      "Twenty-nine, dirty thirty coming!",
+      "Twenty-nine, prime number!",
+      "Sweet twenty-nine!"
+    ],
+    "I30": [
+      "Thirty, the new twenty!",
+      "Thirty, flirty and thriving!",
+      "Sweet thirty!"
+    ],
+    "N31": [
+      "Thirty-one, prime time!",
+      "Thirty-one flavors!",
+      "Sweet thirty-one!"
+    ],
+    "N32": [
+      "Thirty-two teeth in a smile!",
+      "Thirty-two, double sixteen!",
+      "Sweet thirty-two!"
+    ],
+    "N33": [
+      "Thirty-three and a third!",
+      "Thirty-three, prime number!",
+      "Sweet thirty-three!"
+    ],
+    "N34": [
+      "Thirty-four, that's a lot!",
+      "Thirty-four, almost thirty-five!",
+      "Sweet thirty-four!"
+    ],
+    "N35": [
+      "Thirty-five, halfway to seventy!",
+      "Thirty-five, prime number!",
+      "Sweet thirty-five!"
+    ],
+    "N36": [
+      "Thirty-six chambers of Shaolin!",
+      "Thirty-six, double eighteen!",
+      "Sweet thirty-six!"
+    ],
+    "N37": [
+      "Thirty-seven, prime number!",
+      "Thirty-seven, almost forty!",
+      "Sweet thirty-seven!"
+    ],
+    "N38": [
+      "Thirty-eight, special birthday!",
+      "Thirty-eight, prime number!",
+      "Sweet thirty-eight!"
+    ],
+    "N39": [
+      "Thirty-nine steps to fame!",
+      "Thirty-nine, almost forty!",
+      "Sweet thirty-nine!"
+    ],
+    "N40": [
+      "Forty winks!",
+      "Forty, prime number!",
+      "Sweet forty!"
+    ],
+    "N41": [
+      "Forty-one, prime time!",
+      "Forty-one, prime number!",
+      "Sweet forty-one!"
+    ],
+    "N42": [
+      "The answer to life, the universe, and everything!",
+      "Forty-two, the meaning of life!",
+      "Sweet forty-two!"
+    ],
+    "N43": [
+      "Forty-three, prime number!",
+      "Forty-three, almost fifty!",
+      "Sweet forty-three!"
+    ],
+    "N44": [
+      "Forty-four, double the fun!",
+      "Forty-four, almost forty-five!",
+      "Sweet forty-four!"
+    ],
+    "N45": [
+      "Forty-five RPM!",
+      "Forty-five, prime number!",
+      "Sweet forty-five!"
+    ],
+    "G46": [
+      "Forty-six, mid-life crisis!",
+      "Forty-six, almost fifty!",
+      "Sweet forty-six!"
+    ],
+    "G47": [
+      "Forty-seven, prime number!",
+      "Forty-seven, almost fifty!",
+      "Sweet forty-seven!"
+    ],
+    "G48": [
+      "Forty-eight, almost there!",
+      "Forty-eight, prime number!",
+      "Sweet forty-eight!"
+    ],
+    "G49": [
+      "Forty-nine, so close!",
+      "Forty-nine, almost fifty!",
+      "Sweet forty-nine!"
+    ],
+    "G50": [
+      "Half a century!",
+      "Fifty, golden anniversary!",
+      "Sweet fifty!"
+    ],
+    "G51": [
+      "Fifty-one, past halfway!",
+      "Fifty-one, prime number!",
+      "Sweet fifty-one!"
+    ],
+    "G52": [
+      "Fifty-two weeks in a year!",
+      "Fifty-two, prime number!",
+      "Sweet fifty-two!"
+    ],
+    "G53": [
+      "Fifty-three, prime number!",
+      "Fifty-three, almost sixty!",
+      "Sweet fifty-three!"
+    ],
+    "G54": [
+      "Fifty-four, cardigan weather!",
+      "Fifty-four, prime number!",
+      "Sweet fifty-four!"
+    ],
+    "G55": [
+      "Fifty-five, golden anniversary!",
+      "Fifty-five, prime number!",
+      "Sweet fifty-five!"
+    ],
+    "G56": [
+      "Fifty-six, the new forty!",
+      "Fifty-six, prime number!",
+      "Sweet fifty-six!"
+    ],
+    "G57": [
+      "Fifty-seven, prime number!",
+      "Fifty-seven, almost sixty!",
+      "Sweet fifty-seven!"
+    ],
+    "G58": [
+      "Fifty-eight, almost retirement!",
+      "Fifty-eight, prime number!",
+      "Sweet fifty-eight!"
+    ],
+    "G59": [
+      "Fifty-nine, fifty-nine fifty!",
+      "Fifty-nine, almost sixty!",
+      "Sweet fifty-nine!"
+    ],
+    "G60": [
+      "Diamond anniversary!",
+      "Sixty, prime number!",
+      "Sweet sixty!"
+    ],
+    "O61": [
+      "Sixty-one, past sixty!",
+      "Sixty-one, prime number!",
+      "Sweet sixty-one!"
+    ],
+    "O62": [
+      "Sixty-two, still got it!",
+      "Sixty-two, prime number!",
+      "Sweet sixty-two!"
+    ],
+    "O63": [
+      "Sixty-three, prime of life!",
+      "Sixty-three, prime number!",
+      "Sweet sixty-three!"
+    ],
+    "O64": [
+      "Sixty-four, that's a lot!",
+      "Sixty-four, prime number!",
+      "Sweet sixty-four!"
+    ],
+    "O65": [
+      "Sixty-five, retirement age!",
+      "Sixty-five, prime number!",
+      "Sweet sixty-five!"
+    ],
+    "O66": [
+      "Sixty-six, the highway!",
+      "Sixty-six, prime number!",
+      "Sweet sixty-six!"
+    ],
+    "O67": [
+      "Sixty-seven, still young!",
+      "Sixty-seven, prime number!",
+      "Sweet sixty-seven!"
+    ],
+    "O68": [
+      "Sixty-eight, groovy!",
+      "Sixty-eight, prime number!",
+      "Sweet sixty-eight!"
+    ],
+    "O69": [
+      "Sixty-nine, nice!",
+      "Sixty-nine, prime number!",
+      "Sweet sixty-nine!"
+    ],
+    "O70": [
+      "Seventy, golden anniversary!",
+      "Seventy, prime number!",
+      "Sweet seventy!"
+    ],
+    "O71": [
+      "Seventy-one, prime number!",
+      "Seventy-one, still kicking!",
+      "Sweet seventy-one!"
+    ],
+    "O72": [
+      "Seventy-two, virgo!",
+      "Seventy-two, prime number!",
+      "Sweet seventy-two!"
+    ],
+    "O73": [
+      "Seventy-three, prime number!",
+      "Seventy-three, still going!",
+      "Sweet seventy-three!"
+    ],
+    "O74": [
+      "Seventy-four, still kicking!",
+      "Seventy-four, prime number!",
+      "Sweet seventy-four!"
+    ],
+    "O75": [
+      "Seventy-five, diamond anniversary!",
+      "Seventy-five, prime number!",
+      "Sweet seventy-five!"
+    ]
+  },
+  "exportedAt": "2026-01-27T12:00:00.000Z"
+}

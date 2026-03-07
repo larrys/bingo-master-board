@@ -1,0 +1,381 @@
+{
+  "presetName": "Puns",
+  "scripts": {
+    "B1": [
+      "I'm feeling a bit Claus-trophobic with just one present!",
+      "One is the loneliest number, but it's also the only number that can stand alone!",
+      "Be one with the Force, young padawan!"
+    ],
+    "B2": [
+      "Two can play at that game, but one is always the winner!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, but two would be twice as nice!",
+      "Two's company, but one's a crowd when you're number two!"
+    ],
+    "B3": [
+      "Three's a crowd, but two's just right for this party!",
+      "I'm on a seafood diet. I see food and I eat it, but with three courses!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, but three is the magic number!"
+    ],
+    "B4": [
+      "Four score and seven years ago, but today it's just four!",
+      "I'm reading a book on teleportation. It's bound to take me places, four at a time!",
+      "I used to play piano by ear, but now I use my hands. Four hands would be even better!"
+    ],
+    "B5": [
+      "Five golden rings, but I'd settle for five minutes of peace!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, especially with five volumes!",
+      "Time flies like an arrow; fruit flies like a banana. Five flies would be a swarm!"
+    ],
+    "B6": [
+      "Six of one, half a dozen of the other - take your pick!",
+      "A bicycle can't stand alone; it's two-tired. Six wheels would be overkill!",
+      "I'm on a seafood diet. I see food and I eat it, six times a day!"
+    ],
+    "B7": [
+      "Seven days in a week, but seven minutes in heaven!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, seven ways to Sunday!",
+      "I'm reading a book on teleportation. It's bound to take me places, seven leagues at a time!"
+    ],
+    "B8": [
+      "Eight is great, but nine is fine when you're feeling eight-y!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, eight volumes deep!",
+      "Time flies like an arrow; fruit flies like a banana. Eight flies make a octet!"
+    ],
+    "B9": [
+      "Nine lives like a cat, but nine innings make a baseball game!",
+      "I'm on a seafood diet. I see food and I eat it, nine courses please!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, nine ways!"
+    ],
+    "B10": [
+      "Ten out of ten for effort, but ten is just too perfect!",
+      "I'm reading a book on teleportation. It's bound to take me places, tenfold!",
+      "I used to play piano by ear, but now I use my hands. Ten fingers make it easier!"
+    ],
+    "B11": [
+      "Eleven is a prime number, but eleven herbs and spices make it special!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, eleven chapters in!",
+      "Time flies like an arrow; fruit flies like a banana. Eleven flies would be a plague!"
+    ],
+    "B12": [
+      "Twelve days of Christmas, but twelve is just noon!",
+      "A bicycle can't stand alone; it's two-tired. Twelve gears would be excessive!",
+      "I'm on a seafood diet. I see food and I eat it, twelve times daily!"
+    ],
+    "B13": [
+      "Thirteen is unlucky, but thirteen colonies made America!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, thirteen ways!",
+      "I'm reading a book on teleportation. It's bound to take me places, thirteen at a time!"
+    ],
+    "B14": [
+      "Fourteen karat gold, but fourteen is just a teen!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, fourteen volumes!",
+      "Time flies like an arrow; fruit flies like a banana. Fourteen flies make a squadron!"
+    ],
+    "B15": [
+      "Fifteen minutes of fame, but fifteen is just a quarter hour!",
+      "I'm on a seafood diet. I see food and I eat it, fifteen appetizers!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, fifteen times!"
+    ],
+    "I16": [
+      "Sixteen candles on a birthday cake, sweet sixteen!",
+      "I'm reading a book on teleportation. It's bound to take me places, sixteen dimensions!",
+      "I used to play piano by ear, but now I use my hands. Sixteen keys make a full octave!"
+    ],
+    "I17": [
+      "Seventeen is a prime number, lucky seventeen!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, seventeen chapters!",
+      "Time flies like an arrow; fruit flies like a banana. Seventeen flies would be too many!"
+    ],
+    "I18": [
+      "Eighteen holes on a golf course, par for the course!",
+      "A bicycle can't stand alone; it's two-tired. Eighteen speeds would be ridiculous!",
+      "I'm on a seafood diet. I see food and I eat it, eighteen courses!"
+    ],
+    "I19": [
+      "Nineteen is a prime number, almost twenty!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, nineteen ways!",
+      "I'm reading a book on teleportation. It's bound to take me places, nineteen leagues!"
+    ],
+    "I20": [
+      "Twenty-twenty vision, perfect score!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, twenty volumes!",
+      "Time flies like an arrow; fruit flies like a banana. Twenty flies make a infestation!"
+    ],
+    "I21": [
+      "Twenty-one gun salute, but twenty-one is blackjack!",
+      "I'm on a seafood diet. I see food and I eat it, twenty-one appetizers!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, twenty-one times!"
+    ],
+    "I22": [
+      "Twenty-two is a double dozen, twice as nice!",
+      "I'm reading a book on teleportation. It's bound to take me places, twenty-two jumps!",
+      "I used to play piano by ear, but now I use my hands. Twenty-two keys on a full keyboard!"
+    ],
+    "I23": [
+      "Twenty-three is a prime number, lucky twenty-three!",
+      "A bicycle can't stand alone; it's two-tired. Twenty-three gears would be overkill!",
+      "I'm on a seafood diet. I see food and I eat it, twenty-three times!"
+    ],
+    "I24": [
+      "Twenty-four seven, around the clock!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, twenty-four ways!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, twenty-four hours!"
+    ],
+    "I25": [
+      "Twenty-five cents is a quarter, but twenty-five is a bingo card!",
+      "Time flies like an arrow; fruit flies like a banana. Twenty-five flies make a swarm!",
+      "I'm on a seafood diet. I see food and I eat it, twenty-five courses!"
+    ],
+    "I26": [
+      "Twenty-six letters in the alphabet, but twenty-six is the end!",
+      "I'm reading a book on teleportation. It's bound to take me places, twenty-six dimensions!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, twenty-six ways!"
+    ],
+    "I27": [
+      "Twenty-seven is three cubed, mathematically perfect!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, twenty-seven chapters!",
+      "A bicycle can't stand alone; it's two-tired. Twenty-seven speeds would be insane!"
+    ],
+    "I28": [
+      "Twenty-eight days in February, sometimes!",
+      "Time flies like an arrow; fruit flies like a banana. Twenty-eight flies make a plague!",
+      "I'm on a seafood diet. I see food and I eat it, twenty-eight appetizers!"
+    ],
+    "I29": [
+      "Twenty-nine is a prime number, almost thirty!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, twenty-nine times!",
+      "I'm reading a book on teleportation. It's bound to take me places, twenty-nine jumps!"
+    ],
+    "I30": [
+      "Thirty days hath September, but thirty is just right!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, thirty volumes!",
+      "I used to play piano by ear, but now I use my hands. Thirty fingers would be too many!"
+    ],
+    "N31": [
+      "Thirty-one days in some months, but thirty-one is prime!",
+      "A bicycle can't stand alone; it's two-tired. Thirty-one gears would be excessive!",
+      "I'm on a seafood diet. I see food and I eat it, thirty-one times!"
+    ],
+    "N32": [
+      "Thirty-two is a byte, digitally perfect!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, thirty-two ways!",
+      "Time flies like an arrow; fruit flies like a banana. Thirty-two flies make a byte!"
+    ],
+    "N33": [
+      "Thirty-three is an LP record, spinning memories!",
+      "I'm reading a book on teleportation. It's bound to take me places, thirty-three revolutions!",
+      "I'm on a seafood diet. I see food and I eat it, thirty-three courses!"
+    ],
+    "N34": [
+      "Thirty-four is a score plus four, mathematically scored!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, thirty-four pages!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, thirty-four ways!"
+    ],
+    "N35": [
+      "Thirty-five is a high-five, way up!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, thirty-five times!",
+      "Time flies like an arrow; fruit flies like a banana. Thirty-five flies make a crowd!"
+    ],
+    "N36": [
+      "Thirty-six is six squared, mathematically neat!",
+      "I'm reading a book on teleportation. It's bound to take me places, thirty-six dimensions!",
+      "I'm on a seafood diet. I see food and I eat it, thirty-six appetizers!"
+    ],
+    "N37": [
+      "Thirty-seven is a prime number, lucky thirty-seven!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, thirty-seven volumes!",
+      "I used to play piano by ear, but now I use my hands. Thirty-seven keys make a full piano!"
+    ],
+    "N38": [
+      "Thirty-eight is a double nineteen, twice the prime!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, thirty-eight volumes!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, thirty-eight ways!"
+    ],
+    "N39": [
+      "Thirty-nine is shoe size, walk this way!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, thirty-nine ways!",
+      "I'm reading a book on teleportation. It's bound to take me places, thirty-nine steps!"
+    ],
+    "N40": [
+      "Forty is four tens, mathematically sound!",
+      "I'm on a seafood diet. I see food and I eat it, forty courses!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, forty chapters!"
+    ],
+    "N41": [
+      "Forty-one is a prime number, prime time!",
+      "A bicycle can't stand alone; it's two-tired. Forty-one speeds would be overkill!",
+      "Time flies like an arrow; fruit flies like a banana. Forty-one flies make a swarm!"
+    ],
+    "N42": [
+      "Forty-two is the meaning of life, according to Douglas Adams!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, forty-two ways!",
+      "I'm reading a book on teleportation. It's bound to take me places, forty-two jumps!"
+    ],
+    "N43": [
+      "Forty-three is a prime number, prime and forty-three!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, forty-three chapters!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, forty-three times!"
+    ],
+    "N44": [
+      "Forty-four is double twenty-two, twice the fun!",
+      "A bicycle can't stand alone; it's two-tired. Forty-four gears would be insane!",
+      "Time flies like an arrow; fruit flies like a banana. Forty-four flies make a plague!"
+    ],
+    "N45": [
+      "Forty-five is a 45 record, spinning memories!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, forty-five times!",
+      "I'm reading a book on teleportation. It's bound to take me places, forty-five degrees!"
+    ],
+    "G46": [
+      "Forty-six is double twenty-three, twice the prime!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, forty-six volumes!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, forty-six ways!"
+    ],
+    "G47": [
+      "Forty-seven is a prime number, prime and proper!",
+      "A bicycle can't stand alone; it's two-tired. Forty-seven speeds would be ridiculous!",
+      "Time flies like an arrow; fruit flies like a banana. Forty-seven flies make a crowd!"
+    ],
+    "G48": [
+      "Forty-eight is half of ninety-six, mathematically split!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, forty-eight ways!",
+      "I'm reading a book on teleportation. It's bound to take me places, forty-eight hours!"
+    ],
+    "G49": [
+      "Forty-nine is seven squared, mathematically perfect!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, forty-nine volumes!",
+      "I'm on a seafood diet. I see food and I eat it, forty-nine courses!"
+    ],
+    "G50": [
+      "Fifty is a golden anniversary, half a century!",
+      "A bicycle can't stand alone; it's two-tired. Fifty gears would be overkill!",
+      "Time flies like an arrow; fruit flies like a banana. Fifty flies make a infestation!"
+    ],
+    "G51": [
+      "Fifty-one is a prime number, prime fifty-one!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, fifty-one chapters!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, fifty-one times!"
+    ],
+    "G52": [
+      "Fifty-two is weeks in a year, annually!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, fifty-two chapters!",
+      "I'm on a seafood diet. I see food and I eat it, fifty-two appetizers!"
+    ],
+    "G53": [
+      "Fifty-three is a prime number, prime fifty-three!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, fifty-three chapters!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, fifty-three ways!"
+    ],
+    "G54": [
+      "Fifty-four is double twenty-seven, twice cubed!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, fifty-four ways!",
+      "I'm reading a book on teleportation. It's bound to take me places, fifty-four degrees!"
+    ],
+    "G55": [
+      "Fifty-five is the speed limit, but fifty-five is just right!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, fifty-five volumes!",
+      "I'm on a seafood diet. I see food and I eat it, fifty-five times!"
+    ],
+    "G56": [
+      "Fifty-six is double twenty-eight, twice the days!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, fifty-six volumes!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, fifty-six times!"
+    ],
+    "G57": [
+      "Fifty-seven is a prime number, prime time!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, fifty-seven times!",
+      "I'm reading a book on teleportation. It's bound to take me places, fifty-seven jumps!"
+    ],
+    "G58": [
+      "Fifty-eight is a prime number, prime fifty-eight!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, fifty-eight volumes!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, fifty-eight ways!"
+    ],
+    "G59": [
+      "Fifty-nine is almost sixty, so close!",
+      "A bicycle can't stand alone; it's two-tired. Fifty-nine speeds would be overkill!",
+      "Time flies like an arrow; fruit flies like a banana. Fifty-nine flies make a crowd!"
+    ],
+    "G60": [
+      "Sixty is a minute past, time flies!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, sixty ways!",
+      "I'm reading a book on teleportation. It's bound to take me places, sixty seconds!"
+    ],
+    "O61": [
+      "Sixty-one is a prime number, prime and fine!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, sixty-one volumes!",
+      "I'm on a seafood diet. I see food and I eat it, sixty-one courses!"
+    ],
+    "O62": [
+      "Sixty-two is a prime number, prime sixty-two!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, sixty-two chapters!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, sixty-two times!"
+    ],
+    "O63": [
+      "Sixty-three is shoe size, walk this way!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, sixty-three times!",
+      "I'm reading a book on teleportation. It's bound to take me places, sixty-three steps!"
+    ],
+    "O64": [
+      "Sixty-four is eight squared, digitally perfect!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, sixty-four chapters!",
+      "I'm on a seafood diet. I see food and I eat it, sixty-four appetizers!"
+    ],
+    "O65": [
+      "Sixty-five is retirement age, senior moment!",
+      "A bicycle can't stand alone; it's two-tired. Sixty-five speeds would be ridiculous!",
+      "Time flies like an arrow; fruit flies like a banana. Sixty-five flies make a swarm!"
+    ],
+    "O66": [
+      "Sixty-six is the route, take it!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, sixty-six ways!",
+      "I'm reading a book on teleportation. It's bound to take me places, sixty-six miles!"
+    ],
+    "O67": [
+      "Sixty-seven is a prime number, lucky sixty-seven!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, sixty-seven volumes!",
+      "I'm on a seafood diet. I see food and I eat it, sixty-seven times!"
+    ],
+    "O68": [
+      "Sixty-eight is a prime number, prime sixty-eight!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, sixty-eight volumes!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, sixty-eight ways!"
+    ],
+    "O69": [
+      "Sixty-nine is upside down, wild times!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, sixty-nine ways!",
+      "I'm reading a book on teleportation. It's bound to take me places, sixty-nine dimensions!"
+    ],
+    "O70": [
+      "Seventy is a milestone, three score and ten!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, seventy chapters!",
+      "I'm on a seafood diet. I see food and I eat it, seventy appetizers!"
+    ],
+    "O71": [
+      "Seventy-one is a prime number, prime time!",
+      "A bicycle can't stand alone; it's two-tired. Seventy-one speeds would be insane!",
+      "Time flies like an arrow; fruit flies like a banana. Seventy-one flies make a crowd!"
+    ],
+    "O72": [
+      "Seventy-two is three o'clock, time for tea!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, seventy-two times!",
+      "I'm reading a book on teleportation. It's bound to take me places, seventy-two degrees!"
+    ],
+    "O73": [
+      "Seventy-three is a prime number, lucky seventy-three!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, seventy-three volumes!",
+      "I'm on a seafood diet. I see food and I eat it, seventy-three courses!"
+    ],
+    "O74": [
+      "Seventy-four is a prime number, prime seventy-four!",
+      "I'm reading a book on anti-gravity. It's impossible to put down, seventy-four chapters!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, seventy-four times!"
+    ],
+    "O75": [
+      "Seventy-five is three-quarters, almost done!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised, seventy-five ways!",
+      "I'm reading a book on teleportation. It's bound to take me places, seventy-five percent!"
+    ]
+  },
+  "exportedAt": "2026-01-27T12:00:00.000Z"
+}

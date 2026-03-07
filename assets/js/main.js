@@ -10,18 +10,19 @@ let saveData = {
   bingoStyle: "ball",
   blockerEnabled: false,
   lastActionWasRemove: false,
-  ballsDrawnRemaining: "drawn",
+  ballsDrawnRemaining: "hidden",
   hiddenBingoLetters: [],
   winningPattern: [],
   firstRun: 0,
-  voice: "off",
+  voice: "Daniel",
   completedLetters: [],
-  lastVoice: null,
+  lastVoice: "Daniel",
   currentPatternName: "No Pattern",
   speechRate: 1,
   speechPitch: 1,
   speechVolume: 0.8,
-  scriptData: {}
+  scriptPresets: {},
+  currentScriptPreset: "Default"
 }
 
 const namedPatterns = {
@@ -46,6 +47,144 @@ const SPEECH_PARAMS = {
   pitch: 1,
   volume: 0.8
 };
+
+let speechQueue = [];
+let speechQueueBusy = false;
+let speechQueueTimer = null;
+let speechEngineWarmedUp = false;
+let speechWarmupInFlight = false;
+let speechWarmupWatchdog = null;
+
+function clearSpeechQueue() {
+  speechQueue = [];
+  speechQueueBusy = false;
+  if (speechQueueTimer) {
+    clearTimeout(speechQueueTimer);
+    speechQueueTimer = null;
+  }
+  if (speechWarmupWatchdog) {
+    clearTimeout(speechWarmupWatchdog);
+    speechWarmupWatchdog = null;
+  }
+}
+
+function scheduleNextSpeech(delayMs = 40) {
+  if (speechQueueTimer) {
+    clearTimeout(speechQueueTimer);
+  }
+  speechQueueTimer = setTimeout(processSpeechQueue, delayMs);
+}
+
+function warmUpSpeechEngine() {
+  if (!('speechSynthesis' in window) || saveData.voice === 'off' || speechWarmupInFlight || speechEngineWarmedUp) {
+    return;
+  }
+  if (window.speechSynthesis.speaking || window.speechSynthesis.pending || speechQueueBusy) {
+    return;
+  }
+  speechWarmupInFlight = true;
+  const warmup = new SpeechSynthesisUtterance(' ');
+  warmup.rate = 1;
+  warmup.pitch = 1;
+  warmup.volume = 0;
+  setVoice(warmup);
+  speechQueueBusy = true;
+
+  if (speechWarmupWatchdog) {
+    clearTimeout(speechWarmupWatchdog);
+  }
+  // iOS can occasionally swallow onend/onerror for silent utterances.
+  // Fail open after a short delay so speech is never stuck muted.
+  speechWarmupWatchdog = setTimeout(function() {
+    speechEngineWarmedUp = true;
+    speechWarmupInFlight = false;
+    speechQueueBusy = false;
+    speechWarmupWatchdog = null;
+    scheduleNextSpeech(0);
+  }, 1200);
+
+  warmup.onend = function() {
+    if (speechWarmupWatchdog) {
+      clearTimeout(speechWarmupWatchdog);
+      speechWarmupWatchdog = null;
+    }
+    speechEngineWarmedUp = true;
+    speechWarmupInFlight = false;
+    speechQueueBusy = false;
+    scheduleNextSpeech(0);
+  };
+  warmup.onerror = function() {
+    if (speechWarmupWatchdog) {
+      clearTimeout(speechWarmupWatchdog);
+      speechWarmupWatchdog = null;
+    }
+    // Fail open so a warm-up error does not permanently block announcements.
+    speechEngineWarmedUp = true;
+    speechWarmupInFlight = false;
+    speechQueueBusy = false;
+    scheduleNextSpeech(0);
+  };
+  if (window.speechSynthesis.paused) {
+    window.speechSynthesis.resume();
+  }
+  window.speechSynthesis.speak(warmup);
+}
+
+function primeSpeechOnFirstInteraction() {
+  if (!('speechSynthesis' in window)) return;
+  const tryWarm = function() {
+    if (saveData.voice !== 'off') {
+      warmUpSpeechEngine();
+    }
+    document.removeEventListener('pointerdown', tryWarm, true);
+    document.removeEventListener('touchstart', tryWarm, true);
+    document.removeEventListener('keydown', tryWarm, true);
+  };
+  document.addEventListener('pointerdown', tryWarm, true);
+  document.addEventListener('touchstart', tryWarm, true);
+  document.addEventListener('keydown', tryWarm, true);
+}
+
+function processSpeechQueue() {
+  speechQueueTimer = null;
+  if (!('speechSynthesis' in window) || saveData.voice === 'off') {
+    clearSpeechQueue();
+    return;
+  }
+  if (speechQueueBusy || speechQueue.length === 0) {
+    return;
+  }
+  if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+    scheduleNextSpeech(10);
+    return;
+  }
+  if (!speechEngineWarmedUp) {
+    warmUpSpeechEngine();
+    if (speechWarmupInFlight) {
+      return;
+    }
+  }
+  const text = speechQueue.shift();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = navigator.language || 'en-US';
+  utterance.rate = saveData.speechRate;
+  utterance.pitch = saveData.speechPitch;
+  utterance.volume = saveData.speechVolume;
+  setVoice(utterance);
+  speechQueueBusy = true;
+  utterance.onend = function() {
+    speechQueueBusy = false;
+    scheduleNextSpeech(0);
+  };
+  utterance.onerror = function() {
+    speechQueueBusy = false;
+    scheduleNextSpeech(0);
+  };
+  if (window.speechSynthesis.paused) {
+    window.speechSynthesis.resume();
+  }
+  window.speechSynthesis.speak(utterance);
+}
 
 if(supportsLocalStorage) {
   if (localStorage.getItem("bingoMasterBoardSaveData")) {
@@ -87,6 +226,11 @@ function init() {
   } else {
     if (saveData.firstRun === 0 && supportsLocalStorage) {
       saveData.firstRun = 1;
+      saveData.ballsDrawnRemaining = 'hidden';
+      saveData.currentScriptPreset = 'Default';
+      saveData.voice = 'Daniel';
+      saveData.lastVoice = 'Daniel';
+      loadDefaultScripts();
       save();
       setTimeout(function() {
         hide("titleSlide");
@@ -110,6 +254,7 @@ function init() {
   if ('speechSynthesis' in window) {
     speechSynthesis.onvoiceschanged = updateVoiceOptions;
     updateVoiceOptions();
+    primeSpeechOnFirstInteraction();
   }
   updateVoiceIcon();
 }
@@ -128,9 +273,13 @@ function updateVoiceIcon() {
 function toggleVoice() {
   if (saveData.voice === 'off') {
     saveData.voice = saveData.lastVoice || 'voice0';
+    speechEngineWarmedUp = false;
+    speechWarmupInFlight = false;
   } else {
     saveData.lastVoice = saveData.voice;
     saveData.voice = 'off';
+    clearSpeechQueue();
+    speechWarmupInFlight = false;
     window.speechSynthesis.cancel();
   }
   save();
@@ -194,6 +343,7 @@ function testAdvancedSpeech() {
 }
 
 function showScriptOverlay() {
+  updateScriptPresetDropdown();
   initializeScriptGrid();
   document.getElementById('scriptOverlay').style.display = 'flex';
 }
@@ -276,6 +426,19 @@ function updateVoiceOptions() {
     option.textContent = item.name;
     select.appendChild(option);
   });
+
+  // Normalize legacy/name-based voice values (e.g. "Daniel") into indexed values.
+  if (saveData.voice && saveData.voice !== 'off' && typeof saveData.voice === 'string' && !saveData.voice.startsWith('voice')) {
+    const targetName = saveData.voice.split(' (')[0].toLowerCase();
+    for (const item of deduped) {
+      if (item.name.toLowerCase().startsWith(targetName)) {
+        saveData.voice = 'voice' + item.index;
+        saveData.lastVoice = saveData.voice;
+        save();
+        break;
+      }
+    }
+  }
 }
 
 function resize() {
@@ -580,7 +743,8 @@ function activateBingoBall(bingoIDNum) {
     saveData.lastActionWasRemove = false;
     save();
     // Use custom script if defined, otherwise construct default letter + number announcement
-    if (saveData.scriptData[bingoIDNum]) {
+    const currentPreset = saveData.scriptPresets[saveData.currentScriptPreset] || {};
+    if (currentPreset[bingoIDNum]) {
       speak(getScriptForBall(bingoIDNum));
     } else {
       speak(typeOfBingoBallLetter + " " + bingoIDNum);
@@ -624,13 +788,10 @@ function activateBingoBall(bingoIDNum) {
 
 function speak(text) {
   if ('speechSynthesis' in window && saveData.voice !== 'off') {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = navigator.language || 'en-US';
-    utterance.rate = saveData.speechRate;
-    utterance.pitch = saveData.speechPitch;
-    utterance.volume = saveData.speechVolume;
-    setVoice(utterance);
-    window.speechSynthesis.speak(utterance);
+    const normalizedText = String(text || '').trim();
+    if (normalizedText.length === 0) return;
+    speechQueue.push(normalizedText);
+    processSpeechQueue();
   }
 }
 
@@ -924,6 +1085,7 @@ function toggleBallsDrawnRemaining(renderOrToggle) {
 }
 
 function resetBoard() {
+  clearSpeechQueue();
   window.speechSynthesis.cancel();
   for (let i=0;i<75;i+=1) {
     document.getElementById(i+1 + "bingo").classList.remove(document.getElementById(i+1 + "bingo").classList.item(2));
@@ -1077,6 +1239,12 @@ function changeVoice(theVoice) {
   saveData.voice = theVoice;
   if (theVoice !== 'off') {
     saveData.lastVoice = theVoice;
+    speechEngineWarmedUp = false;
+    speechWarmupInFlight = false;
+  } else {
+    clearSpeechQueue();
+    speechWarmupInFlight = false;
+    window.speechSynthesis.cancel();
   }
   save();
   setUpSettings();
@@ -1239,19 +1407,19 @@ function hideBingoLettersBasedOnWinningPattern() {
       }
     }
     isHidingForPattern = true;
-    if (bExists === false) {
+    if (bExists === false && saveData.hiddenBingoLetters.indexOf('B') === -1) {
       hideBingo('B', 'toggle');
     }
-    if (iExists === false) {
+    if (iExists === false && saveData.hiddenBingoLetters.indexOf('I') === -1) {
       hideBingo('I', 'toggle');
     }
-    if (nExists === false) {
+    if (nExists === false && saveData.hiddenBingoLetters.indexOf('N') === -1) {
       hideBingo('N', 'toggle');
     }
-    if (gExists === false) {
+    if (gExists === false && saveData.hiddenBingoLetters.indexOf('G') === -1) {
       hideBingo('G', 'toggle');
     }
-    if (oExists === false) {
+    if (oExists === false && saveData.hiddenBingoLetters.indexOf('O') === -1) {
       hideBingo('O', 'toggle');
     }
     isHidingForPattern = false;
@@ -1373,17 +1541,32 @@ function initializeScriptGrid() {
     label.textContent = ballLabel;
     label.setAttribute('aria-label', 'Click to hear the announcement for ball ' + ballLabel);
     label.onclick = function() {
-      const currentValue = valueDisplay.textContent;
-      speak(currentValue);
+      const randomScript = getRandomScriptForBall(i);
+      speak(randomScript);
     };
     
     const valueDisplay = document.createElement('div');
     valueDisplay.className = 'script-value';
-    const currentScriptValue = saveData.scriptData[i] || ballLabel;
-    valueDisplay.textContent = currentScriptValue;
+    const currentPreset = saveData.scriptPresets[saveData.currentScriptPreset] || {};
+    const currentScriptValue = currentPreset[i];
+    
+    let displayText = '0';
+    let sayingCount = 0;
+    
+    if (currentScriptValue) {
+      if (Array.isArray(currentScriptValue)) {
+        sayingCount = currentScriptValue.length;
+        displayText = sayingCount.toString();
+      } else {
+        sayingCount = 1;
+        displayText = '1';
+      }
+    }
+    
+    valueDisplay.textContent = displayText;
     valueDisplay.setAttribute(
       'aria-label',
-      'Edit script for ball ' + ballLabel + '. Currently: ' + currentScriptValue
+      'Edit script for ball ' + ballLabel + '. Currently has ' + sayingCount + ' saying' + (sayingCount !== 1 ? 's' : '') + ' configured'
     );
     valueDisplay.onclick = function() {
       openScriptEditor(i, ballLabel);
@@ -1397,8 +1580,29 @@ function initializeScriptGrid() {
 }
 
 function resetScript() {
+  if (saveData.currentScriptPreset === 'Default' || saveData.currentScriptPreset === 'Fun Sayings' || saveData.currentScriptPreset === 'Math Jokes' || saveData.currentScriptPreset === 'Dad Jokes' || saveData.currentScriptPreset === 'Puns' || saveData.currentScriptPreset === 'Geeky' || saveData.currentScriptPreset === 'Movie Quotes' || saveData.currentScriptPreset === 'Book Quotes') {
+    const presetName = prompt('You cannot modify the Default, Fun Sayings, Math Jokes, Dad Jokes, Puns, Geeky, Movie Quotes, or Book Quotes presets. Enter a name for a new preset to save your reset changes:');
+    if (presetName && presetName.trim()) {
+      const trimmedName = presetName.trim();
+      if (saveData.scriptPresets[trimmedName]) {
+        if (!confirm(`Preset "${trimmedName}" already exists. Overwrite it?`)) {
+          return;
+        }
+      }
+      saveData.scriptPresets[trimmedName] = {};
+      saveData.currentScriptPreset = trimmedName;
+      save();
+      updateScriptPresetDropdown();
+      initializeScriptGrid();
+    }
+    return;
+  }
+  
   if (confirm('Are you sure you want to reset all scripts to default ball labels?')) {
-    saveData.scriptData = {};
+    if (!saveData.scriptPresets[saveData.currentScriptPreset]) {
+      saveData.scriptPresets[saveData.currentScriptPreset] = {};
+    }
+    saveData.scriptPresets[saveData.currentScriptPreset] = {};
     save();
     initializeScriptGrid();
   }
@@ -1411,13 +1615,43 @@ function getDefaultBallLabel(ballNumber) {
 }
 
 function testScript() {
-  const testNumber = Math.floor(Math.random() * 75) + 1;
+  // Get all ball numbers that have valid sayings
+  const validBallNumbers = [];
+  const currentPreset = saveData.scriptPresets[saveData.currentScriptPreset] || {};
+  
+  for (let i = 1; i <= 75; i++) {
+    const scriptValue = currentPreset[i];
+    if (scriptValue) {
+      let hasValidSaying = false;
+      if (Array.isArray(scriptValue)) {
+        // Check if array has at least one non-empty string
+        hasValidSaying = scriptValue.some(saying => saying && saying.trim() !== '');
+      } else if (scriptValue && scriptValue.trim() !== '') {
+        hasValidSaying = true;
+      }
+      if (hasValidSaying) {
+        validBallNumbers.push(i);
+      }
+    }
+  }
+  
+  if (validBallNumbers.length === 0) {
+    // No valid sayings, just pick a random ball and use default label
+    const testNumber = Math.floor(Math.random() * 75) + 1;
+    const ballLabel = getDefaultBallLabel(testNumber);
+    speak(ballLabel);
+    return;
+  }
+  
+  // Pick a random ball number that has valid sayings
+  const randomIndex = Math.floor(Math.random() * validBallNumbers.length);
+  const testNumber = validBallNumbers[randomIndex];
   const scriptText = getScriptForBall(testNumber);
   speak(scriptText);
 }
 
 function getScriptForBall(ballNumber) {
-  return saveData.scriptData[ballNumber] || getDefaultBallLabel(ballNumber);
+  return getRandomScriptForBall(ballNumber);
 }
 
 let currentEditingBall = null;
@@ -1425,8 +1659,113 @@ let currentEditingBall = null;
 function openScriptEditor(ballNumber, ballLabel) {
   currentEditingBall = ballNumber;
   document.getElementById('scriptEditorTitle').textContent = ballLabel;
-  document.getElementById('scriptEditorInput').value = saveData.scriptData[ballNumber] || ballLabel;
+  
+  const currentPreset = saveData.scriptPresets[saveData.currentScriptPreset] || {};
+  const currentValue = currentPreset[ballNumber];
+  
+  // Clear existing inputs
+  const container = document.getElementById('scriptInputsContainer');
+  container.innerHTML = '';
+  
+  // If it's an array, show all values; if string, show as single input; if none, show one empty input
+  let sayings = [];
+  if (Array.isArray(currentValue)) {
+    sayings = currentValue;
+  } else if (currentValue) {
+    sayings = [currentValue];
+  } else {
+    sayings = [ballLabel];
+  }
+  
+  // Set container height based on number of sayings
+  const totalInputs = sayings.length + 1; // +1 for the empty input
+  if (totalInputs > 5) {
+    container.style.maxHeight = '200px'; // Show about 5 inputs worth of space
+    container.style.overflowY = 'auto';
+  } else {
+    container.style.maxHeight = 'none';
+    container.style.overflowY = 'visible';
+  }
+  
+  // Create input fields for each saying
+  sayings.forEach((saying, index) => {
+    addScriptInput(saying, index);
+  });
+  
+  // Add one empty input for adding new sayings
+  addScriptInput('', sayings.length);
+  
   document.getElementById('scriptEditorOverlay').style.display = 'flex';
+}
+
+function addScriptInput(value, index) {
+  const container = document.getElementById('scriptInputsContainer');
+  const inputGroup = document.createElement('div');
+  inputGroup.className = 'script-input-group';
+  inputGroup.style.marginBottom = '10px';
+  inputGroup.style.display = 'flex';
+  inputGroup.style.alignItems = 'center';
+  
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = value;
+  input.placeholder = 'Enter saying...';
+  input.style.width = '70%';
+  input.style.padding = '8px';
+  input.style.marginRight = '10px';
+  
+  const testBtn = document.createElement('button');
+  testBtn.type = 'button';
+  testBtn.title = 'Test this saying';
+  testBtn.style.width = '32px';
+  testBtn.style.height = '32px';
+  testBtn.style.border = '1px solid #ccc';
+  testBtn.style.borderRadius = '4px';
+  testBtn.style.backgroundColor = '#f9f9f9';
+  testBtn.style.backgroundImage = 'url("./assets/img/voiceOn.svg")';
+  testBtn.style.backgroundSize = '20px';
+  testBtn.style.backgroundRepeat = 'no-repeat';
+  testBtn.style.backgroundPosition = 'center';
+  testBtn.style.cursor = 'pointer';
+  testBtn.style.marginRight = '10px';
+  testBtn.onmouseover = function() {
+    testBtn.style.backgroundImage = 'url("./assets/img/voiceOnHover.svg")';
+  };
+  testBtn.onmouseout = function() {
+    testBtn.style.backgroundImage = 'url("./assets/img/voiceOn.svg")';
+  };
+  testBtn.onclick = function() {
+    testSpecificSaying(input.value.trim());
+  };
+  
+  const removeBtn = document.createElement('button');
+  removeBtn.type = 'button';
+  removeBtn.textContent = 'Remove';
+  removeBtn.onclick = function() {
+    container.removeChild(inputGroup);
+    updateScriptContainerHeight();
+  };
+  removeBtn.style.padding = '8px 12px';
+  
+  inputGroup.appendChild(testBtn);
+  inputGroup.appendChild(input);
+  inputGroup.appendChild(removeBtn);
+  container.appendChild(inputGroup);
+  
+  updateScriptContainerHeight();
+}
+
+function updateScriptContainerHeight() {
+  const container = document.getElementById('scriptInputsContainer');
+  const inputGroups = container.querySelectorAll('.script-input-group');
+  
+  if (inputGroups.length > 5) {
+    container.style.maxHeight = '200px'; // Show about 5 inputs worth of space
+    container.style.overflowY = 'auto';
+  } else {
+    container.style.maxHeight = 'none';
+    container.style.overflowY = 'visible';
+  }
 }
 
 function closeScriptEditor() {
@@ -1434,14 +1773,80 @@ function closeScriptEditor() {
   currentEditingBall = null;
 }
 
+function resetScriptEditor() {
+  if (currentEditingBall) {
+    const ballLabel = getDefaultBallLabel(currentEditingBall);
+    // Clear existing inputs and add one with the default label
+    const container = document.getElementById('scriptInputsContainer');
+    container.innerHTML = '';
+    addScriptInput(ballLabel, 0);
+    addScriptInput('', 1); // Add empty input for adding more
+    updateScriptContainerHeight();
+  }
+}
+
 function saveScriptEditor() {
   if (currentEditingBall) {
-    const newValue = document.getElementById('scriptEditorInput').value.trim();
-    if (newValue) {
-      saveData.scriptData[currentEditingBall] = newValue;
-    } else {
-      delete saveData.scriptData[currentEditingBall];
+    // Collect all non-empty inputs
+    const container = document.getElementById('scriptInputsContainer');
+    const inputs = container.querySelectorAll('input[type="text"]');
+    const sayings = [];
+    
+    inputs.forEach(input => {
+      const value = input.value.trim();
+      if (value) {
+        sayings.push(value);
+      }
+    });
+    
+    // Validate that each saying has at least 3 characters
+    const invalidSayings = sayings.filter(saying => saying.length < 3);
+    if (invalidSayings.length > 0) {
+      alert('Each saying must be at least 3 characters long. Please fix the following sayings:\n\n' + invalidSayings.map(s => '• "' + s + '"').join('\n'));
+      return;
     }
+    
+    // If current preset is Default, Fun Sayings, or Math Jokes, force Save As instead of overwriting
+    if (saveData.currentScriptPreset === 'Default' || saveData.currentScriptPreset === 'Fun Sayings' || saveData.currentScriptPreset === 'Math Jokes' || saveData.currentScriptPreset === 'Dad Jokes' || saveData.currentScriptPreset === 'Puns' || saveData.currentScriptPreset === 'Geeky' || saveData.currentScriptPreset === 'Movie Quotes' || saveData.currentScriptPreset === 'Book Quotes') {
+      if (sayings.length > 0) {
+        const presetName = prompt('You cannot modify the Default, Fun Sayings, Math Jokes, Dad Jokes, Puns, Geeky, Movie Quotes, or Book Quotes presets. Enter a name for a new preset to save your changes:');
+        if (presetName && presetName.trim()) {
+          const trimmedName = presetName.trim();
+          if (saveData.scriptPresets[trimmedName]) {
+            if (!confirm(`Preset "${trimmedName}" already exists. Overwrite it?`)) {
+              return;
+            }
+          }
+          // Create new preset with current Default scripts plus the modification
+          saveData.scriptPresets[trimmedName] = { ...saveData.scriptPresets['Default'] };
+          if (sayings.length === 1) {
+            saveData.scriptPresets[trimmedName][currentEditingBall] = sayings[0];
+          } else {
+            saveData.scriptPresets[trimmedName][currentEditingBall] = sayings;
+          }
+          saveData.currentScriptPreset = trimmedName;
+          save();
+          updateScriptPresetDropdown();
+          initializeScriptGrid();
+          closeScriptEditor();
+        }
+      }
+      return;
+    }
+    
+    // Normal save for non-Default presets
+    if (!saveData.scriptPresets[saveData.currentScriptPreset]) {
+      saveData.scriptPresets[saveData.currentScriptPreset] = {};
+    }
+    
+    if (sayings.length === 0) {
+      delete saveData.scriptPresets[saveData.currentScriptPreset][currentEditingBall];
+    } else if (sayings.length === 1) {
+      saveData.scriptPresets[saveData.currentScriptPreset][currentEditingBall] = sayings[0];
+    } else {
+      saveData.scriptPresets[saveData.currentScriptPreset][currentEditingBall] = sayings;
+    }
+    
     save();
     initializeScriptGrid();
     closeScriptEditor();
@@ -1458,8 +1863,285 @@ function resetScriptEditor() {
 }
 
 function testScriptEditor() {
-  const text = document.getElementById('scriptEditorInput').value.trim();
-  if (text) {
-    speak(text);
+  const container = document.getElementById('scriptInputsContainer');
+  const inputs = container.querySelectorAll('input[type="text"]');
+  const sayings = [];
+  
+  inputs.forEach(input => {
+    const value = input.value.trim();
+    if (value) {
+      sayings.push(value);
+    }
+  });
+  
+  if (sayings.length > 0) {
+    const randomSaying = sayings[Math.floor(Math.random() * sayings.length)];
+    const ballLabel = getDefaultBallLabel(currentEditingBall);
+    const formattedScript = ballLabel + '. ' + randomSaying + ' ' + ballLabel + '.';
+    speak(formattedScript);
   }
+}
+
+function testSpecificSaying(saying) {
+  if (saying && currentEditingBall) {
+    const ballLabel = getDefaultBallLabel(currentEditingBall);
+    const formattedScript = ballLabel + '. ' + saying + ' ' + ballLabel + '.';
+    speak(formattedScript);
+  }
+}
+
+// Script preset management functions
+function convertLetterKeysToNumbers(scripts) {
+  const converted = {};
+  const bingoLetters = ['B', 'I', 'N', 'G', 'O'];
+  
+  Object.keys(scripts).forEach(key => {
+    // If it's already a number, keep it as is
+    if (!isNaN(key)) {
+      converted[key] = scripts[key];
+      return;
+    }
+    
+    // If it's a letter-number format, convert to number
+    const letter = key.charAt(0).toUpperCase();
+    const number = parseInt(key.substring(1));
+    
+    if (bingoLetters.includes(letter) && !isNaN(number) && number >= 1 && number <= 75) {
+      const letterIndex = bingoLetters.indexOf(letter);
+      const expectedMin = letterIndex * 15 + 1;
+      const expectedMax = (letterIndex + 1) * 15;
+      
+      if (number >= expectedMin && number <= expectedMax) {
+        converted[number] = scripts[key];
+      }
+    }
+  });
+  
+  return converted;
+}
+
+function getRandomScriptForBall(ballNumber) {
+  const currentPreset = saveData.scriptPresets[saveData.currentScriptPreset] || {};
+  const scriptValue = currentPreset[ballNumber];
+  const ballLabel = getDefaultBallLabel(ballNumber);
+  
+  if (!scriptValue) {
+    return ballLabel;
+  }
+  
+  let saying;
+  // If it's an array, pick a random one that is not empty
+  if (Array.isArray(scriptValue)) {
+    // Filter out empty or undefined sayings
+    const validSayings = scriptValue.filter(saying => saying && saying.trim() !== '');
+    if (validSayings.length === 0) {
+      return ballLabel;
+    }
+    saying = validSayings[Math.floor(Math.random() * validSayings.length)];
+  } else {
+    saying = scriptValue;
+  }
+  
+  // Format: "B1. [saying] B1."
+  return ballLabel + '. ' + saying + ' ' + ballLabel + '.';
+}
+
+function saveCurrentScriptsAsPreset() {
+  const presetName = prompt('Enter a name for this script preset:');
+  if (presetName && presetName.trim()) {
+    const trimmedName = presetName.trim();
+    if (saveData.scriptPresets[trimmedName]) {
+      if (!confirm(`Preset "${trimmedName}" already exists. Overwrite it?`)) {
+        return;
+      }
+    }
+    // Deep copy the current preset
+    saveData.scriptPresets[trimmedName] = JSON.parse(JSON.stringify(saveData.scriptPresets[saveData.currentScriptPreset] || {}));
+    saveData.currentScriptPreset = trimmedName;
+    save();
+    updateScriptPresetDropdown();
+    initializeScriptGrid();
+  }
+}
+
+function switchScriptPreset() {
+  const dropdown = document.getElementById('scriptPresetDropdown');
+  const selectedPreset = dropdown.value;
+  if (selectedPreset) {
+    // Handle default presets that might not be in saveData.scriptPresets
+    if ((selectedPreset === 'Default' || selectedPreset === 'Fun Sayings' || selectedPreset === 'Math Jokes' || selectedPreset === 'Dad Jokes' || selectedPreset === 'Puns' || selectedPreset === 'Geeky' || selectedPreset === 'Movie Quotes' || selectedPreset === 'Book Quotes') && !saveData.scriptPresets[selectedPreset]) {
+      // Ensure default presets are loaded
+      if (selectedPreset === 'Default' && !saveData.scriptPresets['Default']) {
+        saveData.scriptPresets['Default'] = {};
+      }
+      // Fun Sayings and Math Jokes should be loaded by loadDefaultScripts, but if not, load them
+      if ((selectedPreset === 'Fun Sayings' || selectedPreset === 'Math Jokes' || selectedPreset === 'Dad Jokes' || selectedPreset === 'Puns' || selectedPreset === 'Geeky' || selectedPreset === 'Movie Quotes' || selectedPreset === 'Book Quotes') && !saveData.scriptPresets[selectedPreset]) {
+        loadDefaultScripts();
+        return; // loadDefaultScripts will handle the switching
+      }
+    }
+    
+    if (saveData.scriptPresets[selectedPreset]) {
+      saveData.currentScriptPreset = selectedPreset;
+      save();
+      updateScriptPresetDropdown(); // Ensure dropdown is in sync
+      initializeScriptGrid();
+    }
+  }
+}
+
+function deleteScriptPreset() {
+  const dropdown = document.getElementById('scriptPresetDropdown');
+  const selectedPreset = dropdown.value;
+  
+  if (selectedPreset === 'Default' || selectedPreset === 'Fun Sayings' || selectedPreset === 'Math Jokes' || selectedPreset === 'Dad Jokes' || selectedPreset === 'Puns' || selectedPreset === 'Geeky' || selectedPreset === 'Movie Quotes' || selectedPreset === 'Book Quotes') {
+    alert('Cannot delete the Default, Fun Sayings, Math Jokes, Dad Jokes, Puns, Geeky, Movie Quotes, or Book Quotes presets.');
+    return;
+  }
+  
+  if (confirm(`Are you sure you want to delete the "${selectedPreset}" preset?`)) {
+    delete saveData.scriptPresets[selectedPreset];
+    if (saveData.currentScriptPreset === selectedPreset) {
+      saveData.currentScriptPreset = 'Default';
+    }
+    save();
+    updateScriptPresetDropdown();
+    initializeScriptGrid();
+  }
+}
+
+function updateScriptPresetDropdown() {
+  const dropdown = document.getElementById('scriptPresetDropdown');
+  if (!dropdown) return;
+  
+  dropdown.innerHTML = '';
+  
+  // Always include default presets
+  const allPresets = ['Default', 'Fun Sayings', 'Math Jokes', 'Dad Jokes', 'Puns', 'Geeky', 'Movie Quotes', 'Book Quotes', ...Object.keys(saveData.scriptPresets)];
+  const uniquePresets = [...new Set(allPresets)]; // Remove duplicates
+  
+  uniquePresets.forEach(presetName => {
+    const option = document.createElement('option');
+    option.value = presetName;
+    option.textContent = presetName;
+    if (presetName === saveData.currentScriptPreset) {
+      option.selected = true;
+    }
+    dropdown.appendChild(option);
+  });
+  
+  // Update button states based on current preset
+  const isProtectedPreset = saveData.currentScriptPreset === 'Default' || saveData.currentScriptPreset === 'Fun Sayings' || saveData.currentScriptPreset === 'Math Jokes' || saveData.currentScriptPreset === 'Dad Jokes' || saveData.currentScriptPreset === 'Puns' || saveData.currentScriptPreset === 'Geeky' || saveData.currentScriptPreset === 'Movie Quotes' || saveData.currentScriptPreset === 'Book Quotes';
+  const saveAsButton = document.querySelector('button[onclick="saveCurrentScriptsAsPreset()"]');
+  const deleteButton = document.querySelector('button[onclick="deleteScriptPreset()"]');
+  
+  if (saveAsButton) {
+    saveAsButton.disabled = false; // Always enabled - used to save changes from protected presets
+    saveAsButton.style.opacity = '1';
+  }
+  
+  if (deleteButton) {
+    deleteButton.disabled = isProtectedPreset;
+    deleteButton.style.opacity = isProtectedPreset ? '0.5' : '1';
+  }
+}
+
+function exportScriptsToJSON() {
+  const currentPreset = saveData.scriptPresets[saveData.currentScriptPreset] || {};
+  const exportData = {
+    presetName: saveData.currentScriptPreset,
+    scripts: currentPreset,
+    exportedAt: new Date().toISOString()
+  };
+  
+  const dataStr = JSON.stringify(exportData, null, 2);
+  const dataBlob = new Blob([dataStr], {type: 'application/json'});
+  
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(dataBlob);
+  link.download = `bingo-scripts-${saveData.currentScriptPreset.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.json`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+function loadPreset(filename, presetName, shouldInitializeGrid = false) {
+  fetch(`./assets/presets/${filename}`)
+    .then(response => {
+      if (!response.ok) {
+        console.warn(`Could not load ${filename}`);
+        return;
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data && data.scripts) {
+        saveData.scriptPresets[presetName] = convertLetterKeysToNumbers(data.scripts);
+        save();
+        updateScriptPresetDropdown();
+        if (shouldInitializeGrid) {
+          initializeScriptGrid();
+        }
+      }
+    })
+    .catch(error => {
+      console.warn(`Error loading ${presetName}:`, error);
+    });
+}
+
+function loadDefaultScripts() {
+  // Load all default presets
+  loadPreset('fun-bingo-sayings.json', 'Fun Sayings', true);
+  loadPreset('math-jokes-sayings.json', 'Math Jokes');
+  loadPreset('dad-jokes-sayings.json', 'Dad Jokes');
+  loadPreset('puns-sayings.json', 'Puns');
+  loadPreset('geeky-sayings.json', 'Geeky');
+  loadPreset('movie-quotes-sayings.json', 'Movie Quotes');
+  loadPreset('book-quotes-sayings.json', 'Book Quotes');
+}
+
+function importScriptsFromJSON() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  
+  input.onchange = function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const importData = JSON.parse(e.target.result);
+        
+        if (!importData.scripts || typeof importData.scripts !== 'object') {
+          alert('Invalid script file format.');
+          return;
+        }
+        
+        let presetName = importData.presetName || 'Imported';
+        
+        // Handle name conflicts
+        let counter = 1;
+        let originalName = presetName;
+        while (saveData.scriptPresets[presetName]) {
+          presetName = `${originalName} (${counter})`;
+          counter++;
+        }
+        
+        saveData.scriptPresets[presetName] = convertLetterKeysToNumbers(importData.scripts);
+        saveData.currentScriptPreset = presetName;
+        save();
+        updateScriptPresetDropdown();
+        initializeScriptGrid();
+        
+        alert(`Scripts imported successfully as "${presetName}" preset.`);
+      } catch (error) {
+        alert('Error importing scripts: ' + error.message);
+      }
+    };
+    reader.readAsText(file);
+  };
+  
+  input.click();
 }

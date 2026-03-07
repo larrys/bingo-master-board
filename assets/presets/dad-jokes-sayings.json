@@ -1,0 +1,280 @@
+{
+  "presetName": "Dad Jokes",
+  "scripts": {
+    "B1": [
+      "Why did the number 1 go to therapy? It had too many issues with being alone!",
+      "What do you call a group of 1? A loner!",
+      "Why was the number 1 afraid of the number 2? Because 2, 4, 6, 8... who do you appreciate?"
+    ],
+    "B2": [
+      "Why did the number 2 break up with the number 3? It said 3 was just too odd!",
+      "What do you call two numbers that add up to 2? A pair of ones!",
+      "Why did the number 2 go to school? To become a little 2-educated!"
+    ],
+    "B3": [
+      "Why did the number 3 get kicked out of the party? It was being too odd!",
+      "What do you call three numbers in a row? A triplet!",
+      "Why was the number 3 always happy? Because it was prime time!"
+    ],
+    "B4": [],
+    "B5": [
+      "Why did the number 5 go to the party? It heard there would be high-fives!",
+      "What do you call five numbers in a circle? A pentagon!",
+      "Why was the number 5 always tired? It was up all night counting sheep!"
+    ],
+    "B6": [
+      "Why did the number 6 go to the beach? It wanted to be a little 6-pack!",
+      "What do you call six numbers that are even? A sextet!"
+    ],
+    "B7": [
+      "Why did the number 7 go to heaven? It was a lucky number!",
+      "What do you call seven numbers in a row? A septet!",
+      "Why was the number 7 always calm? It knew how to stay grounded!"
+    ],
+    "B8": [
+      "Why did the number 8 go to the gym? It wanted to be a great eight!",
+      "What do you call eight numbers that are the same? An octet!"
+    ],
+    "B9": [
+      "Why did the number 9 go to school? It wanted to be number 1!",
+      "What do you call nine numbers in a group? A nonet!",
+      "Why was the number 9 always hungry? It was nine-ty percent sure it needed food!"
+    ],
+    "B10": [
+      "Why did the number 10 go to the party? It was a perfect 10!",
+      "What do you call ten numbers that are even? A decade!",
+      "Why did the number 10 break up with the number 11? It said 11 was too odd!"
+    ],
+    "B11": [
+      "Why was the number 11 always late? It was eleven o'clock somewhere!"
+    ],
+    "B12": [
+      "Why did the number 12 go to the clock store? It needed a new face!",
+      "What do you call twelve numbers in a circle? A clock!"
+    ],
+    "B13": [
+      "Why did the number 13 go to the casino? It was feeling lucky!",
+      "What do you call thirteen numbers that are unlucky? A baker's dozen!",
+      "Why was the number 13 always scared? It had triskaidekaphobia!"
+    ],
+    "B14": [],
+    "B15": [
+      "Why did the number 15 go to the party? It was a quarter past!",
+      "What do you call fifteen numbers that are the same? A fifteenth!",
+      "Why was the number 15 always tired? It was up all night counting!"
+    ],
+    "I16": [
+      "Why did the number 16 go to the sweet shop? It wanted to be a square candy!",
+      "What do you call sixteen numbers in a grid? A bingo card!"
+    ],
+    "I17": [
+      "Why did the number 17 go to the party? It was a prime time!",
+      "What do you call seventeen numbers that are prime? A prime number party!",
+      "Why was the number 17 always happy? It was prime and proper!"
+    ],
+    "I18": [
+      "Why did the number 18 go to the golf course? It wanted to be a hole in one!",
+      "What do you call eighteen numbers in a row? A stroke of luck!"
+    ],
+    "I19": [
+      "Why was the number 19 always late? It was nineteen to twelve!"
+    ],
+    "I20": [
+      "Why did the number 20 go to the vision test? It wanted perfect 20/20 vision!"
+    ],
+    "I21": [
+      "Why did the number 21 go to the casino? It was feeling lucky!",
+      "What do you call twenty-one numbers that are black? Blackjack!",
+      "Why was the number 21 always tired? It was up all night gambling!"
+    ],
+    "I22": [],
+    "I23": [
+      "Why did the number 23 go to the basketball game? It wanted to be Michael Jordan's number!",
+      "What do you call twenty-three numbers that are prime? A prime time!",
+      "Why was the number 23 always jumping? It was full of energy!"
+    ],
+    "I24": [
+      "Why did the number 24 go to the clock store? It needed a new battery!"
+    ],
+    "I25": [
+      "Why did the number 25 go to the party? It was a quarter century!",
+      "What do you call twenty-five numbers in a grid? A bingo card!",
+      "Why was the number 25 always happy? It was a perfect square!"
+    ],
+    "I26": [
+      "Why did the number 26 go to the alphabet party? It was the end of the line!"
+    ],
+    "I27": [
+      "Why did the number 27 go to the cube store? It wanted to be cubed!",
+      "What do you call twenty-seven numbers that are cubed? A Rubik's cube!",
+      "Why was the number 27 always confused? It was cubed and puzzled!"
+    ],
+    "I28": [],
+    "I29": [
+      "Why did the number 29 go to the party? It was a prime time!",
+      "What do you call twenty-nine numbers that are prime? A prime number!",
+      "Why was the number 29 always alone? It was the last prime before 30!"
+    ],
+    "I30": [
+      "Why did the number 30 go to the dirty party? It was a dirty 30!"
+    ],
+    "N31": [
+      "Why did the number 31 go to the calendar? It was the last day of the month!"
+    ],
+    "N32": [
+      "Why did the number 32 go to the computer? It wanted to be a bit!"
+    ],
+    "N33": [
+      "Why did the number 33 go to the record store? It wanted to be a long-playing record!",
+      "What do you call thirty-three numbers that spin? An LP!",
+      "Why was the number 33 always spinning? It was a record!"
+    ],
+    "N34": [],
+    "N35": [
+      "Why did the number 35 go to the party? It was a high-five party!",
+      "What do you call thirty-five numbers that are high? A high score!",
+      "Why was the number 35 always excited? It was high-fiving!"
+    ],
+    "N36": [
+      "Why did the number 36 go to the square dance? It wanted to be squared!"
+    ],
+    "N37": [
+      "Why did the number 37 go to the party? It was a prime time!",
+      "What do you call thirty-seven numbers that are prime? A prime party!",
+      "Why was the number 37 always happy? It was prime and fine!"
+    ],
+    "N38": [],
+    "N39": [
+      "Why did the number 39 go to the shoe store? It wanted to be a size 39!",
+      "What do you call thirty-nine numbers that are odd? An oddity!",
+      "Why was the number 39 always walking? It was a shoe size!"
+    ],
+    "N40": [
+      "Why did the number 40 go to the desert? It wanted to be a perfect 40!"
+    ],
+    "N41": [
+      "Why did the number 41 go to the party? It was a prime time!",
+      "What do you call forty-one numbers that are prime? A prime number!",
+      "Why was the number 41 always alone? It was prime and single!"
+    ],
+    "N42": [
+      "Why did the number 42 go to the answer store? It was the meaning of life!",
+      "What do you call forty-two numbers that are the answer? The meaning of life!",
+      "Why was the number 42 always philosophical? It knew the meaning of life!"
+    ],
+    "N43": [],
+    "N44": [
+      "Why did the number 44 go to the bowling alley? It wanted to be a strike!",
+      "What do you call forty-four numbers that bowl? A strike!",
+      "Why was the number 44 always striking? It was a bowling ball!"
+    ],
+    "N45": [
+      "Why did the number 45 go to the record store? It wanted to be a 45!",
+      "What do you call forty-five numbers that spin? A single!",
+      "Why was the number 45 always spinning? It was a record!"
+    ],
+    "G46": [],
+    "G47": [
+      "Why did the number 47 go to the party? It was a prime time!",
+      "What do you call forty-seven numbers that are prime? A prime party!",
+      "Why was the number 47 always happy? It was prime and proper!"
+    ],
+    "G48": [
+      "Why did the number 48 go to the clock? It wanted to be a half hour!"
+    ],
+    "G49": [
+      "Why did the number 49 go to the square dance? It wanted to be squared!",
+      "What do you call forty-nine numbers that are squared? A square!",
+      "Why was the number 49 always dancing? It was squared away!"
+    ],
+    "G50": [
+      "Why did the number 50 go to the party? It was a golden anniversary!"
+    ],
+    "G51": [
+      "Why did the number 51 go to the card game? It wanted to be a royal flush!",
+      "What do you call fifty-one numbers that are cards? A deck!",
+      "Why was the number 51 always gambling? It was a card shark!"
+    ],
+    "G52": [
+      "Why did the number 52 go to the calendar? It was a year of weeks!"
+    ],
+    "G53": [],
+    "G54": [
+      "Why did the number 54 go to the golf course? It wanted to be a par!",
+      "What do you call fifty-four numbers on a golf course? Strokes!",
+      "Why was the number 54 always swinging? It was a golf ball!"
+    ],
+    "G55": [
+      "Why did the number 55 go to the highway? It was the speed limit!"
+    ],
+    "G56": [],
+    "G57": [
+      "Why did the number 57 go to the party? It was a prime time!",
+      "What do you call fifty-seven numbers that are prime? A prime number!",
+      "Why was the number 57 always happy? It was prime and fine!"
+    ],
+    "G58": [],
+    "G59": [
+      "Why did the number 59 go to the calendar? It was almost 60!",
+      "What do you call fifty-nine numbers that are almost 60? Almost there!",
+      "Why was the number 59 always rushing? It was almost 60!"
+    ],
+    "G60": [
+      "Why did the number 60 go to the clock? It was a minute past!"
+    ],
+    "O61": [
+      "Why did the number 61 go to the party? It was a prime time!",
+      "What do you call sixty-one numbers that are prime? A prime party!",
+      "Why was the number 61 always happy? It was prime and proper!"
+    ],
+    "O62": [],
+    "O63": [
+      "Why did the number 63 go to the shoe store? It wanted to be a size 63!",
+      "What do you call sixty-three numbers that are odd? An oddity!",
+      "Why was the number 63 always walking? It was a shoe size!"
+    ],
+    "O64": [
+      "Why did the number 64 go to the computer? It wanted to be a bit squared!"
+    ],
+    "O65": [
+      "Why did the number 65 go to the retirement party? It was a senior moment!",
+      "What do you call sixty-five numbers that retire? Seniors!",
+      "Why was the number 65 always tired? It was retired!"
+    ],
+    "O66": [
+      "Why did the number 66 go to the road? It was the route!"
+    ],
+    "O67": [
+      "Why did the number 67 go to the party? It was a prime time!",
+      "What do you call sixty-seven numbers that are prime? A prime number!",
+      "Why was the number 67 always alone? It was prime and single!"
+    ],
+    "O68": [],
+    "O69": [
+      "Why did the number 69 go to the party? It was a wild time!",
+      "What do you call sixty-nine numbers that are upside down? A wild number!",
+      "Why was the number 69 always smiling? It was upside down!"
+    ],
+    "O70": [
+      "Why did the number 70 go to the party? It was a milestone!"
+    ],
+    "O71": [
+      "Why did the number 71 go to the party? It was a prime time!",
+      "What do you call seventy-one numbers that are prime? A prime party!",
+      "Why was the number 71 always happy? It was prime and proper!"
+    ],
+    "O72": [
+      "Why did the number 72 go to the clock? It was three o'clock!"
+    ],
+    "O73": [
+      "Why was the number 73 always alone? It was prime and single!"
+    ],
+    "O74": [],
+    "O75": [
+      "Why did the number 75 go to the party? It was three-quarters!",
+      "What do you call seventy-five numbers in a bingo game? The final number!",
+      "Why was the number 75 always excited? It was the end of the game!"
+    ]
+  },
+  "exportedAt": "2026-01-27T12:00:00.000Z"
+}

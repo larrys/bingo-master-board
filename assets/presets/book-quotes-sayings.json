@@ -1,0 +1,257 @@
+{
+  "presetName": "Book Quotes",
+  "scripts": {
+    "B1": [
+      "One is the loneliest number that you'll ever do. - Three Dog Night (but in books, it's about solitude)",
+      "One Flew Over the Cuckoo's Nest - the story of one man's rebellion against conformity",
+      "The One and Only Ivan - a gorilla's tale of captivity and freedom"
+    ],
+    "B2": [
+      "Two households, both alike in dignity. - Romeo and Juliet"
+    ],
+    "B3": [
+      "The Three Musketeers - all for one and one for all",
+      "The Third Man - Graham Greene's Vienna thriller"
+    ],
+    "B4": [
+      "Four Quartets - T.S. Eliot's meditation on time and seasons"
+    ],
+    "B5": [
+      "Five Children and It - E. Nesbit's magical adventure"
+    ],
+    "B6": [
+      "Six Characters in Search of an Author - Luigi Pirandello's play",
+      "Six of Crows - Leigh Bardugo's heist novel"
+    ],
+    "B7": [
+      "The Seven Habits of Highly Effective People - Stephen Covey's self-help classic",
+      "Seven Pillars of Wisdom - T.E. Lawrence's autobiography"
+    ],
+    "B8": [
+      "Eight Cousins - Louisa May Alcott's family story",
+      "The Eight - Katherine Neville's mystery thriller"
+    ],
+    "B9": [
+      "Nine Stories - J.D. Salinger's short story collection"
+    ],
+    "B10": [
+      "Ten Little Indians - Agatha Christie's mystery",
+      "Ten Days That Shook the World - John Reed's revolution account"
+    ],
+    "B11": [
+      "Eleven Minutes - Paulo Coelho's novel about prostitution"
+    ],
+    "B12": [
+      "Twelve Angry Men - Reginald Rose's courtroom drama",
+      "The Twelve Caesars - Suetonius' biographies"
+    ],
+    "B13": [
+      "13 Reasons Why - Jay Asher's teen drama",
+      "The Thirteenth Tale - Diane Setterfield's gothic mystery"
+    ],
+    "B14": [
+      "The 14th Colony - Steve Berry's thriller",
+      "Fourteen - Shannon Messenger's fantasy novel"
+    ],
+    "B15": [
+      "Fifteen - Beverly Cleary's teen novel",
+      "The 15th Affair - James Patterson's mystery"
+    ],
+    "I16": [
+      "Sixteen - Maureen Daly's coming-of-age story",
+      "Sweet Sixteen - Brenda Novak's romance"
+    ],
+    "I17": [
+      "Seventeen - Booth Tarkington's novel",
+      "The 17th Suspect - James Patterson's thriller"
+    ],
+    "I18": [
+      "Eighteen - Alice McDermott's novel",
+      "18 Best Stories by Edgar Allan Poe"
+    ],
+    "I19": [
+      "Nineteen - Jodi Picoult's novel",
+      "The 19th Wife - David Ebershoff's story"
+    ],
+    "I20": [
+      "Twenty - James Grippando's thriller",
+      "20,000 Leagues Under the Sea - Jules Verne's adventure"
+    ],
+    "I21": [
+      "Twenty-One - Lauren Myracle's novel",
+      "Taschen's photography book"
+    ],
+    "I22": [
+      "Twenty-Two - Alison McGhee's novel",
+      "The 22nd Amendment - constitutional reference"
+    ],
+    "I23": [
+      "Twenty-Three - John Locke novel",
+      "Joseph Heller's story"
+    ],
+    "I24": [
+      "Twenty-Four - James Grippando's novel",
+      "Taschen's design book"
+    ],
+    "I25": [
+      "Twenty-Five - Jodi Picoult's novel",
+      "Beatrice Colin novel"
+    ],
+    "I26": [
+      "Twenty-Six - Leo McKay Jr. novel",
+      "Morgan Robertson's novella"
+    ],
+    "I27": [
+      "Twenty-Seven - Alan Beechey novel",
+      "Hyman G. Rickover biography"
+    ],
+    "I28": [
+      "Twenty-Eight - John D. MacDonald novel",
+      "Scott O'Dell novel"
+    ],
+    "I29": [
+      "The 29th Parallel"
+    ],
+    "I30": [
+      "The Thirty-Nine Steps"
+    ],
+    "N31": [
+      "The 31st of February - a collection of short stories"
+    ],
+    "N32": [
+      "The 32nd of December - a holiday mystery"
+    ],
+    "N33": [
+      "The 33 Strategies of War - Robert Greene's masterpiece on strategy"
+    ],
+    "N34": [
+      "The 34th Rule - a legal thriller"
+    ],
+    "N35": [
+      "The 35th Parallel - a mystery novel"
+    ],
+    "N36": [
+      "36 Views of Mount Fuji - a collection of Japanese prints and literature"
+    ],
+    "N37": [
+      "The 37th Hour - a suspense novel"
+    ],
+    "N38": [
+      "The Complete Works of William Shakespeare"
+    ],
+    "N39": [
+      "The 39 Steps - John Buchan adventure novel"
+    ],
+    "N40": [
+      "The 40th Day - a biblical reference in literature"
+    ],
+    "N41": [
+      "The 41st Letter - a mystery novel"
+    ],
+    "N42": [
+      "The Hitchhiker's Guide to the Galaxy - 42 is the answer to life, the universe, and everything!",
+      "the ultimate answer in Douglas Adams' masterpiece",
+      "Life, the Universe and Everything - the third book in the trilogy"
+    ],
+    "N43": [
+      "The 43rd Parallel - a geographical mystery"
+    ],
+    "G44": [
+      "The Complete Sherlock Holmes"
+    ],
+    "N45": [
+      "The 45th Parallel - a literary exploration"
+    ],
+    "G46": [
+      "The 46th Hour - a thriller novel"
+    ],
+    "G47": [
+      "The 47th Samurai - a historical novel"
+    ],
+    "G48": [
+      "The Laws of Power"
+    ],
+    "G49": [
+      "The 49th Mystic - a fantasy novel"
+    ],
+    "G50": [
+      "50 Shades of Grey - E.L. James' erotic novel"
+    ],
+    "G51": [
+      "The 51st State - a political thriller"
+    ],
+    "G52": [
+      "The Complete Works of Edgar Allan Poe"
+    ],
+    "G53": [
+      "The 53rd Card - a mystery novel"
+    ],
+    "G54": [
+      "The 54th Massachusetts - Civil War history"
+    ],
+    "G55": [
+      "The 55th of November - a holiday mystery"
+    ],
+    "G56": [
+      "The Complete Grimm's Fairy Tales"
+    ],
+    "G57": [
+      "The 57th Minute - a suspense thriller"
+    ],
+    "G58": [
+      "The Complete Works of Charles Dickens"
+    ],
+    "G59": [
+      "The 59th Street Bridge Song - literary reference"
+    ],
+    "G60": [
+      "Sixty - Ian McDonald novel"
+    ],
+    "O61": [
+      "The 61st Minute - a sports mystery"
+    ],
+    "O62": [
+      "The Complete Works of Jane Austen"
+    ],
+    "O63": [
+      "The 63rd Trick - a magic mystery"
+    ],
+    "O64": [
+      "The Complete Works of Mark Twain"
+    ],
+    "O65": [
+      "The 65th Place - a literary anthology"
+    ],
+    "O66": [
+      "The 66th Book - a collection of wisdom"
+    ],
+    "O67": [
+      "The 67th Problem - a Masonic mystery"
+    ],
+    "O68": [
+      "The Complete Works of F. Scott Fitzgerald"
+    ],
+    "O69": [
+      "Sixty-Nine - Ryan Gattis novel"
+    ],
+    "O70": [
+      "The 70th Week - biblical prophecy in literature"
+    ],
+    "O71": [
+      "The 71st Letter - a philosophical treatise"
+    ],
+    "O72": [
+      "The Complete Works of Ernest Hemingway"
+    ],
+    "O73": [
+      "The 73rd Psalm - biblical poetry"
+    ],
+    "O74": [
+      "The Complete Works of George Orwell"
+    ],
+    "O75": [
+      "The 75th Hunger Games"
+    ]
+  },
+  "exportedAt": "2026-01-27T12:00:00.000Z"
+}
