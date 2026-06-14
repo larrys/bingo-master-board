@@ -588,23 +588,7 @@ margin:0.5em 0;
   margin-right:14px;
 }
 
-#bingosWonTop {
-  position:absolute;
-  left:31px;
-  top:auto;
-  bottom:calc(10px + env(safe-area-inset-bottom, 0px));
-  width:193px;
-  height:44px;
-  font-size:25px;
-  background:rgba(179,162,199,0.8);
-  border:1.2px solid rgba(74,126,187,0.9);
-  border-radius:12px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-  pointer-events:auto;
-}
+/* bingosWonTop removed */
 
 #reset:hover {
   background-color:rgba(255,0,0,0.25);
@@ -700,30 +684,7 @@ margin:0.5em 0;
   justify-content:center;
 }
 
-#bingosWon {
-  display:none;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-}
-
-.bingosWonAdjust {
-  width:24px;
-  height:24px;
-  border-radius:50%;
-  border:1px solid rgba(0,0,0,0.3);
-  background:rgba(255,255,255,0.65);
-  font-size:18px;
-  font-weight:700;
-  line-height:1;
-  cursor:pointer;
-  padding:0;
-  touch-action: manipulation;
-}
-
-.bingosWonAdjust:hover {
-  background:rgba(255,255,255,0.85);
-}
+/* bingosWon UI and controls removed */
 
 #bingoB, #bingoI, #bingoN, #bingoG, #bingoO {
   margin-top:-10px;
